@@ -55,6 +55,22 @@ Brak. Zajęcia rozpoczynają się od podstaw.
 | {{< fa solid star >}} {{< fa solid star >}} {{< fa solid star >}} | Poziom 3: ćwiczenia wymagające samodzielnego rozszerzenia poznanych pojęć i składni w celu rozwiązania nowych problemów. |
 
 
+## Konsultacje
+
+| Dzień | Godziny |
+|:---|:---|
+| Środa | 10:00–11:00 |
+| Piątek | 13:45–14:45 |
+
+## Zaliczenie przedmiotu
+
+Ocena końcowa uwzględnia zaliczenie wykładu oraz ćwiczeń laboratoryjnych z następującymi wagami:
+
+| Forma zajęć | Forma zaliczenia | Udział w ocenie końcowej |
+|:---|:---|---:|
+| Wykład | Zaliczenie pisemne | 30% |
+| Ćwiczenia laboratoryjne | Projekt, aktywność na zajęciach, prezentacja oraz wykonanie ćwiczeń | 70% |
+
 ## Podziękowania i źródła
 
 Niniejsze materiały stanowią adaptację następujących publikacji:

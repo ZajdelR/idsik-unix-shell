@@ -8,6 +8,7 @@ project:
   output-dir: _site
   render:
     - index.md
+    - course-plan.md
     - setup.md
     - materials.md
     - materials/*
@@ -51,5 +52,7 @@ book:
       chapters:
         - text: "Informacje ogólne"
           href: index.md
+        - text: "Wprowadzenie i harmonogram kursu"
+          href: course-plan.md
         - text: "Dane i przygotowanie środowiska"
           href: setup.md

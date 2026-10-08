@@ -15,7 +15,7 @@
     "href": "index.html#informacje-ogólne",
     "title": "Zarządzanie projektem informatycznym",
     "section": "Informacje ogólne",
-    "text": "Informacje ogólne\nPowłoka Unix, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja, bioinformatyka i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.\n\n\n\n\n\n\nAdnotacjaAutorzy i materiały źródłowe\n\n\n\nMateriały opracowano na podstawie następujących publikacji: - Tavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. https://cambiotraining.github.io/unix-shell/ - Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823\n\n\n\n\n\n\n\n\nWskazówkaCele kształcenia\n\n\n\n\nPoznasz zastosowania wiersza poleceń w pracy z danymi i obliczeniami.\nNauczysz się korzystać z wiersza poleceń, rozumieć budowę poleceń i sięgać do ich dokumentacji.\nNauczysz się poruszać po systemie plików oraz określać położenie plików i katalogów za pomocą ścieżek.\nOpanujesz podstawowe operacje na plikach w powłoce Bash: łączenie plików, zliczanie wierszy, słów i znaków, wyszukiwanie tekstu pasującego do wzorca oraz zliczanie unikatowych wartości.\nNauczysz się łączyć polecenia za pomocą potoków i przekierowań, aby rozwiązywać bardziej złożone zadania.\nNauczysz się pisać skrypty Bash, które zapisują kolejne kroki analizy i umożliwiają jej odtworzenie.\nNauczysz się korzystać ze zmiennych, argumentów oraz standardowych strumieni wejścia i wyjścia w skryptach powłoki.\n\n\n\n\nDla kogo są te materiały?\nMateriały są przeznaczone dla studentów kierunku Inżynieria Danych Satelitarnych i Kosmicznych Uniwersytetu Przyrodniczego we Wrocławiu. Nie wymagają wcześniejszego doświadczenia w pracy z wierszem poleceń.\n\n\nWymagania wstępne\nBrak. Zajęcia rozpoczynają się od podstaw.\n\n\nĆwiczenia\nĆwiczenia w materiałach oznaczono według poziomu trudności:\n\n\n\n\n\n\n\nPoziom\nOpis\n\n\n\n\n  \nPoziom 1: proste ćwiczenia służące poznaniu pojęć i składni omawianych na zajęciach.\n\n\n  \nPoziom 2: ćwiczenia wymagające połączenia kilku poznanych zagadnień w celu rozwiązania zadania.\n\n\n  \nPoziom 3: ćwiczenia wymagające samodzielnego rozszerzenia poznanych pojęć i składni w celu rozwiązania nowych problemów.",
+    "text": "Informacje ogólne\nPowłoka Unix, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.\n\n\n\n\n\n\nAdnotacjaAutorzy i materiały źródłowe\n\n\n\nMateriały opracowano na podstawie następujących publikacji: - Tavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. https://cambiotraining.github.io/unix-shell/ - Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823\n\n\n\n\n\n\n\n\nWskazówkaCele kształcenia\n\n\n\n\nPoznasz zastosowania wiersza poleceń w pracy z danymi i obliczeniami.\nNauczysz się korzystać z wiersza poleceń, rozumieć budowę poleceń i sięgać do ich dokumentacji.\nNauczysz się poruszać po systemie plików oraz określać położenie plików i katalogów za pomocą ścieżek.\nOpanujesz podstawowe operacje na plikach w powłoce Bash: łączenie plików, zliczanie wierszy, słów i znaków, wyszukiwanie tekstu pasującego do wzorca oraz zliczanie unikatowych wartości.\nNauczysz się łączyć polecenia za pomocą potoków i przekierowań, aby rozwiązywać bardziej złożone zadania.\nNauczysz się pisać skrypty Bash, które zapisują kolejne kroki analizy i umożliwiają jej odtworzenie.\nNauczysz się korzystać ze zmiennych, argumentów oraz standardowych strumieni wejścia i wyjścia w skryptach powłoki.\n\n\n\n\nDla kogo są te materiały?\nMateriały są przeznaczone dla studentów kierunku Inżynieria Danych Satelitarnych i Kosmicznych Uniwersytetu Przyrodniczego we Wrocławiu. Nie wymagają wcześniejszego doświadczenia w pracy z wierszem poleceń.\n\n\nWymagania wstępne\nBrak. Zajęcia rozpoczynają się od podstaw.\n\n\nĆwiczenia\nĆwiczenia w materiałach oznaczono według poziomu trudności:\n\n\n\n\n\n\n\nPoziom\nOpis\n\n\n\n\n  \nPoziom 1: proste ćwiczenia służące poznaniu pojęć i składni omawianych na zajęciach.\n\n\n  \nPoziom 2: ćwiczenia wymagające połączenia kilku poznanych zagadnień w celu rozwiązania zadania.\n\n\n  \nPoziom 3: ćwiczenia wymagające samodzielnego rozszerzenia poznanych pojęć i składni w celu rozwiązania nowych problemów.",
     "crumbs": [
       "Wprowadzenie",
       "Informacje ogólne"
@@ -129,17 +129,6 @@
     "crumbs": [
       "Wprowadzenie",
       "Dane i przygotowanie środowiska"
-    ]
-  },
-  {
-    "objectID": "materials/slides01-essentials.html",
-    "href": "materials/slides01-essentials.html",
-    "title": " Slajdy",
-    "section": "",
-    "text": "TipPobieranie slajdów\n\n\n\nOryginalna prezentacja dostępna jest tutaj, skąd można ją pobrać w różnych formatach (Plik &gt; Pobierz).",
-    "crumbs": [
-      "Podstawy wiersza poleceń",
-      "{{< iconify mdi:presentation >}} Slajdy"
     ]
   },
   {
@@ -536,17 +525,6 @@
     "crumbs": [
       "Podstawy wiersza poleceń",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
-    ]
-  },
-  {
-    "objectID": "materials/slides02-scripting.html",
-    "href": "materials/slides02-scripting.html",
-    "title": " Slajdy",
-    "section": "",
-    "text": "TipPobieranie slajdów\n\n\n\nOryginalna prezentacja dostępna jest tutaj, skąd można ją pobrać w różnych formatach (Plik &gt; Pobierz).",
-    "crumbs": [
-      "Podstawy tworzenia skryptów",
-      "{{< iconify mdi:presentation >}} Slajdy"
     ]
   },
   {

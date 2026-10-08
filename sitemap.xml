@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/index.html</loc>
-    <lastmod>2026-10-08T19:41:38.107Z</lastmod>
+    <lastmod>2026-10-08T19:47:27.468Z</lastmod>
   </url>
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/course-plan.html</loc>
@@ -11,10 +11,6 @@
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/setup.html</loc>
     <lastmod>2026-10-08T19:25:41.582Z</lastmod>
-  </url>
-  <url>
-    <loc>https://zajdelr.github.io/idsik-unix-shell/materials/slides01-essentials.html</loc>
-    <lastmod>2026-10-08T19:25:41.572Z</lastmod>
   </url>
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/materials/01-unix_overview.html</loc>
@@ -35,10 +31,6 @@
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/materials/05-combining_commands.html</loc>
     <lastmod>2026-10-08T19:25:41.527Z</lastmod>
-  </url>
-  <url>
-    <loc>https://zajdelr.github.io/idsik-unix-shell/materials/slides02-scripting.html</loc>
-    <lastmod>2026-10-08T19:25:41.573Z</lastmod>
   </url>
   <url>
     <loc>https://zajdelr.github.io/idsik-unix-shell/materials/06-scripts.html</loc>

@@ -2,34 +2,100 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "title": "Zarządzanie projektem informatycznym",
     "section": "",
-    "text": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "text": "Zarządzanie projektem informatycznym\nMateriały do przedmiotu Zarządzanie projektem informatycznym dla studentów kierunku Inżynieria Danych Satelitarnych i Kosmicznych na Uniwersytecie Przyrodniczym we Wrocławiu, na rok akademicki 2026/2027.",
     "crumbs": [
       "Wprowadzenie",
       "Informacje ogólne"
     ]
   },
   {
-    "objectID": "index.html#overview",
-    "href": "index.html#overview",
-    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
-    "section": "Overview",
-    "text": "Overview\nThe Unix shell (aka command line) is a powerful and essential tool for researchers and engineers, in particular those working in computational disciplines such as satellite data engineering, remote sensing, bioinformatics, and large-scale data analysis. In this course we explore the basic structure of the Unix operating system and how to interact with it using a fundamental set of commands. You will learn how to navigate the filesystem, manipulate text-based data, combine multiple commands using pipes and redirections to quickly extract information from data files, and write reusable Bash scripts with variables and standard streams.\n\n\n\n\n\n\nNoteAttribution & Source Materials\n\n\n\nThis course is based on: - Tavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. https://cambiotraining.github.io/unix-shell/ - Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823\n\n\n\n\n\n\n\n\nTipLearning Objectives\n\n\n\n\nRecognise the uses of the command line for computational work.\nBecome comfortable in using the command line, understanding how commands are structured and how to access their documentation.\nNavigate the filesystem from the command line and understand how to specify the location of files and directories.\nPerform basic file manipulations in Bash: combine multiple files together; count number of lines, words and characters in a file; extract text matching a pattern; counting unique values in a file.\nCombine multiple commands to solve more complex tasks using pipes and redirections.\nWrite Bash scripts to record and make your analysis reproducible.\nWork with variables, arguments, and standard I/O streams in shell scripts.\n\n\n\n\nTarget Audience\nThis course is targeted at students and participants with no prior experience of working on the command line.\n\n\nPrerequisites\nNone.\n\n\nExercises\nExercises in these materials are labelled according to their level of difficulty:\n\n\n\n\n\n\n\nLevel\nDescription\n\n\n\n\n  \nExercises in level 1 are simpler and designed to get you familiar with the concepts and syntax covered in the course.\n\n\n  \nExercises in level 2 combine different concepts together and apply it to a given task.\n\n\n  \nExercises in level 3 require going beyond the concepts and syntax introduced to solve new problems.",
+    "objectID": "index.html#informacje-ogólne",
+    "href": "index.html#informacje-ogólne",
+    "title": "Zarządzanie projektem informatycznym",
+    "section": "Informacje ogólne",
+    "text": "Informacje ogólne\nPowłoka Unix, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja, bioinformatyka i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.\n\n\n\n\n\n\nAdnotacjaAutorzy i materiały źródłowe\n\n\n\nMateriały opracowano na podstawie następujących publikacji: - Tavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. https://cambiotraining.github.io/unix-shell/ - Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823\n\n\n\n\n\n\n\n\nWskazówkaCele kształcenia\n\n\n\n\nPoznasz zastosowania wiersza poleceń w pracy z danymi i obliczeniami.\nNauczysz się korzystać z wiersza poleceń, rozumieć budowę poleceń i sięgać do ich dokumentacji.\nNauczysz się poruszać po systemie plików oraz określać położenie plików i katalogów za pomocą ścieżek.\nOpanujesz podstawowe operacje na plikach w powłoce Bash: łączenie plików, zliczanie wierszy, słów i znaków, wyszukiwanie tekstu pasującego do wzorca oraz zliczanie unikatowych wartości.\nNauczysz się łączyć polecenia za pomocą potoków i przekierowań, aby rozwiązywać bardziej złożone zadania.\nNauczysz się pisać skrypty Bash, które zapisują kolejne kroki analizy i umożliwiają jej odtworzenie.\nNauczysz się korzystać ze zmiennych, argumentów oraz standardowych strumieni wejścia i wyjścia w skryptach powłoki.\n\n\n\n\nDla kogo są te materiały?\nMateriały są przeznaczone dla studentów kierunku Inżynieria Danych Satelitarnych i Kosmicznych Uniwersytetu Przyrodniczego we Wrocławiu. Nie wymagają wcześniejszego doświadczenia w pracy z wierszem poleceń.\n\n\nWymagania wstępne\nBrak. Zajęcia rozpoczynają się od podstaw.\n\n\nĆwiczenia\nĆwiczenia w materiałach oznaczono według poziomu trudności:\n\n\n\n\n\n\n\nPoziom\nOpis\n\n\n\n\n  \nPoziom 1: proste ćwiczenia służące poznaniu pojęć i składni omawianych na zajęciach.\n\n\n  \nPoziom 2: ćwiczenia wymagające połączenia kilku poznanych zagadnień w celu rozwiązania zadania.\n\n\n  \nPoziom 3: ćwiczenia wymagające samodzielnego rozszerzenia poznanych pojęć i składni w celu rozwiązania nowych problemów.",
     "crumbs": [
       "Wprowadzenie",
       "Informacje ogólne"
     ]
   },
   {
-    "objectID": "index.html#acknowledgements-citations",
-    "href": "index.html#acknowledgements-citations",
-    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
-    "section": "Acknowledgements & Citations",
-    "text": "Acknowledgements & Citations\nThese materials are an adaptation based on the following works:\n\nTavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. Available at: https://cambiotraining.github.io/unix-shell/\nGabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823 (Licensed under CC-BY 4.0).\n\nThe original authors and publishers of the work have not endorsed the adaptation of this work.\n\nWe also thank Julia Evans for their fantastic illustrations of Bash programming concepts.",
+    "objectID": "index.html#konsultacje",
+    "href": "index.html#konsultacje",
+    "title": "Zarządzanie projektem informatycznym",
+    "section": "Konsultacje",
+    "text": "Konsultacje\n\n\n\nDzień\nGodziny\n\n\n\n\nŚroda\n10:00–11:00\n\n\nPiątek\n13:45–14:45",
     "crumbs": [
       "Wprowadzenie",
       "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#zaliczenie-przedmiotu",
+    "href": "index.html#zaliczenie-przedmiotu",
+    "title": "Zarządzanie projektem informatycznym",
+    "section": "Zaliczenie przedmiotu",
+    "text": "Zaliczenie przedmiotu\nOcena końcowa uwzględnia zaliczenie wykładu oraz ćwiczeń laboratoryjnych z następującymi wagami:\n\n\n\n\n\n\n\n\nForma zajęć\nForma zaliczenia\nUdział w ocenie końcowej\n\n\n\n\nWykład\nZaliczenie pisemne\n30%\n\n\nĆwiczenia laboratoryjne\nProjekt, aktywność na zajęciach, prezentacja oraz wykonanie ćwiczeń\n70%",
+    "crumbs": [
+      "Wprowadzenie",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#podziękowania-i-źródła",
+    "href": "index.html#podziękowania-i-źródła",
+    "title": "Zarządzanie projektem informatycznym",
+    "section": "Podziękowania i źródła",
+    "text": "Podziękowania i źródła\nNiniejsze materiały stanowią adaptację następujących publikacji:\n\nTavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. Dostępne pod adresem: https://cambiotraining.github.io/unix-shell/\nGabriel A. Devenyi (red.), Gerard Capes (red.), Colin Morris (red.), Will Pitchers (red.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, lipiec). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, czerwiec 2019 (wersja v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823 (licencja CC BY 4.0).\n\nAutorzy i wydawcy oryginalnych materiałów nie udzielili rekomendacji tej adaptacji.\n\nDziękujemy również Julii Evans za ilustracje przedstawiające zagadnienia programowania w powłoce Bash.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "course-plan.html",
+    "href": "course-plan.html",
+    "title": "Wprowadzenie i harmonogram kursu",
+    "section": "",
+    "text": "Jak będziemy pracować?\nKurs Zarządzanie projektem informatycznym jest przeznaczony dla studentów kierunku Inżynieria Danych Satelitarnych i Kosmicznych Uniwersytetu Przyrodniczego we Wrocławiu w roku akademickim 2026/2027. Podczas zajęć przejdziemy od pracy w terminalu do rozwijania projektu w Pythonie, a następnie poznamy zwinne podejście do pracy zespołowej.\nPierwszy etap obejmuje osiem cotygodniowych ćwiczeń od 9 października do 27 listopada 2026 r. Każdemu zagadnieniu poświęcimy dwa tygodnie: powłoce Bash, systemowi kontroli wersji Git, pracy z asystentem kodowania oraz projektowi w środowisku PyCharm.\nĆwiczenia będą się ze sobą łączyć: polecenia i skrypty ułatwią pracę z danymi, Git pozwoli śledzić zmiany, a asystent kodowania wesprze rozwijanie i sprawdzanie rozwiązań. Te umiejętności wykorzystamy w projekcie związanym z danymi satelitarnymi lub kosmicznymi. Przed rozpoczęciem zajęć zapoznaj się ze stroną Dane i przygotowanie środowiska.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Wprowadzenie i harmonogram kursu"
+    ]
+  },
+  {
+    "objectID": "course-plan.html#harmonogram-ćwiczeń-październiklistopad-2026",
+    "href": "course-plan.html#harmonogram-ćwiczeń-październiklistopad-2026",
+    "title": "Wprowadzenie i harmonogram kursu",
+    "section": "Harmonogram ćwiczeń: październik–listopad 2026",
+    "text": "Harmonogram ćwiczeń: październik–listopad 2026\n\n\n\n\n\n\n\n\n\n\nĆwiczenie\nTermin\nBlok\nTemat i zakres pracy\nEfekt ćwiczenia\n\n\n\n\n1\n09.10.2026\nBash — tydzień 1\nTerminal, budowa poleceń, ścieżki i poruszanie się po systemie plików. Podstawowe operacje na plikach i katalogach z danymi.\nSamodzielne odnajdywanie i porządkowanie plików z poziomu terminala.\n\n\n2\n16.10.2026\nBash — tydzień 2\nWyszukiwanie i przetwarzanie danych tekstowych, potoki i przekierowania. Prosty skrypt Bash ze zmiennymi i argumentami.\nSkrypt automatyzujący wybrane zadanie, np. przygotowanie zestawienia plików lub raportu z logów.\n\n\n3\n23.10.2026\nGit — tydzień 1\nRepozytorium lokalne, obszar przygotowania zmian, commity, historia i porównywanie wersji. Plik .gitignore i podstawy pracy z GitHubem.\nRepozytorium z czytelną historią zmian oraz opisem w pliku README.\n\n\n4\n30.10.2026\nGit — tydzień 2\nGałęzie, scalanie zmian, rozwiązywanie konfliktów i synchronizacja z repozytorium zdalnym. Przegląd zmian w pull requestach.\nPrzećwiczony proces wprowadzania i przeglądania zmian w repozytorium zespołu.\n\n\n5\n06.11.2026\nAsystent kodowania — tydzień 1\nFormułowanie zadań, przekazywanie kontekstu i korzystanie z asystenta do wyjaśniania oraz tworzenia kodu. Sprawdzanie proponowanych rozwiązań.\nRozwiązanie niewielkiego zadania z udokumentowanym sposobem weryfikacji kodu.\n\n\n6\n13.11.2026\nAsystent kodowania — tydzień 2\nWykorzystanie asystenta przy diagnozowaniu błędów, refaktoryzacji, tworzeniu testów i dokumentacji. Ocena poprawności oraz ograniczeń odpowiedzi.\nUlepszony kod wraz z testami i opisem zmian; umiejętność uzasadnienia przyjętego rozwiązania.\n\n\n7\n20.11.2026\nProjekt w PyCharm — tydzień 1\nUstalenie celu projektu i podział zadań. Konfiguracja interpretera, środowiska i repozytorium. Implementacja pierwszej wersji narzędzia do pracy z danymi.\nUruchamialna pierwsza wersja projektu oraz plan dalszych prac.\n\n\n8\n27.11.2026\nProjekt w PyCharm — tydzień 2\nRozwinięcie projektu, debugowanie i testowanie w PyCharm. Uzupełnienie instrukcji uruchomienia i prezentacja wyników.\nDziałający projekt z dokumentacją i historią zmian w Git.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Wprowadzenie i harmonogram kursu"
+    ]
+  },
+  {
+    "objectID": "course-plan.html#styczeń-2027-trzy-tygodnie-agile-ze-spyrosoft",
+    "href": "course-plan.html#styczeń-2027-trzy-tygodnie-agile-ze-spyrosoft",
+    "title": "Wprowadzenie i harmonogram kursu",
+    "section": "Styczeń 2027: trzy tygodnie Agile ze Spyrosoft",
+    "text": "Styczeń 2027: trzy tygodnie Agile ze Spyrosoft\nW styczniu przewidziany jest trzytygodniowy blok zajęć ze Spyrosoft poświęcony Agile, czyli zwinnemu podejściu do realizacji projektów. Będzie to okazja do powiązania pracy nad kodem z organizacją pracy zespołu, planowaniem i dostarczaniem kolejnych efektów projektu.\nDokładne daty i szczegółowy program zostaną podane po ich ustaleniu ze Spyrosoft. Poniższy zakres jest propozycją tematów dla kolejnych tygodni:\n\n\n\n\n\n\n\n\nTydzień\nProponowany temat\nZakres\n\n\n\n\n1\nWprowadzenie do Agile i pracy zespołowej\nPodstawowe zasady zwinnego podejścia, role w zespole i komunikacja. Od potrzeb użytkownika do zadań projektowych.\n\n\n2\nPlanowanie i realizacja pracy\nBacklog, priorytety, planowanie iteracji oraz śledzenie postępów. Organizacja zadań na przykładzie projektu.\n\n\n3\nPrzegląd efektów i doskonalenie współpracy\nPrezentacja wyników, informacja zwrotna i retrospektywa. Wnioski dotyczące dalszego rozwoju projektu i sposobu pracy zespołu.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Wprowadzenie i harmonogram kursu"
+    ]
+  },
+  {
+    "objectID": "course-plan.html#co-wyniesiesz-z-kursu",
+    "href": "course-plan.html#co-wyniesiesz-z-kursu",
+    "title": "Wprowadzenie i harmonogram kursu",
+    "section": "Co wyniesiesz z kursu?",
+    "text": "Co wyniesiesz z kursu?\nPo zakończeniu zajęć będziesz potrafić automatyzować proste zadania w Bash, prowadzić historię zmian w Git, korzystać z asystenta kodowania i weryfikować jego propozycje oraz rozwijać projekt w PyCharm. Blok Agile uzupełni te umiejętności o podstawy planowania i współpracy w zespole projektowym.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Wprowadzenie i harmonogram kursu"
     ]
   },
   {

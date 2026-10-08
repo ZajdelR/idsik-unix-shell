@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-10-08">
 
 <title>Zarządzanie projektem informatycznym</title>
 <style>
@@ -36,7 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./setup.html" rel="next">
+<link href="./course-plan.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -63,17 +62,17 @@ ul.task-list li input[type="checkbox"] {
     "s"
   ],
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Brak wyników",
+    "search-matching-documents-text": "dopasowane dokumenty",
+    "search-copy-link-title": "Kopiuj link do wyszukiwania",
+    "search-hide-matches-text": "Ukryj dodatkowe dopasowania",
+    "search-more-match-text": "więcej dopasowań w tym dokumencie",
+    "search-more-matches-text": "więcej dopasowań w tym dokumencie",
+    "search-clear-button-title": "Wyczyść",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Anuluj",
+    "search-submit-button-title": "Zatwierdź",
+    "search-label": "Szukaj"
   }
 }</script>
 
@@ -97,13 +96,13 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Przełącz pasek boczny" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title"></h1>
         </a>     
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Szukaj" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -115,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Szukaj"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -124,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Wprowadzenie</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Przełącz sekcję">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -133,6 +132,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Informacje ogólne</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wprowadzenie i harmonogram kursu</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -147,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Podstawy wiersza poleceń</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Przełącz sekcję">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -194,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Podstawy tworzenia skryptów</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Przełącz sekcję">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Przełącz sekcję">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -267,18 +272,20 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#zarządzanie-projektem-informatycznym-dla-kierunku-inżynieria-danych-satelitarnych-i-kosmicznych-upwr-20262027" id="toc-zarządzanie-projektem-informatycznym-dla-kierunku-inżynieria-danych-satelitarnych-i-kosmicznych-upwr-20262027" class="nav-link active" data-scroll-target="#zarządzanie-projektem-informatycznym-dla-kierunku-inżynieria-danych-satelitarnych-i-kosmicznych-upwr-20262027">Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)</a>
+  <li><a href="#zarządzanie-projektem-informatycznym" id="toc-zarządzanie-projektem-informatycznym" class="nav-link active" data-scroll-target="#zarządzanie-projektem-informatycznym">Zarządzanie projektem informatycznym</a>
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <li><a href="#informacje-ogólne" id="toc-informacje-ogólne" class="nav-link" data-scroll-target="#informacje-ogólne">Informacje ogólne</a>
   <ul class="collapse">
-  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#dla-kogo-są-te-materiały" id="toc-dla-kogo-są-te-materiały" class="nav-link" data-scroll-target="#dla-kogo-są-te-materiały">Dla kogo są te materiały?</a></li>
+  <li><a href="#wymagania-wstępne" id="toc-wymagania-wstępne" class="nav-link" data-scroll-target="#wymagania-wstępne">Wymagania wstępne</a></li>
+  <li><a href="#ćwiczenia" id="toc-ćwiczenia" class="nav-link" data-scroll-target="#ćwiczenia">Ćwiczenia</a></li>
   </ul></li>
-  <li><a href="#acknowledgements-citations" id="toc-acknowledgements-citations" class="nav-link" data-scroll-target="#acknowledgements-citations">Acknowledgements &amp; Citations</a></li>
+  <li><a href="#konsultacje" id="toc-konsultacje" class="nav-link" data-scroll-target="#konsultacje">Konsultacje</a></li>
+  <li><a href="#zaliczenie-przedmiotu" id="toc-zaliczenie-przedmiotu" class="nav-link" data-scroll-target="#zaliczenie-przedmiotu">Zaliczenie przedmiotu</a></li>
+  <li><a href="#podziękowania-i-źródła" id="toc-podziękowania-i-źródła" class="nav-link" data-scroll-target="#podziękowania-i-źródła">Podziękowania i źródła</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,9 +303,9 @@ ul.task-list li input[type="checkbox"] {
 
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Opublikowano</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 8, 2026</p>
+      <p class="date">8 października 2026</p>
     </div>
   </div>
   
@@ -310,22 +317,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="zarządzanie-projektem-informatycznym-dla-kierunku-inżynieria-danych-satelitarnych-i-kosmicznych-upwr-20262027" class="level1 unnumbered">
-<h1 class="unnumbered">Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)</h1>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <strong>Unix shell</strong> (aka command line) is a powerful and essential tool for researchers and engineers, in particular those working in computational disciplines such as satellite data engineering, remote sensing, bioinformatics, and large-scale data analysis. In this course we explore the basic structure of the Unix operating system and how to interact with it using a fundamental set of commands. You will learn how to navigate the filesystem, manipulate text-based data, combine multiple commands using pipes and redirections to quickly extract information from data files, and write reusable Bash scripts with variables and standard streams.</p>
+<section id="zarządzanie-projektem-informatycznym" class="level1 unnumbered">
+<h1 class="unnumbered">Zarządzanie projektem informatycznym</h1>
+<p>Materiały do przedmiotu <strong>Zarządzanie projektem informatycznym</strong> dla studentów kierunku <strong>Inżynieria Danych Satelitarnych i Kosmicznych</strong> na <strong>Uniwersytecie Przyrodniczym we Wrocławiu</strong>, na rok akademicki <strong>2026/2027</strong>.</p>
+<section id="informacje-ogólne" class="level2">
+<h2 class="anchored" data-anchor-id="informacje-ogólne">Informacje ogólne</h2>
+<p><strong>Powłoka Unix</strong>, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja, bioinformatyka i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Attribution &amp; Source Materials
+<span class="screen-reader-only">Adnotacja</span>Autorzy i materiały źródłowe
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This course is based on: - <strong>Tavares, H., Judge, P., Moitra, I. (2024)</strong>. <em>Introduction to the Unix command line</em>. <a href="https://cambiotraining.github.io/unix-shell/">https://cambiotraining.github.io/unix-shell/</a> - <strong>Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July)</strong>. <em>swcarpentry/shell-novice: Software Carpentry: the UNIX shell</em>, June 2019 (Version v2019.06.1). Zenodo. <a href="http://doi.org/10.5281/zenodo.3266823">http://doi.org/10.5281/zenodo.3266823</a></p>
+<p>Materiały opracowano na podstawie następujących publikacji: - <strong>Tavares, H., Judge, P., Moitra, I. (2024)</strong>. <em>Introduction to the Unix command line</em>. <a href="https://cambiotraining.github.io/unix-shell/">https://cambiotraining.github.io/unix-shell/</a> - <strong>Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July)</strong>. <em>swcarpentry/shell-novice: Software Carpentry: the UNIX shell</em>, June 2019 (Version v2019.06.1). Zenodo. <a href="http://doi.org/10.5281/zenodo.3266823">http://doi.org/10.5281/zenodo.3266823</a></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -334,32 +342,32 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning Objectives
+<span class="screen-reader-only">Wskazówka</span>Cele kształcenia
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Recognise the uses of the command line for computational work.</li>
-<li>Become comfortable in using the command line, understanding how commands are structured and how to access their documentation.</li>
-<li>Navigate the filesystem from the command line and understand how to specify the location of files and directories.</li>
-<li>Perform basic file manipulations in <em>Bash</em>: combine multiple files together; count number of lines, words and characters in a file; extract text matching a pattern; counting unique values in a file.</li>
-<li>Combine multiple commands to solve more complex tasks using pipes and redirections.</li>
-<li>Write <em>Bash</em> scripts to record and make your analysis reproducible.</li>
-<li>Work with variables, arguments, and standard I/O streams in shell scripts.</li>
+<li>Poznasz zastosowania wiersza poleceń w pracy z danymi i obliczeniami.</li>
+<li>Nauczysz się korzystać z wiersza poleceń, rozumieć budowę poleceń i sięgać do ich dokumentacji.</li>
+<li>Nauczysz się poruszać po systemie plików oraz określać położenie plików i katalogów za pomocą ścieżek.</li>
+<li>Opanujesz podstawowe operacje na plikach w powłoce <em>Bash</em>: łączenie plików, zliczanie wierszy, słów i znaków, wyszukiwanie tekstu pasującego do wzorca oraz zliczanie unikatowych wartości.</li>
+<li>Nauczysz się łączyć polecenia za pomocą potoków i przekierowań, aby rozwiązywać bardziej złożone zadania.</li>
+<li>Nauczysz się pisać skrypty <em>Bash</em>, które zapisują kolejne kroki analizy i umożliwiają jej odtworzenie.</li>
+<li>Nauczysz się korzystać ze zmiennych, argumentów oraz standardowych strumieni wejścia i wyjścia w skryptach powłoki.</li>
 </ul>
 </div>
 </div>
-<section id="target-audience" class="level3">
-<h3 class="anchored" data-anchor-id="target-audience">Target Audience</h3>
-<p>This course is targeted at students and participants with no prior experience of working on the command line.</p>
+<section id="dla-kogo-są-te-materiały" class="level3">
+<h3 class="anchored" data-anchor-id="dla-kogo-są-te-materiały">Dla kogo są te materiały?</h3>
+<p>Materiały są przeznaczone dla studentów kierunku <strong>Inżynieria Danych Satelitarnych i Kosmicznych Uniwersytetu Przyrodniczego we Wrocławiu</strong>. Nie wymagają wcześniejszego doświadczenia w pracy z wierszem poleceń.</p>
 </section>
-<section id="prerequisites" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
-<p>None.</p>
+<section id="wymagania-wstępne" class="level3">
+<h3 class="anchored" data-anchor-id="wymagania-wstępne">Wymagania wstępne</h3>
+<p>Brak. Zajęcia rozpoczynają się od podstaw.</p>
 </section>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<p>Exercises in these materials are labelled according to their level of difficulty:</p>
+<section id="ćwiczenia" class="level3">
+<h3 class="anchored" data-anchor-id="ćwiczenia">Ćwiczenia</h3>
+<p>Ćwiczenia w materiałach oznaczono według poziomu trudności:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 31%">
@@ -367,37 +375,88 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">Level</th>
-<th style="text-align: left;">Description</th>
+<th style="text-align: right;">Poziom</th>
+<th style="text-align: left;">Opis</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;"><i class="fa-solid fa-star" aria-label="star"></i> <i class="fa-regular fa-star" aria-label="star"></i> <i class="fa-regular fa-star" aria-label="star"></i></td>
-<td style="text-align: left;">Exercises in level 1 are simpler and designed to get you familiar with the concepts and syntax covered in the course.</td>
+<td style="text-align: left;">Poziom 1: proste ćwiczenia służące poznaniu pojęć i składni omawianych na zajęciach.</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"><i class="fa-solid fa-star" aria-label="star"></i> <i class="fa-solid fa-star" aria-label="star"></i> <i class="fa-regular fa-star" aria-label="star"></i></td>
-<td style="text-align: left;">Exercises in level 2 combine different concepts together and apply it to a given task.</td>
+<td style="text-align: left;">Poziom 2: ćwiczenia wymagające połączenia kilku poznanych zagadnień w celu rozwiązania zadania.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><i class="fa-solid fa-star" aria-label="star"></i> <i class="fa-solid fa-star" aria-label="star"></i> <i class="fa-solid fa-star" aria-label="star"></i></td>
-<td style="text-align: left;">Exercises in level 3 require going beyond the concepts and syntax introduced to solve new problems.</td>
+<td style="text-align: left;">Poziom 3: ćwiczenia wymagające samodzielnego rozszerzenia poznanych pojęć i składni w celu rozwiązania nowych problemów.</td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="acknowledgements-citations" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements-citations">Acknowledgements &amp; Citations</h2>
-<p>These materials are an adaptation based on the following works:</p>
+<section id="konsultacje" class="level2">
+<h2 class="anchored" data-anchor-id="konsultacje">Konsultacje</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dzień</th>
+<th style="text-align: left;">Godziny</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Środa</td>
+<td style="text-align: left;">10:00–11:00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Piątek</td>
+<td style="text-align: left;">13:45–14:45</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="zaliczenie-przedmiotu" class="level2">
+<h2 class="anchored" data-anchor-id="zaliczenie-przedmiotu">Zaliczenie przedmiotu</h2>
+<p>Ocena końcowa uwzględnia zaliczenie wykładu oraz ćwiczeń laboratoryjnych z następującymi wagami:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Forma zajęć</th>
+<th style="text-align: left;">Forma zaliczenia</th>
+<th style="text-align: right;">Udział w ocenie końcowej</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Wykład</td>
+<td style="text-align: left;">Zaliczenie pisemne</td>
+<td style="text-align: right;">30%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ćwiczenia laboratoryjne</td>
+<td style="text-align: left;">Projekt, aktywność na zajęciach, prezentacja oraz wykonanie ćwiczeń</td>
+<td style="text-align: right;">70%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="podziękowania-i-źródła" class="level2">
+<h2 class="anchored" data-anchor-id="podziękowania-i-źródła">Podziękowania i źródła</h2>
+<p>Niniejsze materiały stanowią adaptację następujących publikacji:</p>
 <ol type="1">
-<li><strong>Tavares, H., Judge, P., Moitra, I. (2024)</strong>. <em>Introduction to the Unix command line</em>. Available at: <a href="https://cambiotraining.github.io/unix-shell/">https://cambiotraining.github.io/unix-shell/</a></li>
-<li><strong>Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July)</strong>. <em>swcarpentry/shell-novice: Software Carpentry: the UNIX shell</em>, June 2019 (Version v2019.06.1). Zenodo. <a href="http://doi.org/10.5281/zenodo.3266823">http://doi.org/10.5281/zenodo.3266823</a> (Licensed under CC-BY 4.0).</li>
+<li><strong>Tavares, H., Judge, P., Moitra, I. (2024)</strong>. <em>Introduction to the Unix command line</em>. Dostępne pod adresem: <a href="https://cambiotraining.github.io/unix-shell/">https://cambiotraining.github.io/unix-shell/</a></li>
+<li><strong>Gabriel A. Devenyi (red.), Gerard Capes (red.), Colin Morris (red.), Will Pitchers (red.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, lipiec)</strong>. <em>swcarpentry/shell-novice: Software Carpentry: the UNIX shell</em>, czerwiec 2019 (wersja v2019.06.1). Zenodo. <a href="http://doi.org/10.5281/zenodo.3266823">http://doi.org/10.5281/zenodo.3266823</a> (licencja CC BY 4.0).</li>
 </ol>
-<p>The original authors and publishers of the work have not endorsed the adaptation of this work.</p>
+<p>Autorzy i wydawcy oryginalnych materiałów nie udzielili rekomendacji tej adaptacji.</p>
 <hr>
-<p>We also thank <strong>Julia Evans</strong> for their <a href="https://wizardzines.com/">fantastic illustrations</a> of Bash programming concepts.</p>
+<p>Dziękujemy również <strong>Julii Evans</strong> za <a href="https://wizardzines.com/">ilustracje</a> przedstawiające zagadnienia programowania w powłoce Bash.</p>
 
 
 </section>
@@ -429,12 +488,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Skopiowano!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Skopiowano!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -808,8 +867,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./setup.html" class="pagination-link" aria-label="Dane i przygotowanie środowiska">
-        <span class="nav-page-text">Dane i przygotowanie środowiska</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./course-plan.html" class="pagination-link" aria-label="Wprowadzenie i harmonogram kursu">
+        <span class="nav-page-text">Wprowadzenie i harmonogram kursu</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

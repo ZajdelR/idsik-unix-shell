@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nawigacja w systemie plików</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/03-file_operations.html" rel="next">
+<link href="../materials/01-unix_overview.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8d63b5de3977112355ecb5c012657dfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Zarządzanie projektem informatycznym (UPWr 2026/2027)</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Nawigacja w systemie plików (Navigating the filesystem)</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Wprowadzenie</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informacje ogólne</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dane i przygotowanie środowiska</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Podstawy wiersza poleceń</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/slides01-essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Slajdy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-unix_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Powłoka Unix (The Unix Shell)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-file_navigation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Nawigacja w systemie plików (Navigating the filesystem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-file_operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operacje na plikach i katalogach (File operations)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-text_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Praca z plikami tekstowymi (Working with text)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-combining_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Łączenie poleceń i potoki (Combining commands)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Podstawy tworzenia skryptów</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/slides02-scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Slajdy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-scripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tworzenie skryptów powłoki (Shell scripts)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Zmienne i argumenty w Bashu (Variables &amp; arguments)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-streams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Strumienie standardowe i przekierowania (Standard streams)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a01-cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ściągawka z poleceń Unix (Cheat sheet)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a02-wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unix w systemie Windows (WSL)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a03-faqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Często zadawane pytania (FAQ)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a04-dataset_reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Opis pakietu danych do ćwiczeń (Dataset Reference)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#system-plików-w-systemie-unix" id="toc-system-plików-w-systemie-unix" class="nav-link active" data-scroll-target="#system-plików-w-systemie-unix"><span class="header-section-number">2.1</span> System plików w systemie Unix</a></li>
+  <li><a href="#wyświetlanie-zawartości-katalogów-ls" id="toc-wyświetlanie-zawartości-katalogów-ls" class="nav-link" data-scroll-target="#wyświetlanie-zawartości-katalogów-ls"><span class="header-section-number">2.2</span> Wyświetlanie zawartości katalogów (<code>ls</code>)</a></li>
+  <li><a href="#zmiana-katalogu-roboczego-cd" id="toc-zmiana-katalogu-roboczego-cd" class="nav-link" data-scroll-target="#zmiana-katalogu-roboczego-cd"><span class="header-section-number">2.3</span> Zmiana katalogu roboczego (<code>cd</code>)</a>
+  <ul class="collapse">
+  <li><a href="#przechodzenie-do-katalogu-nadrzędnego-.." id="toc-przechodzenie-do-katalogu-nadrzędnego-.." class="nav-link" data-scroll-target="#przechodzenie-do-katalogu-nadrzędnego-.."><span class="header-section-number">2.3.1</span> Przechodzenie do katalogu nadrzędnego (<code>..</code>)</a></li>
+  </ul></li>
+  <li><a href="#nazewnictwo-produktów-i-plików-misji-sentinel-2" id="toc-nazewnictwo-produktów-i-plików-misji-sentinel-2" class="nav-link" data-scroll-target="#nazewnictwo-produktów-i-plików-misji-sentinel-2"><span class="header-section-number">2.4</span> Nazewnictwo produktów i plików misji Sentinel-2</a>
+  <ul class="collapse">
+  <li><a href="#wewnętrzna-struktura-katalogu-.safe" id="toc-wewnętrzna-struktura-katalogu-.safe" class="nav-link" data-scroll-target="#wewnętrzna-struktura-katalogu-.safe"><span class="header-section-number">2.4.1</span> Wewnętrzna struktura katalogu <code>.SAFE</code></a></li>
+  </ul></li>
+  <li><a href="#symbole-wieloznaczne-wildcards" id="toc-symbole-wieloznaczne-wildcards" class="nav-link" data-scroll-target="#symbole-wieloznaczne-wildcards"><span class="header-section-number">2.5</span> Symbole wieloznaczne (Wildcards)</a></li>
+  <li><a href="#wyszukiwanie-plików-find" id="toc-wyszukiwanie-plików-find" class="nav-link" data-scroll-target="#wyszukiwanie-plików-find"><span class="header-section-number">2.6</span> Wyszukiwanie plików (<code>find</code>)</a></li>
+  <li><a href="#ćwiczenia" id="toc-ćwiczenia" class="nav-link" data-scroll-target="#ćwiczenia"><span class="header-section-number">2.7</span> Ćwiczenia</a></li>
+  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie"><span class="header-section-number">2.8</span> Podsumowanie</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Nawigacja w systemie plików (Navigating the filesystem)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Cele szkolenia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Zrozumieć hierarchiczną strukturę systemu plików oraz sposób określania lokalizacji zasobów.</li>
+<li>Odróżniać ścieżki bezwzględne (<em>absolute paths</em>) od ścieżek względnych (<em>relative paths</em>).</li>
+<li>Rozpoznawać znaczenie ukośnika <code>/</code> jako katalogu głównego (<em>root</em>) oraz jako separatora ścieżek.</li>
+<li>Sprawnie poruszać się w drzewie katalogów przy użyciu poleceń <code>pwd</code>, <code>ls</code> oraz <code>cd</code>.</li>
+<li>Poznać standard nazewnictwa produktów misji satelitarnej <strong>Sentinel-2</strong> (<code>.SAFE</code>).</li>
+<li>Wykorzystywać symbole wieloznaczne (<em>wildcards</em>, np. <code>*</code>, <code>?</code>) do operacji na grupach plików satelitarnych i telemetrycznych.</li>
+<li>Korzystać z polecenia <code>find</code> do wyszukiwania plików i katalogów według kryteriów.</li>
+</ul>
+</div>
+</div>
+<section id="system-plików-w-systemie-unix" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="system-plików-w-systemie-unix"><span class="header-section-number">2.1</span> System plików w systemie Unix</h2>
+<p>Część systemu operacyjnego odpowiedzialna za zarządzanie plikami i folderami to <strong>system plików</strong> (<em>filesystem</em>). Organizuje on dane w <strong>pliki</strong> oraz <strong>katalogi</strong> (foldery), które mogą zawierać pliki lub inne podkatalogi. Struktura ta jest hierarchiczna i można ją przedstawić w postaci odwróconego drzewa.</p>
+<p align="center">
+<img src="images/filesystem_home_directories.svg" alt="Diagram systemu plików przedstawiający strukturę drzewiastą z katalogami domowymi użytkowników">
+</p>
+<p>Na powyższym schemacie widzimy katalogi domowe trzech użytkowników: <code>robin</code>, <code>wren</code> oraz <code>participant</code> (reprezentujący nasze konto szkoleniowe). Wszystkie katalogi użytkowników znajdują się wewnątrz folderu <code>home</code>. Z kolei folder <code>home</code> znajduje się w tzw. <strong>katalogu głównym systemu</strong> (<em>root directory</em>), oznaczanym pojedynczym ukośnikiem <code>/</code>. Katalog główny to najwyższy poziom w hierarchii całego systemu operacyjnego (nie można wyjść „wyżej” niż <code>/</code>).</p>
+<p>W wierszu poleceń wskazujemy pliki i katalogi za pomocą ich „adresu”, czyli <strong>ścieżki</strong> (<em>path</em>). Sprawdźmy naszą bieżącą pozycję w systemie za pomocą polecenia <code>pwd</code> (<em>print working directory</em> – wypisz katalog roboczy):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>/home/participant</code></pre>
+<p>W odpowiedzi system wyświetla <code>/home/participant</code> – jest to nasz <strong>katalog domowy</strong> (<em>home directory</em>), otwierany domyślnie po uruchomieniu nowego terminala.<br>
+<code>participant</code> to nasza nazwa użytkownika (<em>username</em>).</p>
+<p>Zwróćmy uwagę na konstrukcję ścieżki: - <code>/</code> na samym początku oznacza <strong>katalog główny systemu</strong> (<em>root</em>). - <code>home</code> to nazwa podkatalogu w katalogu głównym. - Kolejny <code>/</code> pełni rolę <strong>separatora</strong> między katalogami. - <code>participant</code> to docelowy katalog w tej ścieżce.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Dwa znaczenia ukośnika <code>/</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Znak ukośnika <code>/</code> na samym początku ścieżki oznacza katalog główny systemu (<em>root</em>). Znak <code>/</code> umieszczony wewnątrz ścieżki pełni rolę separatora oddzielającego poszczególne poziomy katalogów.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Różnice w ścieżkach katalogu domowego
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Format ścieżki katalogu domowego zależy od systemu operacyjnego: - Linux: <code>/home/nazwa_uzytkownika</code> - macOS: <code>/Users/nazwa_uzytkownika</code> - Windows: <code>C:\Users\nazwa_uzytkownika</code> (w terminalach uniksowych, np. WSL/Git Bash: <code>/c/Users/...</code> lub <code>/mnt/c/Users/...</code>)</p>
+</div>
+</div>
+</section>
+<section id="wyświetlanie-zawartości-katalogów-ls" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="wyświetlanie-zawartości-katalogów-ls"><span class="header-section-number">2.2</span> Wyświetlanie zawartości katalogów (<code>ls</code>)</h2>
+<p>Aby zobaczyć listę plików i katalogów w bieżącym miejscu, używamy polecenia <code>ls</code> (<em>list</em>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>Desktop    Documents    Downloads    dane_do_cwiczen</code></pre>
+<p>Nasz rozpakowany pakiet danych satelitarnych znajduje się w folderze <code>dane_do_cwiczen</code>.<br>
+Możemy wylistować jego zawartość, przekazując ścieżkę jako argument do <code>ls</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/Desktop/dane_do_cwiczen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>README.txt            cloud_cover_reports   landsat_scenes        raw_telemetry_chunks  sources.txt
+sentinel2_scenes      gnss_stations         orbital_catalog       scripts_repo          telemetry_logs</code></pre>
+<p>Przydatne flagi polecenia <code>ls</code>: - <code>ls -l</code> – format szczegółowy (<em>long format</em>): wyświetla uprawnienia, liczbę dowiązań, właściciela, grupę, rozmiar w bajtach oraz datę modyfikacji. - <code>ls -lh</code> – rozmiar w czytelnych jednostkach (<em>human-readable</em>, np. KB, MB, GB). - <code>ls -a</code> – pokazuje wszystkie pliki, łącznie z ukrytymi (zaczynającymi się od kropki <code>.</code>). - <code>ls -t</code> – sortuje pliki według czasu modyfikacji (najnowsze na początku).</p>
+</section>
+<section id="zmiana-katalogu-roboczego-cd" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="zmiana-katalogu-roboczego-cd"><span class="header-section-number">2.3</span> Zmiana katalogu roboczego (<code>cd</code>)</h2>
+<p>Do zmiany bieżącego katalogu służy polecenie <code>cd</code> (<em>change directory</em>), po którym podajemy ścieżkę do katalogu docelowego:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/dane_do_cwiczen/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wpiszmy <code>pwd</code>, aby upewnić się, że jesteśmy w katalogu z danymi:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>/home/participant/Desktop/dane_do_cwiczen</code></pre>
+<p>Jeśli chcemy wejść głębiej, np. do podkatalogu ze scenami satelitarnymi <code>sentinel2_scenes</code>, używamy ścieżki <strong>względnej</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> sentinel2_scenes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wyróżniamy dwa sposoby podawania ścieżek:</p>
+<ul>
+<li><strong>Ścieżka bezwzględna (absolutna)</strong> – zaczyna się od ukośnika <code>/</code> i definiuje pełną trasę od samego korzenia systemu plików (<em>root</em>). Niezależnie od tego, w jakim katalogu aktualnie się znajdujemy, dana ścieżka bezwzględna zawsze wskazuje dokładnie to samo miejsce.</li>
+<li><strong>Ścieżka względna (relatywna)</strong> – nie zaczyna się od <code>/</code> i wskazuje lokalizację w odniesieniu do naszego <strong>bieżącego katalogu roboczego</strong>.</li>
+</ul>
+<section id="przechodzenie-do-katalogu-nadrzędnego-.." class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="przechodzenie-do-katalogu-nadrzędnego-.."><span class="header-section-number">2.3.1</span> Przechodzenie do katalogu nadrzędnego (<code>..</code>)</h3>
+<p>Aby cofnąć się o jeden poziom w górę (do katalogu nadrzędnego – <em>parent directory</em>), używamy specjalnego oznaczenia <code>..</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wpisanie <code>pwd</code> potwierdzi, że wróciliśmy do <code>dane_do_cwiczen</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Autouzupełnianie tabulatorem (Tab completion)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nazwy produktów satelitarnych bywają bardzo długie, np. <code>S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE</code>.<br>
+Wpisywanie ich ręcznie byłoby uciążliwe i podatne na literówki.<br>
+Wpisz <code>cd sentinel2_scenes/S2A_</code> i naciśnij klawisz <kbd>Tab ⇥</kbd>. Powłoka automatycznie dopełni unikalną nazwę katalogu!</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="nazewnictwo-produktów-i-plików-misji-sentinel-2" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="nazewnictwo-produktów-i-plików-misji-sentinel-2"><span class="header-section-number">2.4</span> Nazewnictwo produktów i plików misji Sentinel-2</h2>
+<p>W inżynierii danych satelitarnych kluczową umiejętnością jest szybkie odczytywanie parametrów sceny z samej nazwy pliku lub katalogu. Standard pakowania danych misji programu Copernicus nosi nazwę <strong>SAFE</strong> (<em>Standard Archive Format for Europe</em>).</p>
+<p>Spójrzmy na przykładowy produkt w katalogu <code>sentinel2_scenes/</code>:</p>
+<pre><code>S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Anatomia nazwy produktu Sentinel-2 (.SAFE)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Każdy człon nazwy oddzielony znakiem podkreślenia <code>_</code> niesie precyzyjną informację techniczną:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Segment</th>
+<th style="text-align: left;">Przykład</th>
+<th style="text-align: left;">Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Identyfikator misji</strong></td>
+<td style="text-align: left;"><code>S2A</code> / <code>S2B</code> / <code>S2C</code></td>
+<td style="text-align: left;">Satelita Sentinel-2A, Sentinel-2B lub Sentinel-2C.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Typ produktu i poziom</strong></td>
+<td style="text-align: left;"><code>MSIL2A</code> (lub <code>MSIL1C</code>)</td>
+<td style="text-align: left;">Sensor MSI (<em>MultiSpectral Instrument</em>), Poziom L2A (reflektancja powierzchniowa BOA po korekcji atmosferycznej) lub L1C (reflektancja na górnej granicy atmosfery TOA).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Czas rejestracji (UTC)</strong></td>
+<td style="text-align: left;"><code>20240510T100031</code></td>
+<td style="text-align: left;">Moment pozyskania danych: 10 maja 2024 r., godz. 10:00:31 UTC.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Wersja przetwarzania</strong></td>
+<td style="text-align: left;"><code>N0510</code></td>
+<td style="text-align: left;"><em>Processing Baseline</em> (tutaj wersja 05.10 algorytmów ESA).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Względny numer orbity</strong></td>
+<td style="text-align: left;"><code>R122</code></td>
+<td style="text-align: left;">Numer ścieżki orbitalnej (<em>Relative Orbit</em>, 001–143). Pozwala identyfikować powtarzalne przeloty nad tym samym obszarem.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Identyfikator kafelka</strong></td>
+<td style="text-align: left;"><code>T33UWT</code></td>
+<td style="text-align: left;">Kod kafelka siatki <strong>MGRS</strong> (<em>Military Grid Reference System</em>). Np. <code>T33UWT</code> to obszar Wrocławia i Dolnego Śląska, a <code>T34UCA</code> to Warszawa i Mazowsze.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Czas wygenerowania</strong></td>
+<td style="text-align: left;"><code>20240510T140000</code></td>
+<td style="text-align: left;">Znacznik czasu wyprodukowania paczki w centrum przetwarzania danych (<em>Product Discriminator</em>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Rozszerzenie</strong></td>
+<td style="text-align: left;"><code>.SAFE</code></td>
+<td style="text-align: left;">Katalog główny produktu zawierający metadane i rastry.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="wewnętrzna-struktura-katalogu-.safe" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="wewnętrzna-struktura-katalogu-.safe"><span class="header-section-number">2.4.1</span> Wewnętrzna struktura katalogu <code>.SAFE</code></h3>
+<p>Wewnątrz katalogu <code>.SAFE</code> znajduje się standaryzowana struktura podfolderów:</p>
+<pre class="output"><code>S2A_MSIL2A_..._T33UWT_....SAFE/
+├── manifest.safe               # Główny manifest XML opisujący zawartość paczki
+├── MTD_MSIL2A.xml              # Globalne metadane produktu (kąty słońca, zachmurzenie, jakość)
+├── GRANULE/
+│   └── L2A_T33UWT_.../         # Pojedynczy kafelek (Granule)
+│       ├── IMG_DATA/           # Obrazy rastrowe w formacie JPEG2000 (.jp2)
+│       │   ├── R10m/           # Kanały o rozdzielczości 10 m (B02 Blue, B03 Green, B04 Red, B08 NIR, TCI)
+│       │   └── R20m/           # Kanały o rozdzielczości 20 m (B05-B07 Red Edge, B8A, B11-B12 SWIR, SCL)
+│       └── QI_DATA/            # Wskaźniki jakości (Quality Indicators), maski chmur (GML)</code></pre>
+<p>Dzięki znajomości tej konwencji, inżynier danych może za pomocą prostych poleceń powłoki odnaleźć np. wyłącznie sceny dla Wrocławia o porannej porze przelotu.</p>
+<hr>
+</section>
+</section>
+<section id="symbole-wieloznaczne-wildcards" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="symbole-wieloznaczne-wildcards"><span class="header-section-number">2.5</span> Symbole wieloznaczne (Wildcards)</h2>
+<p>Symbole wieloznaczne (<em>wildcards</em>) umożliwiają jednoczesne wskazywanie wielu plików pasujących do określonego wzorca:</p>
+<ul>
+<li><strong><code>*</code> (gwiazdka)</strong> – dopasowuje <strong>zero lub dowolną liczbę znaków</strong>.
+<ul>
+<li><code>ls telemetry_logs/ground_station_SVB_*.log</code> – wszystkie logi stacji Spitsbergen (Svalbard).</li>
+<li><code>ls cloud_cover_reports/*.csv</code> – wszystkie raporty zachmurzenia w formacie CSV.</li>
+<li><code>ls sentinel2_scenes/S2A*</code> – wszystkie produkty pozyskane przez satelitę Sentinel-2A.</li>
+<li><code>ls sentinel2_scenes/*_T33UWT_*.SAFE</code> – wszystkie produkty dla kafelka Wrocławia (<code>T33UWT</code>).</li>
+</ul></li>
+<li><strong><code>?</code> (pytajnik)</strong> – dopasowuje <strong>dokładnie jeden dowolny znak</strong>.
+<ul>
+<li><code>ls cloud_cover_reports/poland_sentinel2_202?.csv</code> – dopasuje raporty dla lat 2020-2029 (np. <code>2022</code>, <code>2023</code> i <code>2024</code>).</li>
+<li><code>ls gnss_stations/????</code> – dopasuje 4-literowe kody stacji GNSS (np. <code>WROC</code>, <code>JOZE</code>, <code>KRAK</code>, <code>LODZ</code>, <code>GDAN</code>).</li>
+</ul></li>
+</ul>
+<p>Gdy powłoka napotka symbol wieloznaczny, najpierw <strong>rozwija</strong> go do listy pasujących plików, a dopiero potem przekazuje tę listę jako argumenty do uruchamianego programu.</p>
+</section>
+<section id="wyszukiwanie-plików-find" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="wyszukiwanie-plików-find"><span class="header-section-number">2.6</span> Wyszukiwanie plików (<code>find</code>)</h2>
+<p>Polecenie <code>find</code> umożliwia rekurencyjne przeszukiwanie drzewa katalogów według nazw, typów i właściwości.</p>
+<p>Przykładowo, aby wyszukać wszystkie pliki kanałów bliskiej podczerwieni (<code>*B08*.jp2</code>) w całym pakiecie danych satelitarnych:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> sentinel2_scenes <span class="at">-type</span> f <span class="at">-name</span> <span class="st">"*B08*.jp2"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>sentinel2_scenes/S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE/GRANULE/L2A_T33UWT_A.../IMG_DATA/R10m/T33UWT_20240510_B08_10m.jp2
+...</code></pre>
+<p>Znaczenie poszczególnych elementów: - <code>sentinel2_scenes</code> – ścieżka startowa wyszukiwania. - <code>-type f</code> – szukaj wyłącznie zwykłych <strong>plików</strong> (<em>files</em>). Dla katalogów użylibyśmy <code>-type d</code> (<em>directories</em>). - <code>-name "*B08*.jp2"</code> – wzorzec nazwy pliku w cudzysłowie.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Rozszerzenia plików i formaty danych w inżynierii satelitarnej
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>.SAFE</code> – standard pakowania produktów misji ESA Copernicus Sentinel.</li>
+<li><code>.xml</code> – pliki metadanych (np. parametry kalibracji, zachmurzenie, kąty słońca).</li>
+<li><code>.jp2</code> – JPEG2000 (standard kompresji rastrów satelitarnych).</li>
+<li><code>.tif</code> / <code>.geotiff</code> – powszechny format rastrowy danych geoprzestrzennych.</li>
+<li><code>.nc</code> / <code>.hdf5</code> – formaty macierzowe dla danych atmosferycznych, oceanograficznych i radarowych.</li>
+<li><code>.csv</code> / <code>.tsv</code> – raporty tabelaryczne, katalogi TLE, specyfikacje pasm.</li>
+<li><code>.log</code> / <code>.log.gz</code> – dzienniki stacji naziemnych i odbiorników GNSS (oraz ich archiwa skompresowane).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="ćwiczenia" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="ćwiczenia"><span class="header-section-number">2.7</span> Ćwiczenia</h2>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Nawigacja w strukturze danych satelitarnych
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="filesystem-exr" class="callout-exercise">
+<p><font style="font-variant: small-caps">Level:</font> <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><br></p>
+<p>Przejdź do katalogu danych: <code>cd ~/Desktop/dane_do_cwiczen</code>.<br>
+Używając polecenia <code>cd</code>, wejdź do katalogu stacji GNSS we Wrocławiu (<code>gnss_stations/WROC</code>).<br>
+Sprawdź za pomocą <code>pwd</code> pełną ścieżkę, a za pomocą <code>ls -l</code> zobacz znajdujące się tam pliki.<br>
+Następnie jednym poleceniem <code>cd</code> cofnij się z powrotem do głównego folderu <code>dane_do_cwiczen</code>.</p>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-answer" data-collapse="true">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gnss_stations/WROC</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetli: /home/participant/Desktop/dane_do_cwiczen/gnss_stations/WROC</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Aby wrócić o dwa poziomy w górę:</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../..</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetli: /home/participant/Desktop/dane_do_cwiczen</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Rozpoznawanie parametrów sceny Sentinel-2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="sentinel-naming-exr" class="callout-exercise">
+<p><font style="font-variant: small-caps">Level:</font> <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><br></p>
+<p>Spójrz na nazwę produktu:<br>
+<code>S2B_MSIL2A_20240517T095029_N0510_R079_T34UCA_20240517T140000.SAFE</code></p>
+<p>Odpowiedz na pytania na podstawie nazewnictwa: 1. Który satelita wykonał to zdjęcie (Sentinel-2A czy 2B)? 2. Jaki jest poziom przetwarzania produktu i czy zawiera korekcję atmosferyczną? 3. Jaka jest data i godzina (UTC) rejestracji sceny? 4. Dla jakiego kafelka MGRS pozyskano te dane (i jaki to rejon Polski)? 5. Jaki jest numer względnej orbity (<em>Relative Orbit</em>)?</p>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-answer" data-collapse="true">
+<ol type="1">
+<li><strong>Satelita</strong>: <code>S2B</code> (Sentinel-2B).</li>
+<li><strong>Poziom</strong>: <code>MSIL2A</code> (Level-2A, dane reflektancji powierzchniowej BOA z przeprowadzoną korekcją atmosferyczną).</li>
+<li><strong>Czas</strong>: <code>2024-05-17</code> o godzinie <code>09:50:29 UTC</code>.</li>
+<li><strong>Kafelek MGRS</strong>: <code>T34UCA</code> (Warszawa / Mazowsze).</li>
+<li><strong>Względna orbita</strong>: <code>R079</code> (ścieżka 79).</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 3 - Wyszukiwanie danych z symbolami wieloznacznymi
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="wildcards-exr" class="callout-exercise">
+<p><font style="font-variant: small-caps">Level:</font> <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><br></p>
+<p>Będąc w folderze <code>dane_do_cwiczen</code>:</p>
+<ol type="1">
+<li>Wyświetl wszystkie sceny satelitarne pozyskane przez satelitę <code>Sentinel-2B</code> dla kafelka Wrocławia <code>T33UWT</code>.</li>
+<li>Wyświetl listę dzienników telemetrycznych ze stacji Kiruna (<code>KIR</code>) z pierwszych 9 dni maja 2024 roku za pomocą symbolu <code>?</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-answer" data-collapse="true">
+<p><strong>Zadanie 1</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> sentinel2_scenes/S2B_<span class="pp">*</span>_T33UWT_<span class="pp">*</span>.SAFE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Zadanie 2</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> telemetry_logs/ground_station_KIR_2024-05-0<span class="pp">?</span>.log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Znak <code>?</code> dopasuje dokładnie jedną cyfrę od 1 do 9 (<code>01</code>, <code>02</code>, …, <code>09</code>).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 4 - Wyszukiwanie metadanych produktów satelitarnych
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="find-exr" class="callout-exercise">
+<p><font style="font-variant: small-caps">Level:</font> <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><br></p>
+<p>Użyj polecenia <code>find</code>, aby odszukać wszystkie pliki metadanych <code>MTD_MSIL2A.xml</code> we wszystkich scenach Sentinel-2 w katalogu <code>sentinel2_scenes</code>.</p>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-answer" data-collapse="true">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> sentinel2_scenes <span class="at">-type</span> f <span class="at">-name</span> <span class="st">"MTD_MSIL2A.xml"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Polecenie wypisze pełne ścieżki do wszystkich plików metadanych w strukturach <code>.SAFE</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="podsumowanie" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="podsumowanie"><span class="header-section-number">2.8</span> Podsumowanie</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Główne punkty
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Drzewo katalogów systemu Unix rozpoczyna się od katalogu głównego <code>/</code> (<em>root</em>).</li>
+<li>Ścieżki bezwzględne zaczynają się od <code>/</code>, natomiast ścieżki względne odnoszą się do bieżącego katalogu roboczego (<code>pwd</code>).</li>
+<li><code>.</code> oznacza katalog bieżący, <code>..</code> katalog nadrzędny, a <code>~</code> katalog domowy użytkownika.</li>
+<li>Nazwy produktów <strong>Sentinel-2</strong> (<code>.SAFE</code>) kodują platformę (<code>S2A</code>/<code>S2B</code>), poziom (<code>L1C</code>/<code>L2A</code>), datę/czas, orbitę (<code>Rxxx</code>) oraz kafelek siatki MGRS (<code>Txxxxx</code>).</li>
+<li>Symbole wieloznaczne <code>*</code> oraz <code>?</code> umożliwiają elastyczne wybieranie grup plików satelitarnych i telemetrycznych.</li>
+<li>Polecenie <code>find</code> pozwala błyskawicznie lokalizować pliki w głębokich strukturach folderów produktów satelitarnych.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zajdelr\.github\.io\/idsik-unix-shell\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/01-unix_overview.html" class="pagination-link" aria-label="Powłoka Unix (The Unix Shell)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Powłoka Unix (The Unix Shell)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/03-file_operations.html" class="pagination-link" aria-label="Operacje na plikach i katalogach (File operations)">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operacje na plikach i katalogach (File operations)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licencja <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Opis pakietu danych do ćwiczeń</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/a03-faqs.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8d63b5de3977112355ecb5c012657dfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Zarządzanie projektem informatycznym (UPWr 2026/2027)</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Opis pakietu danych do ćwiczeń (Dataset Reference)</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Wprowadzenie</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informacje ogólne</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dane i przygotowanie środowiska</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Podstawy wiersza poleceń</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/slides01-essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Slajdy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-unix_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Powłoka Unix (The Unix Shell)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-file_navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Nawigacja w systemie plików (Navigating the filesystem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-file_operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operacje na plikach i katalogach (File operations)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-text_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Praca z plikami tekstowymi (Working with text)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-combining_commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Łączenie poleceń i potoki (Combining commands)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Podstawy tworzenia skryptów</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/slides02-scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Slajdy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-scripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tworzenie skryptów powłoki (Shell scripts)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Zmienne i argumenty w Bashu (Variables &amp; arguments)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-streams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Strumienie standardowe i przekierowania (Standard streams)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a01-cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ściągawka z poleceń Unix (Cheat sheet)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a02-wsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unix w systemie Windows (WSL)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a03-faqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Często zadawane pytania (FAQ)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/a04-dataset_reference.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Opis pakietu danych do ćwiczeń (Dataset Reference)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#przegląd-struktury-katalogów" id="toc-przegląd-struktury-katalogów" class="nav-link active" data-scroll-target="#przegląd-struktury-katalogów">Przegląd struktury katalogów</a></li>
+  <li><a href="#produkty-satelitarne-sentinel-2-sentinel2_scenes" id="toc-produkty-satelitarne-sentinel-2-sentinel2_scenes" class="nav-link" data-scroll-target="#produkty-satelitarne-sentinel-2-sentinel2_scenes">1. Produkty satelitarne Sentinel-2 (<code>sentinel2_scenes/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#konwencja-nazewnictwa-katalogów-.safe" id="toc-konwencja-nazewnictwa-katalogów-.safe" class="nav-link" data-scroll-target="#konwencja-nazewnictwa-katalogów-.safe">Konwencja nazewnictwa katalogów <code>.SAFE</code></a></li>
+  <li><a href="#wewnętrzne-pliki-składowe" id="toc-wewnętrzne-pliki-składowe" class="nav-link" data-scroll-target="#wewnętrzne-pliki-składowe">Wewnętrzne pliki składowe</a></li>
+  </ul></li>
+  <li><a href="#produkty-satelitarne-landsat-landsat_scenes" id="toc-produkty-satelitarne-landsat-landsat_scenes" class="nav-link" data-scroll-target="#produkty-satelitarne-landsat-landsat_scenes">2. Produkty satelitarne Landsat (<code>landsat_scenes/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#konwencja-nazewnictwa" id="toc-konwencja-nazewnictwa" class="nav-link" data-scroll-target="#konwencja-nazewnictwa">Konwencja nazewnictwa</a></li>
+  <li><a href="#pliki-wewnątrz-produktu" id="toc-pliki-wewnątrz-produktu" class="nav-link" data-scroll-target="#pliki-wewnątrz-produktu">Pliki wewnątrz produktu:</a></li>
+  </ul></li>
+  <li><a href="#dzienniki-stacji-naziemnych-telemetry_logs" id="toc-dzienniki-stacji-naziemnych-telemetry_logs" class="nav-link" data-scroll-target="#dzienniki-stacji-naziemnych-telemetry_logs">3. Dzienniki stacji naziemnych (<code>telemetry_logs/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#format-rekordów-w-logach-telemetrycznych" id="toc-format-rekordów-w-logach-telemetrycznych" class="nav-link" data-scroll-target="#format-rekordów-w-logach-telemetrycznych">Format rekordów w logach telemetrycznych:</a></li>
+  </ul></li>
+  <li><a href="#raporty-zachmurzenia-i-metadanych-cloud_cover_reports" id="toc-raporty-zachmurzenia-i-metadanych-cloud_cover_reports" class="nav-link" data-scroll-target="#raporty-zachmurzenia-i-metadanych-cloud_cover_reports">4. Raporty zachmurzenia i metadanych (<code>cloud_cover_reports/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#struktura-kolumn-w-plikach-csv" id="toc-struktura-kolumn-w-plikach-csv" class="nav-link" data-scroll-target="#struktura-kolumn-w-plikach-csv">Struktura kolumn w plikach CSV:</a></li>
+  </ul></li>
+  <li><a href="#katalogi-orbitalne-i-sensoryczne-orbital_catalog" id="toc-katalogi-orbitalne-i-sensoryczne-orbital_catalog" class="nav-link" data-scroll-target="#katalogi-orbitalne-i-sensoryczne-orbital_catalog">5. Katalogi orbitalne i sensoryczne (<code>orbital_catalog/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#satellites_tle_catalog.tsv" id="toc-satellites_tle_catalog.tsv" class="nav-link" data-scroll-target="#satellites_tle_catalog.tsv"><code>satellites_tle_catalog.tsv</code></a></li>
+  <li><a href="#sensor_bands_spec.tsv" id="toc-sensor_bands_spec.tsv" class="nav-link" data-scroll-target="#sensor_bands_spec.tsv"><code>sensor_bands_spec.tsv</code></a></li>
+  </ul></li>
+  <li><a href="#stacje-sieci-geodezyjnych-gnss-gnss_stations" id="toc-stacje-sieci-geodezyjnych-gnss-gnss_stations" class="nav-link" data-scroll-target="#stacje-sieci-geodezyjnych-gnss-gnss_stations">6. Stacje sieci geodezyjnych GNSS (<code>gnss_stations/</code>)</a>
+  <ul class="collapse">
+  <li><a href="#zawartość-każdego-podkatalogu-stacji" id="toc-zawartość-każdego-podkatalogu-stacji" class="nav-link" data-scroll-target="#zawartość-każdego-podkatalogu-stacji">Zawartość każdego podkatalogu stacji:</a></li>
+  </ul></li>
+  <li><a href="#surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks" id="toc-surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks" class="nav-link" data-scroll-target="#surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks">7. Surowe strumienie pakietów telemetrycznych (<code>raw_telemetry_chunks/</code>)</a></li>
+  <li><a href="#repozytorium-skryptów-demonstracyjnych-scripts_repo" id="toc-repozytorium-skryptów-demonstracyjnych-scripts_repo" class="nav-link" data-scroll-target="#repozytorium-skryptów-demonstracyjnych-scripts_repo">8. Repozytorium skryptów demonstracyjnych (<code>scripts_repo/</code>)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Opis pakietu danych do ćwiczeń (Dataset Reference)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Niniejszy dodatek zawiera szczegółową dokumentację techniczną wszystkich katalogów, plików, formatów oraz kolumn danych zawartych w pakiecie <a href="file:///C:/Users/UPWr/Documents/DYDAKTYKA/2026/ZARZADZANIE_PROJEKTEM/unix-shell/dane_do_cwiczen"><code>dane_do_cwiczen/</code></a>.</p>
+<p>Zestaw ten symuluje rzeczywiste środowisko pracy inżyniera danych satelitarnych w centrach przetwarzania danych teledetekcyjnych (np. ESA Copernicus Data Space Ecosystem, USGS EarthExplorer, EUMETSAT Data Store, sieci geodezyjne ASG-EUPOS / EPN).</p>
+<hr>
+<section id="przegląd-struktury-katalogów" class="level2">
+<h2 class="anchored" data-anchor-id="przegląd-struktury-katalogów">Przegląd struktury katalogów</h2>
+<pre class="output"><code>dane_do_cwiczen/
+├── README.txt                    # Informacje ogólne o pakiecie danych
+├── sources.txt                   # Wykaz źródeł, serwisów satelitarnych i dokumentacji
+├── sentinel2_scenes/             # Produkty misji ESA Sentinel-2 L2A w standardzie .SAFE
+├── landsat_scenes/               # Produkty misji USGS/NASA Landsat-8 i Landsat-9 L2SP
+├── telemetry_logs/               # Dobowe logi stacji naziemnych oraz archiwa .log.gz
+├── cloud_cover_reports/          # Raporty CSV statystyk zachmurzenia i jakości scen
+├── orbital_catalog/              # Parametry TLE orbit satelitów oraz specyfikacje sensorów
+├── gnss_stations/                # Logi jakości i obserwacje RINEX stacji geodezyjnych
+├── raw_telemetry_chunks/         # Setki surowych pakietów binarno-tekstowych strumieni CCSDS
+└── scripts_repo/                 # Wzorce skryptów automatyzujących powłoki Bash</code></pre>
+<hr>
+</section>
+<section id="produkty-satelitarne-sentinel-2-sentinel2_scenes" class="level2">
+<h2 class="anchored" data-anchor-id="produkty-satelitarne-sentinel-2-sentinel2_scenes">1. Produkty satelitarne Sentinel-2 (<code>sentinel2_scenes/</code>)</h2>
+<p>Katalog zawiera produkty poziomu Level-2A (reflektancja powierzchniowa BOA po korekcji atmosferycznej) w standardzie dystrybucyjnym ESA <strong>SAFE</strong> (<em>Standard Archive Format for Europe</em>).</p>
+<section id="konwencja-nazewnictwa-katalogów-.safe" class="level3">
+<h3 class="anchored" data-anchor-id="konwencja-nazewnictwa-katalogów-.safe">Konwencja nazewnictwa katalogów <code>.SAFE</code></h3>
+<pre><code>MMM_MSIL2A_YYYYMMDDTHHMMSS_Nxxyy_ROOO_Txxxxx_&lt;Product Discriminator&gt;.SAFE</code></pre>
+<ul>
+<li><strong><code>MMM</code></strong>: Identyfikator satelity (<code>S2A</code>, <code>S2B</code>, <code>S2C</code>).</li>
+<li><strong><code>MSIL2A</code></strong>: Sensor MSI (<em>MultiSpectral Instrument</em>), poziom Level-2A.</li>
+<li><strong><code>YYYYMMDDTHHMMSS</code></strong>: Czas pozyskania sceny w formacie UTC (np. <code>20240510T100031</code>).</li>
+<li><strong><code>Nxxyy</code></strong>: Numer wersji przetwarzania ESA (<em>Processing Baseline</em>, np. <code>N0510</code>).</li>
+<li><strong><code>ROOO</code></strong>: Względny numer orbity (<em>Relative Orbit</em>, np. <code>R122</code>, <code>R079</code>, <code>R036</code>).</li>
+<li><strong><code>Txxxxx</code></strong>: Kafelek siatki podziału MGRS (np. <code>T33UWT</code> Wrocław, <code>T34UCA</code> Warszawa, <code>T33UXT</code> Poznań, <code>T34UDE</code> Kraków, <code>T34UEC</code> Gdańsk, <code>T33UWS</code> Sudety, <code>T32TMS</code> Alpy).</li>
+</ul>
+</section>
+<section id="wewnętrzne-pliki-składowe" class="level3">
+<h3 class="anchored" data-anchor-id="wewnętrzne-pliki-składowe">Wewnętrzne pliki składowe</h3>
+<ul>
+<li><strong><code>manifest.safe</code></strong>: Główny plik manifestu w formacie XML opisujący zawartość paczki i identyfikatory sceny.</li>
+<li><strong><code>MTD_MSIL2A.xml</code></strong>: Globalne metadane produktu (statystyki zachmurzenia, kąty zenitalne słońca, status jakości geometrycznej i radiometrycznej).</li>
+<li><strong><code>GRANULE/&lt;Granule_ID&gt;/IMG_DATA/R10m/</code></strong>: Rastry o rozdzielczości terenowej <strong>10 m</strong> (<code>B02</code> Blue, <code>B03</code> Green, <code>B04</code> Red, <code>B08</code> NIR, <code>TCI</code> True Color Image).</li>
+<li><strong><code>GRANULE/&lt;Granule_ID&gt;/IMG_DATA/R20m/</code></strong>: Rastry o rozdzielczości terenowej <strong>20 m</strong> (<code>B05</code>, <code>B06</code>, <code>B07</code> Red Edge, <code>B8A</code> Narrow NIR, <code>B11</code>, <code>B12</code> SWIR, <code>SCL</code> Scene Classification Layer).</li>
+<li><strong><code>GRANULE/&lt;Granule_ID&gt;/QI_DATA/</code></strong>: Wskaźniki kontroli jakości oraz poligonowe maski chmur (<code>cloud_mask.gml</code>, <code>report.xml</code>).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="produkty-satelitarne-landsat-landsat_scenes" class="level2">
+<h2 class="anchored" data-anchor-id="produkty-satelitarne-landsat-landsat_scenes">2. Produkty satelitarne Landsat (<code>landsat_scenes/</code>)</h2>
+<p>Katalog zawiera produkty misji <strong>Landsat-8</strong> oraz <strong>Landsat-9</strong> w standardzie <em>USGS Collection 2 Level-2 Surface Reflectance (L2SP)</em>.</p>
+<section id="konwencja-nazewnictwa" class="level3">
+<h3 class="anchored" data-anchor-id="konwencja-nazewnictwa">Konwencja nazewnictwa</h3>
+<pre><code>LXSS_LLLL_PPPRRR_YYYYMMDD_yyyymmdd_CC_TX</code></pre>
+<ul>
+<li><strong><code>LXSS</code></strong>: <code>LC08</code> (Landsat-8 OLI/TIRS) lub <code>LC09</code> (Landsat-9 OLI-2/TIRS-2).</li>
+<li><strong><code>LLLL</code></strong>: Poziom przetwarzania (<code>L2SP</code> – <em>Surface Reflectance Standard Product</em>).</li>
+<li><strong><code>PPPRRR</code></strong>: Ścieżka i rząd w globalnym systemie WRS-2 (<em>Path/Row</em>, np. <code>190024</code>, <code>191024</code> dla Polski).</li>
+<li><strong><code>YYYYMMDD</code></strong>: Data pozyskania zobrazowania.</li>
+<li><strong><code>yyyymmdd</code></strong>: Data wygenerowania produktu w USGS.</li>
+<li><strong><code>CC</code> / <code>TX</code></strong>: Numer kolekcji (<code>02</code>) i kategoria jakości (<code>T1</code> – Tier 1).</li>
+</ul>
+</section>
+<section id="pliki-wewnątrz-produktu" class="level3">
+<h3 class="anchored" data-anchor-id="pliki-wewnątrz-produktu">Pliki wewnątrz produktu:</h3>
+<ul>
+<li><code>*_MTL.txt</code>: Plik metadanych tekstowych zawierający parametry kalibracyjne, współczynniki nasłonecznienia i procent zachmurzenia.</li>
+<li><code>*_ANG.txt</code>: Kąty oświetlenia i obserwacji sensora.</li>
+<li><code>*_SR_B1.TIF</code> do <code>*_SR_B7.TIF</code>: Warstwy rastrowe reflektancji powierzchniowej (pasma spektralne).</li>
+<li><code>*_QA_PIXEL.TIF</code>, <code>*_QA_RADSAT.TIF</code>: Rastrowe maski jakości pikseli i nasycenia radiometrycznego.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="dzienniki-stacji-naziemnych-telemetry_logs" class="level2">
+<h2 class="anchored" data-anchor-id="dzienniki-stacji-naziemnych-telemetry_logs">3. Dzienniki stacji naziemnych (<code>telemetry_logs/</code>)</h2>
+<p>Katalog zawiera ponad <strong>360 dobowych plików tekstowych</strong> oraz <strong>24 skompresowane archiwa miesięczne</strong> (<code>.log.gz</code>), rejestrujące sesje pobierania danych (<em>downlink telemetry</em>) dla 8 globalnych stacji naziemnych:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Kod stacji</th>
+<th style="text-align: left;">Nazwa stacji naziemnej</th>
+<th style="text-align: left;">Współrzędne</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>SVB</code></strong></td>
+<td style="text-align: left;">Spitsbergen (SvalSat, Norwegia)</td>
+<td style="text-align: left;">78.23° N, 15.39° E</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>KIR</code></strong></td>
+<td style="text-align: left;">Kiruna (Szwecja)</td>
+<td style="text-align: left;">67.85° N, 20.96° E</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>MAS</code></strong></td>
+<td style="text-align: left;">Maspalomas (Wyspy Kanaryjskie, Hiszpania)</td>
+<td style="text-align: left;">27.76° N, 15.63° W</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>KRU</code></strong></td>
+<td style="text-align: left;">Kourou (Gujana Francuska)</td>
+<td style="text-align: left;">5.25° N, 52.80° W</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>TRL</code></strong></td>
+<td style="text-align: left;">Troll (Antarktyda)</td>
+<td style="text-align: left;">72.01° S, 2.53° E</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>MAT</code></strong></td>
+<td style="text-align: left;">Matera (Włochy)</td>
+<td style="text-align: left;">40.65° N, 16.70° E</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>INU</code></strong></td>
+<td style="text-align: left;">Inuvik (Kanada)</td>
+<td style="text-align: left;">68.36° N, 133.72° W</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>PUN</code></strong></td>
+<td style="text-align: left;">Punta Arenas (Chile)</td>
+<td style="text-align: left;">53.16° S, 70.91° W</td>
+</tr>
+</tbody>
+</table>
+<section id="format-rekordów-w-logach-telemetrycznych" class="level3">
+<h3 class="anchored" data-anchor-id="format-rekordów-w-logach-telemetrycznych">Format rekordów w logach telemetrycznych:</h3>
+<pre><code>TIMESTAMP_UTC | PASS_ID | SATELLITE_ID | FREQ_GHZ | SNR_DB | BER | PACKETS_RECV | PACKETS_LOST | DOWNLINK_MB | STATUS</code></pre>
+<ul>
+<li><code>TIMESTAMP_UTC</code>: Czas rozpoczęcia sesji (ISO 8601).</li>
+<li><code>PASS_ID</code>: Unikalny identyfikator przelotu nad stacją.</li>
+<li><code>SATELLITE_ID</code>: Identyfikator satelity (<code>SENTINEL-1A</code>, <code>SENTINEL-2A</code>, <code>LANDSAT-8</code>, itp.).</li>
+<li><code>FREQ_GHZ</code>: Częstotliwość pasma X (np. 8.150 GHz).</li>
+<li><code>SNR_DB</code>: Stosunek sygnału do szumu w decybelach (<em>Signal-to-Noise Ratio</em>).</li>
+<li><code>BER</code>: Bitowa stopa błędów (<em>Bit Error Rate</em>).</li>
+<li><code>PACKETS_RECV</code>: Liczba odebranych pakietów telekomunikacyjnych.</li>
+<li><code>PACKETS_LOST</code>: Liczba utraconych pakietów (dla <code>STATUS=OK</code> wynosi 0).</li>
+<li><code>DOWNLINK_MB</code>: Łączna objętość odebranych danych w megabajtach.</li>
+<li><code>STATUS</code>: Status sesji: <code>OK</code>, <code>WARNING_PACKET_LOSS</code>, <code>WARNING_HIGH_TEMPERATURE</code>, <code>ERROR_CHECKSUM_FAILED</code>, <code>ERROR_SIGNAL_LOST</code>, <code>ERROR_SYNC_FAILED</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="raporty-zachmurzenia-i-metadanych-cloud_cover_reports" class="level2">
+<h2 class="anchored" data-anchor-id="raporty-zachmurzenia-i-metadanych-cloud_cover_reports">4. Raporty zachmurzenia i metadanych (<code>cloud_cover_reports/</code>)</h2>
+<p>Pliki tabelaryczne CSV zawierające łącznie ponad <strong>6000 rekordów</strong> z parametrami geometrycznymi i atmosferycznymi scen satelitarnych:</p>
+<ul>
+<li><code>poland_sentinel2_2024.csv</code> – 850 obserwacji nad terytorium Polski z 2024 roku.</li>
+<li><code>poland_sentinel2_2023.csv</code> – 750 obserwacji z 2023 roku.</li>
+<li><code>poland_sentinel2_2022.csv</code> – 680 obserwacji z 2022 roku.</li>
+<li><code>central_europe_sentinel2_2024.csv</code> – 1200 obserwacji dla Europy Środkowej (Polska, Niemcy, Czechy, Słowacja).</li>
+<li><code>scandinavia_sentinel2_2024.csv</code> – 950 obserwacji dla Skandynawii.</li>
+<li><code>alps_landsat_sentinel_2024.csv</code> – 600 obserwacji obszarów alpejskich.</li>
+<li><code>mediterranean_sentinel2_2024.csv</code> – 1100 obserwacji dla basenu Morza Śródziemnego.</li>
+</ul>
+<section id="struktura-kolumn-w-plikach-csv" class="level3">
+<h3 class="anchored" data-anchor-id="struktura-kolumn-w-plikach-csv">Struktura kolumn w plikach CSV:</h3>
+<ol type="1">
+<li><code>scene_id</code> – Pełny identyfikator sceny satelitarnej.</li>
+<li><code>date</code> – Data akwizycji (<code>YYYY-MM-DD</code>).</li>
+<li><code>satellite</code> – Nazwa platformy (<code>SENTINEL-2A</code>, <code>SENTINEL-2B</code>, <code>LANDSAT-8</code>, <code>LANDSAT-9</code>).</li>
+<li><code>tile_id</code> – Identyfikator kafelka siatki MGRS.</li>
+<li><code>orbit_relative</code> – Numer względnej orbity.</li>
+<li><code>cloud_coverage_percent</code> – Procentowe zachmurzenie sceny (0.00 – 100.00%).</li>
+<li><code>nodata_pixel_percent</code> – Procent pikseli poza zasięgiem matrycy sensora.</li>
+<li><code>snow_ice_percent</code> – Pokrycie śniegiem i lodem.</li>
+<li><code>sun_zenith_angle</code> – Kąt zenitalny słońca w stopniach.</li>
+<li><code>quality_flag</code> – Flaga jakościowa: <code>PASSED</code>, <code>SUSPECT_HAZE</code>, <code>FAILED_CORRUPTION</code>, <code>PASSED_HIGH_SUN_GLINT</code>.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="katalogi-orbitalne-i-sensoryczne-orbital_catalog" class="level2">
+<h2 class="anchored" data-anchor-id="katalogi-orbitalne-i-sensoryczne-orbital_catalog">5. Katalogi orbitalne i sensoryczne (<code>orbital_catalog/</code>)</h2>
+<section id="satellites_tle_catalog.tsv" class="level3">
+<h3 class="anchored" data-anchor-id="satellites_tle_catalog.tsv"><code>satellites_tle_catalog.tsv</code></h3>
+<p>Baza danych (TSV) ponad 80 aktywnych satelitów obserwacji Ziemi (misje naukowe ESA, NASA, NOAA, EUMETSAT oraz konstelacje komercyjne PlanetScope, ICEYE SAR, Spire Lemur).</p>
+<p>Kolumny: - <code>norad_id</code>: Numer katalogowy US Space Command / NORAD. - <code>satellite_name</code>: Oficjalna nazwa satelity. - <code>operator</code>: Agencja lub podmiot komercyjny. - <code>launch_year</code>: Rok wystrzelenia na orbitę. - <code>inclination_deg</code>: Inklinacja orbity w stopniach. - <code>altitude_km</code>: Średnia wysokość orbity. - <code>apogee_km</code> / <code>perigee_km</code>: Apogeum i perygeum orbity. - <code>period_min</code>: Okres orbitalny w minutach. - <code>orbit_type</code>: Typ orbity (<code>SSO</code> – heliosynchroniczna, <code>NON-SSO</code>). - <code>status</code>: Status operacyjny (<code>OPERATIONAL</code>, <code>DECOMMISSIONED</code>, <code>DEGRADED</code>, <code>PLANNED</code>).</p>
+</section>
+<section id="sensor_bands_spec.tsv" class="level3">
+<h3 class="anchored" data-anchor-id="sensor_bands_spec.tsv"><code>sensor_bands_spec.tsv</code></h3>
+<p>Charakterystyki spektralne kanałów sensorów <strong>MSI</strong> (Sentinel-2) oraz <strong>OLI/TIRS</strong> (Landsat-8/9): - <code>sensor</code>: Typ sensora. - <code>band_id</code>: Oznaczenie kanału (<code>B01</code>–<code>B12</code>, <code>B8A</code>, <code>TCI</code>). - <code>band_name</code>: Nazwa opisowa pasma (np. Coastal Aerosol, Blue, Red Edge, NIR, SWIR, Thermal). - <code>central_wavelength_nm</code>: Długość fali centralnej w nanometrach. - <code>bandwidth_nm</code>: Szerokość pasma spektralnego w nanometrach. - <code>spatial_res_m</code>: Rozdzielczość przestrzenna w metrach (10m, 20m, 30m, 60m, 100m). - <code>spectrum_region</code>: Zakres widmowy (<code>VNIR</code>, <code>SWIR</code>, <code>TIR</code>).</p>
+<hr>
+</section>
+</section>
+<section id="stacje-sieci-geodezyjnych-gnss-gnss_stations" class="level2">
+<h2 class="anchored" data-anchor-id="stacje-sieci-geodezyjnych-gnss-gnss_stations">6. Stacje sieci geodezyjnych GNSS (<code>gnss_stations/</code>)</h2>
+<p>Struktury danych dla 15 europejskich permanentnych stacji referencyjnych sieci <strong>ASG-EUPOS</strong> oraz <strong>EUREF EPN</strong>: - <code>WROC</code> (Wrocław, UPWr) - <code>JOZE</code> (Józefosław, Politechnika Warszawska) - <code>KRAK</code> (Kraków, AGH) - <code>GDAN</code> (Gdańsk, Politechnika Gdańska) - <code>LODZ</code> (Łódź) - <code>POZN</code> (Poznań, CBK PAN) - <code>KATW</code> (Katowice) - <code>BIAY</code> (Białystok) - <code>SZCZ</code> (Szczecin) - <code>ZAKO</code> (Zakopane) - <code>BOR1</code> (Borowiec, CBK PAN) - <code>GOPE</code> (Ondřejov, Czechy) - <code>POTS</code> (Poczdam, GFZ Niemcy) - <code>WTZR</code> (Wettzell, BKG Niemcy) - <code>ONSA</code> (Onsala, Szwecja)</p>
+<section id="zawartość-każdego-podkatalogu-stacji" class="level3">
+<h3 class="anchored" data-anchor-id="zawartość-każdego-podkatalogu-stacji">Zawartość każdego podkatalogu stacji:</h3>
+<ul>
+<li><code>station_info.json</code>: Metadane stacji (współrzędne elipsoidalne WGS84, typ odbiornika, typ anteny, przynależność do sieci).</li>
+<li><code>&lt;CODE&gt;_2024_daily_status.log</code>: Dobowy raport kontroli jakości (liczba epok, ubytki danych, zjawiska <em>cycle slips</em>, multipath MP1/MP2, status QC).</li>
+<li><code>&lt;CODE&gt;00POL_R_..._MO.rnx.gz</code>: Skompresowane dobowe pliki obserwacji wielosystemowych w standardzie <strong>RINEX 3.04</strong> (GPS, GLONASS, Galileo, BeiDou).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks" class="level2">
+<h2 class="anchored" data-anchor-id="surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks">7. Surowe strumienie pakietów telemetrycznych (<code>raw_telemetry_chunks/</code>)</h2>
+<p>Katalog zawiera <strong>500 surowych plików binarno-tekstowych</strong> (<code>telemetry_stream_chunk_0001.dat</code> do <code>chunk_0500.dat</code>) symulujących pakiety protokołu <strong>CCSDS</strong> (<em>Consultative Committee for Space Data Systems</em>).</p>
+<p>Przykładowy fragment:</p>
+<pre class="output"><code># RAW TELEMETRY PACKET STREAM CHUNK #0042
+HEADER: CCSDS_SYNC=0x1ACFFC1D STREAM_ID=0042 BITRATE_MBPS=150.0
+PKT_0042_001 | V=28.12V | T=24.50C | CRC_OK
+PKT_0042_002 | V=28.15V | T=24.62C | CRC_OK
+PKT_0042_003 | V=27.90V | T=38.90C | CRC_ERR</code></pre>
+<p>Zastosowanie: testowanie potęgi poleceń <code>find</code>, <code>xargs</code>, <code>cat *.dat | grep</code> oraz równoległego przetwarzania w skryptach powłoki Bash.</p>
+<hr>
+</section>
+<section id="repozytorium-skryptów-demonstracyjnych-scripts_repo" class="level2">
+<h2 class="anchored" data-anchor-id="repozytorium-skryptów-demonstracyjnych-scripts_repo">8. Repozytorium skryptów demonstracyjnych (<code>scripts_repo/</code>)</h2>
+<p>Wzorce gotowych skryptów Bash dla studentów: - <code>filter_clouds.sh</code>: Skrypt filtrujący sceny z raportów CSV według zadanego kafelka i progu zachmurzenia. - <code>count_telemetry_errors.sh</code>: Skrypt zliczający błędy stacji naziemnych z obsługą argumentów pozycyjnych. - <code>batch_qc_check.sh</code>: Skrypt do wsadowego audytu integralności pakietów we wszystkich 500 plikach <code>raw_telemetry_chunks/</code>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zajdelr\.github\.io\/idsik-unix-shell\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/a03-faqs.html" class="pagination-link" aria-label="Często zadawane pytania (FAQ)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Często zadawane pytania (FAQ)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licencja <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

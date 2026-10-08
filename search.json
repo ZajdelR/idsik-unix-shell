@@ -1,0 +1,1003 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "section": "",
+    "text": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "crumbs": [
+      "Wprowadzenie",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "section": "Overview",
+    "text": "Overview\nThe Unix shell (aka command line) is a powerful and essential tool for researchers and engineers, in particular those working in computational disciplines such as satellite data engineering, remote sensing, bioinformatics, and large-scale data analysis. In this course we explore the basic structure of the Unix operating system and how to interact with it using a fundamental set of commands. You will learn how to navigate the filesystem, manipulate text-based data, combine multiple commands using pipes and redirections to quickly extract information from data files, and write reusable Bash scripts with variables and standard streams.\n\n\n\n\n\n\nNoteAttribution & Source Materials\n\n\n\nThis course is based on: - Tavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. https://cambiotraining.github.io/unix-shell/ - Gabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823\n\n\n\n\n\n\n\n\nTipLearning Objectives\n\n\n\n\nRecognise the uses of the command line for computational work.\nBecome comfortable in using the command line, understanding how commands are structured and how to access their documentation.\nNavigate the filesystem from the command line and understand how to specify the location of files and directories.\nPerform basic file manipulations in Bash: combine multiple files together; count number of lines, words and characters in a file; extract text matching a pattern; counting unique values in a file.\nCombine multiple commands to solve more complex tasks using pipes and redirections.\nWrite Bash scripts to record and make your analysis reproducible.\nWork with variables, arguments, and standard I/O streams in shell scripts.\n\n\n\n\nTarget Audience\nThis course is targeted at students and participants with no prior experience of working on the command line.\n\n\nPrerequisites\nNone.\n\n\nExercises\nExercises in these materials are labelled according to their level of difficulty:\n\n\n\n\n\n\n\nLevel\nDescription\n\n\n\n\n  \nExercises in level 1 are simpler and designed to get you familiar with the concepts and syntax covered in the course.\n\n\n  \nExercises in level 2 combine different concepts together and apply it to a given task.\n\n\n  \nExercises in level 3 require going beyond the concepts and syntax introduced to solve new problems.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements-citations",
+    "href": "index.html#acknowledgements-citations",
+    "title": "Zarządzanie projektem informatycznym dla kierunku Inżynieria Danych Satelitarnych i Kosmicznych, UPWR (2026/2027)",
+    "section": "Acknowledgements & Citations",
+    "text": "Acknowledgements & Citations\nThese materials are an adaptation based on the following works:\n\nTavares, H., Judge, P., Moitra, I. (2024). Introduction to the Unix command line. Available at: https://cambiotraining.github.io/unix-shell/\nGabriel A. Devenyi (Ed.), Gerard Capes (Ed.), Colin Morris (Ed.), Will Pitchers (Ed.), Greg Wilson, Gerard Capes, Gabriel A. Devenyi, Christina Koch, Raniere Silva, Ashwin Srinath, … Vikram Chhatre. (2019, July). swcarpentry/shell-novice: Software Carpentry: the UNIX shell, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3266823 (Licensed under CC-BY 4.0).\n\nThe original authors and publishers of the work have not endorsed the adaptation of this work.\n\nWe also thank Julia Evans for their fantastic illustrations of Bash programming concepts.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Dane i przygotowanie środowiska",
+    "section": "",
+    "text": "Rozszerzony pakiet danych satelitarnych do ćwiczeń (dane_do_cwiczen)\nWszystkie ćwiczenia i przykłady w ramach kursu opierają się na dedykowanym pakiecie danych inżynierii satelitarnej dane_do_cwiczen (ponad 1600 plików symulujących rzeczywiste centrum przetwarzania danych teledetekcyjnych i kosmicznych).\nZestaw zawiera m.in.:",
+    "crumbs": [
+      "Wprowadzenie",
+      "Dane i przygotowanie środowiska"
+    ]
+  },
+  {
+    "objectID": "setup.html#rozszerzony-pakiet-danych-satelitarnych-do-ćwiczeń-dane_do_cwiczen",
+    "href": "setup.html#rozszerzony-pakiet-danych-satelitarnych-do-ćwiczeń-dane_do_cwiczen",
+    "title": "Dane i przygotowanie środowiska",
+    "section": "",
+    "text": "sentinel2_scenes/ – wieloczasowe struktury produktów poziomu L2A misji Sentinel-2 (katalogi .SAFE z metadanymi XML i rastrami spektralnymi 10m i 20m dla Wrocławia, Warszawy, Poznania, Krakowa, Gdańska i Alp).\nlandsat_scenes/ – produkty Landsat-8 i Landsat-9 Collection 2 Level-2 z plikami metadanych MTL, współczynnikami kątowymi oraz maskami jakości pikseli QA.\ntelemetry_logs/ – setki dobowych dzienników stacji naziemnych (Spitsbergen, Kiruna, Maspalomas, Kourou, Troll, Matera, Inuvik, Punta Arenas) oraz archiwa skompresowane .log.gz.\ncloud_cover_reports/ – bazy danych CSV z tysiącami rekordów obserwacji satelitarnych dla Polski i Europy.\norbital_catalog/ – katalogi parametrów orbitalnych (TLE) ponad 80 aktywnych satelitów (ESA, NASA, NOAA, konstelacje komercyjne) oraz specyfikacje kanałów sensorów (MSI, OLI, TIRS).\ngnss_stations/ – dobowe raporty jakości i skompresowane pliki obserwacyjne RINEX dla 15 europejskich stacji geodezyjnych (m.in. WROC, JOZE, KRAK, GDAN, POZN, POTS, WTZR, ONSA).\nraw_telemetry_chunks/ – setki surowych strumieni pakietów telemetrycznych (chunk_*.dat) do testowania wydajności potoków powłoki Bash, poleceń find, xargs i grep.\nscripts_repo/ – wzorce skryptów automatyzujących przetwarzanie i kontrolę jakości (QC) w powłoce Bash.\n\n\nPobieranie i rozpakowanie danych\nPobierz archiwum ZIP i rozpakuj je na Pulpicie (Desktop) lub w swoim katalogu roboczym:\nMożesz to zrobić bezpośrednio z poziomu terminala:\ncd ~/Desktop\n# Jeśli posiadasz plik dane_do_cwiczen.zip lokalnie:\nunzip dane_do_cwiczen.zip\ncd dane_do_cwiczen\nls",
+    "crumbs": [
+      "Wprowadzenie",
+      "Dane i przygotowanie środowiska"
+    ]
+  },
+  {
+    "objectID": "setup.html#oprogramowanie",
+    "href": "setup.html#oprogramowanie",
+    "title": "Dane i przygotowanie środowiska",
+    "section": "Oprogramowanie",
+    "text": "Oprogramowanie\n\nTerminal Unix\n\nWindows 10/11macOSLinux\n\n\nAby przygotować środowisko na systemie Windows, zalecamy skorzystanie z aplikacji MobaXterm lub Windows Subsystem for Linux (WSL2):\n\nMobaXterm:\n\nPobierz wersję MobaXterm Portable edition.\nRozpakuj plik ZIP na Pulpicie i uruchom MobaXterm_Personal_XX.X.exe.\nKliknij Start local terminal.\nZainstaluj edytor tekstu wpisując: apt install nano (potwierdź klawiszem y).\n\nWSL2 (rekomendowane rozwiązanie zaawansowane):\n\nSzczegółowy poradnik konfiguracji Ubuntu i VS Code znajdziesz w rozdziale Unix w systemie Windows (WSL).\n\n\n\n\nSystem macOS posiada wbudowany terminal powłoki (zsh/bash). Naciśnij ⌘ + Spacja, aby otworzyć wyszukiwarkę Spotlight, i wpisz terminal.\nOpcjonalnie możesz zainstalować nowoczesny emulator terminala iTerm2.\n\n\n\n\n\n\nWarningUprawnienia w systemie macOS\n\n\n\nJeśli podczas wykonywania polecenia ls w terminalu pojawi się komunikat o braku uprawnień, przejdź do: Ustawienia systemowe -&gt; Prywatność i ochrona -&gt; Pełny dostęp do dysku i zaznacz aplikację Terminal.\n\n\n\n\nDystrybucje Linuksa (np. Ubuntu, Fedora, Debian) mają domyślnie zainstalowany terminal. W systemie Ubuntu terminal można otworzyć skrótem klawiszowym Ctrl + Alt + T.",
+    "crumbs": [
+      "Wprowadzenie",
+      "Dane i przygotowanie środowiska"
+    ]
+  },
+  {
+    "objectID": "materials/slides01-essentials.html",
+    "href": "materials/slides01-essentials.html",
+    "title": " Slajdy",
+    "section": "",
+    "text": "TipPobieranie slajdów\n\n\n\nOryginalna prezentacja dostępna jest tutaj, skąd można ją pobrać w różnych formatach (Plik &gt; Pobierz).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "{{< iconify mdi:presentation >}} Slajdy"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html",
+    "href": "materials/01-unix_overview.html",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "",
+    "text": "1.1 Wprowadzenie\nW ramach tych lekcji przedstawimy podstawy pracy z wierszem poleceń systemu Unix (Unix Command Line). Czym właściwie jest wiersz poleceń?\nCzłowiek komunikuje się z komputerem na różne sposoby: za pomocą klawiatury i myszy, ekranów dotykowych czy rozpoznawania mowy. Najbardziej rozpowszechnioną formą interakcji z komputerami osobistymi jest graficzny interfejs użytkownika (GUI – Graphical User Interface). W interfejsie graficznym wydajemy instrukcje klikając myszą w okna, ikony i elementy menu.\nChoć klikanie przycisków w GUI jest początkowo intuicyjne, wyobraź sobie wykonywanie tej samej operacji setki lub tysiące razy – ręka szybko się zmęczy, a ryzyko pomyłki drastycznie wzrośnie!\nWyobraźmy sobie zadanie typowe dla inżynierii danych satelitarnych: mamy katalog zawierający tysiące plików metadanych scen satelitarnych (np. z misji Sentinel lub Landsat) i musimy wyodrębnić informację o stopniu zachmurzenia (Cloud Cover) oraz dacie akwizycji z trzeciej linii każdego pliku, a następnie podsumować wyniki.\nKorzystając z GUI, spędzilibyśmy wiele godzin na żmudnym klikaniu i otwieraniu każdego pliku z osobna, łatwo popełniając błąd.\nWłaśnie w takich zastosowaniach powłoka Unix staje się niezastąpionym narzędziem.\nPowłoka Unix to zarówno interfejs wiersza poleceń (CLI – Command-Line Interface), jak i język skryptowy, pozwalający na szybką i w pełni automatyczną realizację powtarzalnych zadań. Za pomocą odpowiednich poleceń powłoka może wykonać daną operację tysiące razy w ułamku sekundy.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#wprowadzenie",
+    "href": "materials/01-unix_overview.html#wprowadzenie",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "",
+    "text": "Figure 1.1: Przykład wyświetlania zawartości katalogu w wierszu poleceń (terminal Unix, po lewej) oraz w interfejsie graficznym (menedżer plików, po prawej).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#powłoka-the-shell",
+    "href": "materials/01-unix_overview.html#powłoka-the-shell",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "1.2 Powłoka (The Shell)",
+    "text": "1.2 Powłoka (The Shell)\nPowłoka (shell) to program, w którym użytkownik wprowadza polecenia tekstowe. Za jej pośrednictwem można jednym poleceniem wywołać zaawansowane narzędzia do przetwarzania danych teledetekcyjnych i geoprzestrzennych (np. GDAL, narzędzia SNAP, skrypty Pythona) lub proste instrukcje tworzące katalogi.\nNajpopularniejszą powłoką systemu Unix jest Bash (Bourne Again SHell). Jest ona domyślną powłoką w większości dystrybucji Linuksa oraz w pakietach udostępniających narzędzia uniksowe dla systemu Windows.\nOpanowanie wiersza poleceń wymaga pewnego czasu i praktyki. O ile GUI wyświetla gotowe opcje do kliknięcia, o tyle w CLI polecenia trzeba wprowadzać samodzielnie, przyswajając je stopniowo jak słownictwo w nowym języku.\nSkładnia powłoki pozwala na łączenie prostych narzędzi w wydajne potoki przetwarzania danych (pipelines) oraz automatyczną obsługę wielkich zbiorów danych satelitarnych (Big Data / Earth Observation). Sekwencje poleceń można zapisywać w postaci skryptów, co zapewnia pełną powtarzalność i odtwarzalność analiz naukowej i inżynierskiej.\nWiersz poleceń jest także podstawowym sposobem interakcji ze zdalnymi serwerami obliczeniowymi, klastrami HPC (High Performance Computing) i infrastrukturą chmurową (np. Copernicus Data Space Ecosystem, AWS, CREODIAS).\n\n\n\n\n\n\nTipNazewnictwo: Unix, Linux, Shell, Terminal, Wiersz poleceń\n\n\n\n\n\nCzęsto pojęcia takie jak „shell”, „wiersz poleceń”, „bash” i „terminal” są używane zamiennie. Warto jednak znać precyzyjne różnice:\n\nTerminal – aplikacja (okno), która umożliwia interakcję z komputerem za pomocą poleceń tekstowych.\nPowłoka (Shell) – interpreter poleceń, który tłumaczy wpisany tekst na konkretne instrukcje dla systemu operacyjnego. Przykładem innego interpretera w systemie Windows jest Wiersz polecenia (cmd.exe) lub PowerShell.\nBash – konkretny język i interpreter powłoki Unix. Istnieją również inne powłoki, np. Zsh (domyślna w nowszych wersjach macOS).\n\nPodobnie wygląda relacja pojęć Unix, Linux i Ubuntu:\n\nUnix – rodzina systemów operacyjnych o określonej architekturze, z której wywodzą się m.in. Linux i macOS.\nLinux – rodzina systemów operacyjnych opartych na otwartoźródłowym jądrze (kernelu) Linuksa.\nUbuntu – jedna z najpopularniejszych dystrybucji systemu Linux (inne to np. Debian, Fedora, CentOS, Rocky Linux). Z punktu widzenia pracy w wierszu poleceń działają one niemal identycznie.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#uruchamianie-poleceń",
+    "href": "materials/01-unix_overview.html#uruchamianie-poleceń",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "1.3 Uruchamianie poleceń",
+    "text": "1.3 Uruchamianie poleceń\nPo otwarciu terminala pojawia się znak zachęty (prompt), informujący, że powłoka oczekuje na wprowadzenie danych. Typowy znak zachęty w Linuksie wygląda następująco:\nusername@machine:~$\nZawiera on nazwę użytkownika (username), nazwę komputera (machine), bieżącą lokalizację w systemie plików (~ oznacza katalog domowy) oraz symbol dolara $, po którym kursor oczekuje na wpisanie polecenia.\nPo wpisaniu polecenia naciskamy klawisz Enter ↵, aby je wykonać.\nWypróbujmy nasze pierwsze polecenie: ls (skrót od list). Służy ono do wyświetlenia zawartości bieżącego katalogu:\nls\nDocuments    Downloads    Music        Public\nDesktop      Movies       Pictures     Templates\nZawartość ta może się różnić w zależności od systemu operacyjnego i struktury plików na Twoim dysku.\n\n\n\n\n\n\nWarningBłąd: Command not found\n\n\n\nJeśli powłoka nie może znaleźć programu o podanej nazwie, wyświetli komunikat o błędzie:\nks\nks: command not found\nOznacza to, że nazwa polecenia została wpisana z błędem lub odpowiedni pakiet nie jest zainstalowany w systemie.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#opcje-i-argumenty-poleceń",
+    "href": "materials/01-unix_overview.html#opcje-i-argumenty-poleceń",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "1.4 Opcje i argumenty poleceń",
+    "text": "1.4 Opcje i argumenty poleceń\n\nDziałanie poleceń można modyfikować za pomocą opcji (flag/przełączników) oraz argumentów. Przeanalizujmy poniższy przykład:\nls -l --sort time Desktop/data-shell\n\nls to nazwa polecenia (programu).\n-l to opcja krótka (flaga), która zmienia sposób wyświetlania na tzw. format długi (long format), pokazujący uprawnienia, rozmiar i datę modyfikacji plików. Opcje krótkie zaczynają się od pojedynczego myślnika (-).\n--sort to opcja długa (zaczynająca się od dwóch myślników --), która wymaga podania wartości (w tym przypadku time, co powoduje sortowanie plików według czasu modyfikacji).\nDesktop/data-shell to argument pozycyjny wskazujący, na jakim obiekcie polecenie ma wykonać operację (tutaj: ścieżka do katalogu).\n\nPoszczególne elementy polecenia muszą być rozdzielone spacjami. Jeśli pominiemy spację między ls a -l, powłoka spróbuje uruchomić nieistniejące polecenie ls-l.\nW systemach Unix wielkość liter ma kluczowe znaczenie: ls -r (odwrócony porządek sortowania) to co innego niż ls -R (rekurencyjne przeglądanie podkatalogów).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#uzyskiwanie-pomocy",
+    "href": "materials/01-unix_overview.html#uzyskiwanie-pomocy",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "1.5 Uzyskiwanie pomocy",
+    "text": "1.5 Uzyskiwanie pomocy\nPolecenie ls (jak i większość narzędzi Unix) posiada wiele opcji. Istnieją dwa podstawowe sposoby sprawdzania dostępnych opcji i składni polecenia:\n\nPrzekazanie opcji --help, np. ls --help.\nOtwarcie podręcznika systemowego poleceniem man, np. man ls.\nAby wyjść z podręcznika man, naciskamy klawisz Q (quit).\n\n\n\n\n\n\n\nNoteStrony podręcznika man\n\n\n\nPodręcznik man jest dostępny dla standardowych narzędzi systemowych. Specjalistyczne pakiety naukowe i inżynierskie (np. pakiety do przetwarzania danych satelitarnych) zazwyczaj udostępniają pomoc poprzez flagi --help lub -h.\n\n\nStruktura pomocy narzędzi wiersza poleceń jest zazwyczaj zbliżona. Zobaczmy to na przykładzie fikcyjnego narzędzia do analizy danych satelitarnych satprocess:\nsatprocess is a CLI tool for processing satellite imagery metadata and raster bands.\n\nUsage: \n satprocess [options] -o &lt;dir&gt; &lt;file1&gt; … &lt;fileN&gt;\n\nArguments (mandatory): \n -o, --output=PATH  The path to the output results directory\n\nOptions:\n -t, --threads=N    The number of CPU cores to use.\n --cloud-mask       Apply automatic cloud and shadow masking.\n --help             Print this help message and exit.\n\nNa początku podany jest krótki opis narzędzia.\nW sekcji Usage pokazany jest schemat wywołania. Nawiasy ostrokątne &lt; i &gt; oznaczają wartość, którą musi podać użytkownik (samych znaków &lt; &gt; nie wpisujemy w poleceniu!).\n\nPoprawnie: -o wyniki\nBłędnie: -o &lt;wyniki&gt;\n\nArgumenty wejściowe (&lt;file1&gt; ... &lt;fileN&gt;) powinny znaleźć się na końcu polecenia:\n\nPoprawnie: satprocess -o wyniki scena1.tif scena2.tif\nBłędnie: satprocess scena1.tif scena2.tif -o wyniki\n\nOznaczenie [options] wskazuje opcje opcjonalne. Ich kolejność nie ma znaczenia:\n\nPoprawnie: satprocess --cloud-mask -o wyniki scena1.tif\nPoprawnie: satprocess -o wyniki --cloud-mask scena1.tif\n\nOpcje krótkie i długie są równoważne: -o wyniki to to samo co --output=wyniki.\n\nInny często spotykany zapis składni w dokumentacji:\nsatprocess --output STR [--cloud-mask] [--threads INT] FILE1 [...] [FILEN]\nW takim zapisie: - [] oznacza parametry opcjonalne, - STR oznacza wartość tekstową (string), - INT oznacza liczbę całkowitą (integer).\n\n\n\n\n\n\nNoteRóżnice: macOS vs Linux\n\n\n\nSystem macOS korzysta z narzędzi wywodzących się ze środowiska BSD, podczas gdy dystrybucje Linuksa używają narzędzi GNU Coreutils.\nWiększość poleceń działa identycznie, jednak niektóre zaawansowane flagi (np. ls --sort czy sed -i) mogą różnić się składnią między macOS a Linuksem.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-unix_overview.html#podsumowanie",
+    "href": "materials/01-unix_overview.html#podsumowanie",
+    "title": "1  Powłoka Unix (The Unix Shell)",
+    "section": "1.6 Podsumowanie",
+    "text": "1.6 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nWiersz poleceń powłoki Unix (CLI) umożliwia automatyzację złożonych operacji na danych geoprzestrzennych i satelitarnych, pracę na klastrach obliczeniowych (HPC/Cloud) oraz tworzenie w pełni powtarzalnych skryptów.\nPodstawowa składnia polecenia to: polecenie -opcje argumenty.\nNa przykład: ls -l Documents wyświetla zawartość katalogu Documents w formacie szczegółowym (long format).\nAby wyświetlić dokumentację i listę opcji danego polecenia, używamy flagi --help (np. ls --help) lub polecenia man (np. man ls).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Powłoka Unix (The Unix Shell)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html",
+    "href": "materials/02-file_navigation.html",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "",
+    "text": "2.1 System plików w systemie Unix\nCzęść systemu operacyjnego odpowiedzialna za zarządzanie plikami i folderami to system plików (filesystem). Organizuje on dane w pliki oraz katalogi (foldery), które mogą zawierać pliki lub inne podkatalogi. Struktura ta jest hierarchiczna i można ją przedstawić w postaci odwróconego drzewa.\nNa powyższym schemacie widzimy katalogi domowe trzech użytkowników: robin, wren oraz participant (reprezentujący nasze konto szkoleniowe). Wszystkie katalogi użytkowników znajdują się wewnątrz folderu home. Z kolei folder home znajduje się w tzw. katalogu głównym systemu (root directory), oznaczanym pojedynczym ukośnikiem /. Katalog główny to najwyższy poziom w hierarchii całego systemu operacyjnego (nie można wyjść „wyżej” niż /).\nW wierszu poleceń wskazujemy pliki i katalogi za pomocą ich „adresu”, czyli ścieżki (path). Sprawdźmy naszą bieżącą pozycję w systemie za pomocą polecenia pwd (print working directory – wypisz katalog roboczy):\nW odpowiedzi system wyświetla /home/participant – jest to nasz katalog domowy (home directory), otwierany domyślnie po uruchomieniu nowego terminala.\nparticipant to nasza nazwa użytkownika (username).\nZwróćmy uwagę na konstrukcję ścieżki: - / na samym początku oznacza katalog główny systemu (root). - home to nazwa podkatalogu w katalogu głównym. - Kolejny / pełni rolę separatora między katalogami. - participant to docelowy katalog w tej ścieżce.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#system-plików-w-systemie-unix",
+    "href": "materials/02-file_navigation.html#system-plików-w-systemie-unix",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "",
+    "text": "pwd\n/home/participant\n\n\n\n\n\n\n\n\nImportantDwa znaczenia ukośnika /\n\n\n\nZnak ukośnika / na samym początku ścieżki oznacza katalog główny systemu (root). Znak / umieszczony wewnątrz ścieżki pełni rolę separatora oddzielającego poszczególne poziomy katalogów.\n\n\n\n\n\n\n\n\nNoteRóżnice w ścieżkach katalogu domowego\n\n\n\nFormat ścieżki katalogu domowego zależy od systemu operacyjnego: - Linux: /home/nazwa_uzytkownika - macOS: /Users/nazwa_uzytkownika - Windows: C:\\Users\\nazwa_uzytkownika (w terminalach uniksowych, np. WSL/Git Bash: /c/Users/... lub /mnt/c/Users/...)",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#wyświetlanie-zawartości-katalogów-ls",
+    "href": "materials/02-file_navigation.html#wyświetlanie-zawartości-katalogów-ls",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.2 Wyświetlanie zawartości katalogów (ls)",
+    "text": "2.2 Wyświetlanie zawartości katalogów (ls)\nAby zobaczyć listę plików i katalogów w bieżącym miejscu, używamy polecenia ls (list):\nls\nDesktop    Documents    Downloads    dane_do_cwiczen\nNasz rozpakowany pakiet danych satelitarnych znajduje się w folderze dane_do_cwiczen.\nMożemy wylistować jego zawartość, przekazując ścieżkę jako argument do ls:\nls ~/Desktop/dane_do_cwiczen\nREADME.txt            cloud_cover_reports   landsat_scenes        raw_telemetry_chunks  sources.txt\nsentinel2_scenes      gnss_stations         orbital_catalog       scripts_repo          telemetry_logs\nPrzydatne flagi polecenia ls: - ls -l – format szczegółowy (long format): wyświetla uprawnienia, liczbę dowiązań, właściciela, grupę, rozmiar w bajtach oraz datę modyfikacji. - ls -lh – rozmiar w czytelnych jednostkach (human-readable, np. KB, MB, GB). - ls -a – pokazuje wszystkie pliki, łącznie z ukrytymi (zaczynającymi się od kropki .). - ls -t – sortuje pliki według czasu modyfikacji (najnowsze na początku).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#zmiana-katalogu-roboczego-cd",
+    "href": "materials/02-file_navigation.html#zmiana-katalogu-roboczego-cd",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.3 Zmiana katalogu roboczego (cd)",
+    "text": "2.3 Zmiana katalogu roboczego (cd)\nDo zmiany bieżącego katalogu służy polecenie cd (change directory), po którym podajemy ścieżkę do katalogu docelowego:\ncd ~/Desktop/dane_do_cwiczen/\nWpiszmy pwd, aby upewnić się, że jesteśmy w katalogu z danymi:\npwd\n/home/participant/Desktop/dane_do_cwiczen\nJeśli chcemy wejść głębiej, np. do podkatalogu ze scenami satelitarnymi sentinel2_scenes, używamy ścieżki względnej:\ncd sentinel2_scenes\nWyróżniamy dwa sposoby podawania ścieżek:\n\nŚcieżka bezwzględna (absolutna) – zaczyna się od ukośnika / i definiuje pełną trasę od samego korzenia systemu plików (root). Niezależnie od tego, w jakim katalogu aktualnie się znajdujemy, dana ścieżka bezwzględna zawsze wskazuje dokładnie to samo miejsce.\nŚcieżka względna (relatywna) – nie zaczyna się od / i wskazuje lokalizację w odniesieniu do naszego bieżącego katalogu roboczego.\n\n\n2.3.1 Przechodzenie do katalogu nadrzędnego (..)\nAby cofnąć się o jeden poziom w górę (do katalogu nadrzędnego – parent directory), używamy specjalnego oznaczenia ..:\ncd ..\nWpisanie pwd potwierdzi, że wróciliśmy do dane_do_cwiczen.\n\n\n\n\n\n\nNoteAutouzupełnianie tabulatorem (Tab completion)\n\n\n\nNazwy produktów satelitarnych bywają bardzo długie, np. S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE.\nWpisywanie ich ręcznie byłoby uciążliwe i podatne na literówki.\nWpisz cd sentinel2_scenes/S2A_ i naciśnij klawisz Tab ⇥. Powłoka automatycznie dopełni unikalną nazwę katalogu!",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#nazewnictwo-produktów-i-plików-misji-sentinel-2",
+    "href": "materials/02-file_navigation.html#nazewnictwo-produktów-i-plików-misji-sentinel-2",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.4 Nazewnictwo produktów i plików misji Sentinel-2",
+    "text": "2.4 Nazewnictwo produktów i plików misji Sentinel-2\nW inżynierii danych satelitarnych kluczową umiejętnością jest szybkie odczytywanie parametrów sceny z samej nazwy pliku lub katalogu. Standard pakowania danych misji programu Copernicus nosi nazwę SAFE (Standard Archive Format for Europe).\nSpójrzmy na przykładowy produkt w katalogu sentinel2_scenes/:\nS2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE\n\n\n\n\n\n\nNoteAnatomia nazwy produktu Sentinel-2 (.SAFE)\n\n\n\nKażdy człon nazwy oddzielony znakiem podkreślenia _ niesie precyzyjną informację techniczną:\n\n\n\n\n\n\n\n\nSegment\nPrzykład\nOpis\n\n\n\n\nIdentyfikator misji\nS2A / S2B / S2C\nSatelita Sentinel-2A, Sentinel-2B lub Sentinel-2C.\n\n\nTyp produktu i poziom\nMSIL2A (lub MSIL1C)\nSensor MSI (MultiSpectral Instrument), Poziom L2A (reflektancja powierzchniowa BOA po korekcji atmosferycznej) lub L1C (reflektancja na górnej granicy atmosfery TOA).\n\n\nCzas rejestracji (UTC)\n20240510T100031\nMoment pozyskania danych: 10 maja 2024 r., godz. 10:00:31 UTC.\n\n\nWersja przetwarzania\nN0510\nProcessing Baseline (tutaj wersja 05.10 algorytmów ESA).\n\n\nWzględny numer orbity\nR122\nNumer ścieżki orbitalnej (Relative Orbit, 001–143). Pozwala identyfikować powtarzalne przeloty nad tym samym obszarem.\n\n\nIdentyfikator kafelka\nT33UWT\nKod kafelka siatki MGRS (Military Grid Reference System). Np. T33UWT to obszar Wrocławia i Dolnego Śląska, a T34UCA to Warszawa i Mazowsze.\n\n\nCzas wygenerowania\n20240510T140000\nZnacznik czasu wyprodukowania paczki w centrum przetwarzania danych (Product Discriminator).\n\n\nRozszerzenie\n.SAFE\nKatalog główny produktu zawierający metadane i rastry.\n\n\n\n\n\n\n2.4.1 Wewnętrzna struktura katalogu .SAFE\nWewnątrz katalogu .SAFE znajduje się standaryzowana struktura podfolderów:\nS2A_MSIL2A_..._T33UWT_....SAFE/\n├── manifest.safe               # Główny manifest XML opisujący zawartość paczki\n├── MTD_MSIL2A.xml              # Globalne metadane produktu (kąty słońca, zachmurzenie, jakość)\n├── GRANULE/\n│   └── L2A_T33UWT_.../         # Pojedynczy kafelek (Granule)\n│       ├── IMG_DATA/           # Obrazy rastrowe w formacie JPEG2000 (.jp2)\n│       │   ├── R10m/           # Kanały o rozdzielczości 10 m (B02 Blue, B03 Green, B04 Red, B08 NIR, TCI)\n│       │   └── R20m/           # Kanały o rozdzielczości 20 m (B05-B07 Red Edge, B8A, B11-B12 SWIR, SCL)\n│       └── QI_DATA/            # Wskaźniki jakości (Quality Indicators), maski chmur (GML)\nDzięki znajomości tej konwencji, inżynier danych może za pomocą prostych poleceń powłoki odnaleźć np. wyłącznie sceny dla Wrocławia o porannej porze przelotu.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#symbole-wieloznaczne-wildcards",
+    "href": "materials/02-file_navigation.html#symbole-wieloznaczne-wildcards",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.5 Symbole wieloznaczne (Wildcards)",
+    "text": "2.5 Symbole wieloznaczne (Wildcards)\nSymbole wieloznaczne (wildcards) umożliwiają jednoczesne wskazywanie wielu plików pasujących do określonego wzorca:\n\n* (gwiazdka) – dopasowuje zero lub dowolną liczbę znaków.\n\nls telemetry_logs/ground_station_SVB_*.log – wszystkie logi stacji Spitsbergen (Svalbard).\nls cloud_cover_reports/*.csv – wszystkie raporty zachmurzenia w formacie CSV.\nls sentinel2_scenes/S2A* – wszystkie produkty pozyskane przez satelitę Sentinel-2A.\nls sentinel2_scenes/*_T33UWT_*.SAFE – wszystkie produkty dla kafelka Wrocławia (T33UWT).\n\n? (pytajnik) – dopasowuje dokładnie jeden dowolny znak.\n\nls cloud_cover_reports/poland_sentinel2_202?.csv – dopasuje raporty dla lat 2020-2029 (np. 2022, 2023 i 2024).\nls gnss_stations/???? – dopasuje 4-literowe kody stacji GNSS (np. WROC, JOZE, KRAK, LODZ, GDAN).\n\n\nGdy powłoka napotka symbol wieloznaczny, najpierw rozwija go do listy pasujących plików, a dopiero potem przekazuje tę listę jako argumenty do uruchamianego programu.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#wyszukiwanie-plików-find",
+    "href": "materials/02-file_navigation.html#wyszukiwanie-plików-find",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.6 Wyszukiwanie plików (find)",
+    "text": "2.6 Wyszukiwanie plików (find)\nPolecenie find umożliwia rekurencyjne przeszukiwanie drzewa katalogów według nazw, typów i właściwości.\nPrzykładowo, aby wyszukać wszystkie pliki kanałów bliskiej podczerwieni (*B08*.jp2) w całym pakiecie danych satelitarnych:\nfind sentinel2_scenes -type f -name \"*B08*.jp2\"\nsentinel2_scenes/S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT_20240510T140000.SAFE/GRANULE/L2A_T33UWT_A.../IMG_DATA/R10m/T33UWT_20240510_B08_10m.jp2\n...\nZnaczenie poszczególnych elementów: - sentinel2_scenes – ścieżka startowa wyszukiwania. - -type f – szukaj wyłącznie zwykłych plików (files). Dla katalogów użylibyśmy -type d (directories). - -name \"*B08*.jp2\" – wzorzec nazwy pliku w cudzysłowie.\n\n\n\n\n\n\nNoteRozszerzenia plików i formaty danych w inżynierii satelitarnej\n\n\n\n\n\n\n.SAFE – standard pakowania produktów misji ESA Copernicus Sentinel.\n.xml – pliki metadanych (np. parametry kalibracji, zachmurzenie, kąty słońca).\n.jp2 – JPEG2000 (standard kompresji rastrów satelitarnych).\n.tif / .geotiff – powszechny format rastrowy danych geoprzestrzennych.\n.nc / .hdf5 – formaty macierzowe dla danych atmosferycznych, oceanograficznych i radarowych.\n.csv / .tsv – raporty tabelaryczne, katalogi TLE, specyfikacje pasm.\n.log / .log.gz – dzienniki stacji naziemnych i odbiorników GNSS (oraz ich archiwa skompresowane).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#ćwiczenia",
+    "href": "materials/02-file_navigation.html#ćwiczenia",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.7 Ćwiczenia",
+    "text": "2.7 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Nawigacja w strukturze danych satelitarnych\n\n\n\n\n\n\nLevel: \nPrzejdź do katalogu danych: cd ~/Desktop/dane_do_cwiczen.\nUżywając polecenia cd, wejdź do katalogu stacji GNSS we Wrocławiu (gnss_stations/WROC).\nSprawdź za pomocą pwd pełną ścieżkę, a za pomocą ls -l zobacz znajdujące się tam pliki.\nNastępnie jednym poleceniem cd cofnij się z powrotem do głównego folderu dane_do_cwiczen.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\ncd gnss_stations/WROC\npwd\n# Wyświetli: /home/participant/Desktop/dane_do_cwiczen/gnss_stations/WROC\nls -l\n# Aby wrócić o dwa poziomy w górę:\ncd ../..\npwd\n# Wyświetli: /home/participant/Desktop/dane_do_cwiczen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 2 - Rozpoznawanie parametrów sceny Sentinel-2\n\n\n\n\n\n\nLevel: \nSpójrz na nazwę produktu:\nS2B_MSIL2A_20240517T095029_N0510_R079_T34UCA_20240517T140000.SAFE\nOdpowiedz na pytania na podstawie nazewnictwa: 1. Który satelita wykonał to zdjęcie (Sentinel-2A czy 2B)? 2. Jaki jest poziom przetwarzania produktu i czy zawiera korekcję atmosferyczną? 3. Jaka jest data i godzina (UTC) rejestracji sceny? 4. Dla jakiego kafelka MGRS pozyskano te dane (i jaki to rejon Polski)? 5. Jaki jest numer względnej orbity (Relative Orbit)?\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\n\nSatelita: S2B (Sentinel-2B).\nPoziom: MSIL2A (Level-2A, dane reflektancji powierzchniowej BOA z przeprowadzoną korekcją atmosferyczną).\nCzas: 2024-05-17 o godzinie 09:50:29 UTC.\nKafelek MGRS: T34UCA (Warszawa / Mazowsze).\nWzględna orbita: R079 (ścieżka 79).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 3 - Wyszukiwanie danych z symbolami wieloznacznymi\n\n\n\n\n\n\nLevel: \nBędąc w folderze dane_do_cwiczen:\n\nWyświetl wszystkie sceny satelitarne pozyskane przez satelitę Sentinel-2B dla kafelka Wrocławia T33UWT.\nWyświetl listę dzienników telemetrycznych ze stacji Kiruna (KIR) z pierwszych 9 dni maja 2024 roku za pomocą symbolu ?.\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nZadanie 1\nls -d sentinel2_scenes/S2B_*_T33UWT_*.SAFE\nZadanie 2\nls telemetry_logs/ground_station_KIR_2024-05-0?.log\nZnak ? dopasuje dokładnie jedną cyfrę od 1 do 9 (01, 02, …, 09).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 4 - Wyszukiwanie metadanych produktów satelitarnych\n\n\n\n\n\n\nLevel: \nUżyj polecenia find, aby odszukać wszystkie pliki metadanych MTD_MSIL2A.xml we wszystkich scenach Sentinel-2 w katalogu sentinel2_scenes.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nfind sentinel2_scenes -type f -name \"MTD_MSIL2A.xml\"\nPolecenie wypisze pełne ścieżki do wszystkich plików metadanych w strukturach .SAFE.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-file_navigation.html#podsumowanie",
+    "href": "materials/02-file_navigation.html#podsumowanie",
+    "title": "2  Nawigacja w systemie plików (Navigating the filesystem)",
+    "section": "2.8 Podsumowanie",
+    "text": "2.8 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nDrzewo katalogów systemu Unix rozpoczyna się od katalogu głównego / (root).\nŚcieżki bezwzględne zaczynają się od /, natomiast ścieżki względne odnoszą się do bieżącego katalogu roboczego (pwd).\n. oznacza katalog bieżący, .. katalog nadrzędny, a ~ katalog domowy użytkownika.\nNazwy produktów Sentinel-2 (.SAFE) kodują platformę (S2A/S2B), poziom (L1C/L2A), datę/czas, orbitę (Rxxx) oraz kafelek siatki MGRS (Txxxxx).\nSymbole wieloznaczne * oraz ? umożliwiają elastyczne wybieranie grup plików satelitarnych i telemetrycznych.\nPolecenie find pozwala błyskawicznie lokalizować pliki w głębokich strukturach folderów produktów satelitarnych.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Nawigacja w systemie plików (Navigating the filesystem)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html",
+    "href": "materials/03-file_operations.html",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "",
+    "text": "3.1 Tworzenie katalogów (mkdir)\nWiemy już, jak nawigować po systemie plików. Jak jednak tworzyć nowe foldery i organizować przestrzeń roboczą dla projektów satelitarnych?\nPrzejdźmy do naszego folderu z danymi i sprawdźmy jego zawartość:\nUtwórzmy nowy katalog o nazwie project_wroclaw za pomocą polecenia mkdir (make directory):\nNowy katalog zostanie utworzony w bieżącym katalogu roboczym:\nJeśli spróbujemy utworzyć zagnieżdżoną strukturę katalogów za jednym razem, polecenie zgłosi błąd, jeśli katalog nadrzędny jeszcze nie istnieje:\nMamy dwa rozwiązania tego problemu:\nFlaga -p zapobiega także wyświetlaniu błędu, jeśli wskazany katalog już istnieje.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#tworzenie-katalogów-mkdir",
+    "href": "materials/03-file_operations.html#tworzenie-katalogów-mkdir",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "",
+    "text": "cd ~/Desktop/dane_do_cwiczen\nls\nREADME.txt            cloud_cover_reports   orbital_catalog       sources.txt\nsentinel2_scenes      gnss_stations         scripts_repo          telemetry_logs\n\nmkdir project_wroclaw\n\nls\nREADME.txt            cloud_cover_reports   orbital_catalog       project_wroclaw\nsentinel2_scenes      gnss_stations         scripts_repo          sources.txt\ntelemetry_logs\n\nmkdir project_wroclaw/sentinel2/cloud_masks\nmkdir: cannot create directory 'project_wroclaw/sentinel2/cloud_masks': No such file or directory\n\n\nTworzyć katalogi krok po kroku:\nmkdir project_wroclaw/sentinel2\nmkdir project_wroclaw/sentinel2/cloud_masks\nUżyć flagi -p (parents), która automatycznie utworzy brakujące katalogi nadrzędne:\nmkdir -p project_wroclaw/sentinel2/cloud_masks\n\n\n\n\n\n\n\n\nNoteDobre praktyki nazewnictwa plików w projektach inżynierskich\n\n\n\n\n\nNieodpowiednie nazwy plików mogą znacznie utrudnić pracę w wierszu poleceń i automatyzację skryptami:\n\nUnikaj spacji w nazwach. Spacja w powłoce rozdziela polecenia i argumenty. Zamiast dane sentinel maj.csv stosuj dane_sentinel_maj.csv lub dane-sentinel-maj.csv.\nNie zaczynaj nazwy od myślnika (-). Programy mogą potraktować taki plik jako opcję (flagę).\nUżywaj tylko bezpiecznych znaków: liter (bez polskich znaków diakrytycznych w nazwach plików technicznych), cyfr, kropek ., myślników - i podkreśleń _.\nJeśli musisz odwołać się do pliku ze spacją w nazwie, ujmij jego nazwę w cudzysłów: \"moje dane.txt\".",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#przenoszenie-i-zmiana-nazwy-mv",
+    "href": "materials/03-file_operations.html#przenoszenie-i-zmiana-nazwy-mv",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "3.2 Przenoszenie i zmiana nazwy (mv)",
+    "text": "3.2 Przenoszenie i zmiana nazwy (mv)\nW katalogu dane_do_cwiczen znajduje się plik sources.txt (zawierający notatki z wykazem serwisów danych satelitarnych).\nPrzenieśmy ten plik do nowo utworzonego katalogu project_wroclaw za pomocą polecenia mv (move):\nmv sources.txt project_wroclaw/\nPierwszy argument wskazuje plik źródłowy, a drugi – miejsce docelowe. Sprawdźmy:\nls project_wroclaw\nsentinel2  sources.txt\nZmieńmy teraz nazwę pliku z sources.txt na documentation_links.txt.\nW systemie Unix do zmiany nazwy pliku również służy polecenie mv:\nmv project_wroclaw/sources.txt project_wroclaw/documentation_links.txt\n\n\n\n\n\n\nWarningUwaga na nadpisywanie plików\n\n\n\nPolecenie mv bez ostrzeżenia nadpisze istniejący plik docelowy, jeśli w folderze docelowym istnieje już plik o identycznej nazwie!",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#kopiowanie-plików-i-katalogów-cp",
+    "href": "materials/03-file_operations.html#kopiowanie-plików-i-katalogów-cp",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "3.3 Kopiowanie plików i katalogów (cp)",
+    "text": "3.3 Kopiowanie plików i katalogów (cp)\nPolecenie cp (copy) działa podobnie do mv, z tą różnicą, że tworzy kopię, pozostawiając plik źródłowy bez zmian:\ncp project_wroclaw/documentation_links.txt links_backup.txt\nls\nREADME.txt            cloud_cover_reports   links_backup.txt      orbital_catalog\nproject_wroclaw       gnss_stations         scripts_repo          telemetry_logs\nsentinel2_scenes\nAby skopiować cały katalog wraz z zawartością, musimy dodać opcję rekurencyjną -r (recursive):\ncp -r scripts_repo scripts_backup",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#usuwanie-plików-i-katalogów-rm-rmdir",
+    "href": "materials/03-file_operations.html#usuwanie-plików-i-katalogów-rm-rmdir",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "3.4 Usuwanie plików i katalogów (rm, rmdir)",
+    "text": "3.4 Usuwanie plików i katalogów (rm, rmdir)\nDo usuwania plików służy polecenie rm (remove):\nrm links_backup.txt\nCo się stanie, gdy spróbujemy usunąć katalog scripts_backup?\nrm scripts_backup\nrm: cannot remove 'scripts_backup': Is a directory\nDomyślnie rm odmawia usuwania katalogów. Aby usunąć katalog wraz ze wszystkimi zawartymi w nim plikami i podfolderami, należy użyć opcji -r:\nrm -r scripts_backup\n\nW powłoce Unix usunięcie jest bezpowrotne!\nW wierszu poleceń nie ma Kosza (Trash / Recycle Bin). Usunięte poleceniem rm pliki są natychmiast wymazywane z systemu plików.\nUżywaj rm -r z najwyższą ostrożnością. Aby powłoka pytała o potwierdzenie przed usunięciem każdego pliku, można użyć opcji interaktywnej: rm -r -i nazwa_katalogu.\n\nDo bezpiecznego usuwania wyłącznie pustych katalogów służy polecenie rmdir (remove directory).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#ćwiczenia",
+    "href": "materials/03-file_operations.html#ćwiczenia",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "3.5 Ćwiczenia",
+    "text": "3.5 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Zmiana nazwy pliku konfiguracyjnego\n\n\n\n\n\n\nLevel: \n(Zadanie koncepcyjne)\nZałóżmy, że w bieżącym katalogu utworzyłeś plik tekstowy z parametrami korekcji atmosferycznej dla sensora Sentinel-2 i omyłkowo nazwałeś go sen2cor_confg.txt.\nChcesz poprawić literówkę i zmienić nazwę na sen2cor_config.txt. Którego polecenia należy użyć?\n\ncp sen2cor_confg.txt sen2cor_config.txt\nmv sen2cor_confg.txt sen2cor_config.txt\nmv sen2cor_confg.txt .\ncp sen2cor_confg.txt .\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\n\nNie: polecenie utworzy kopię o poprawnej nazwie, ale błędnie nazwany plik nadal pozostanie na dysku.\nPrawidłowa odpowiedź: mv zmieni nazwę pliku na właściwą bez tworzenia duplikatu.\nNie: kropka wskazuje bieżący katalog, ale nie podaje nowej nazwy pliku.\nNie: brak nowej nazwy pliku docelowego.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 2 - Tworzenie kopii zapasowej katalogu skryptów\n\n\n\n\n\n\nLevel: \nPrzejdź do katalogu danych: cd ~/Desktop/dane_do_cwiczen.\nUtwórz kopię zapasową folderu scripts_repo o nazwie scripts_repo_v1.\nSprawdź za pomocą ls, czy nowy katalog pojawił się na liście.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\ncp -r scripts_repo scripts_repo_v1\nls\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 3 - Kopiowanie wielu raportów do folderu projektu\n\n\n\n\n\n\nLevel: \nUtwórz katalog reports_analysis:\nmkdir reports_analysis\nSkopiuj do niego pliki raportów dla Polski za jednym razem:\ncp cloud_cover_reports/poland_sentinel2_2023.csv cloud_cover_reports/poland_sentinel2_2024.csv reports_analysis/\nSprawdź zawartość reports_analysis/ za pomocą ls.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nls reports_analysis\n# Wyświetli: poland_sentinel2_2023.csv  poland_sentinel2_2024.csv\nGdy ostatnim argumentem polecenia cp jest katalog, wszystkie wymienione wcześniej pliki zostaną do niego skopiowane.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-file_operations.html#podsumowanie",
+    "href": "materials/03-file_operations.html#podsumowanie",
+    "title": "3  Operacje na plikach i katalogach (File operations)",
+    "section": "3.6 Podsumowanie",
+    "text": "3.6 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nTworzenie katalogów: mkdir nazwa_katalogu (oraz mkdir -p sciezka/do/podkatalogu dla struktur zagnieżdżonych).\nPrzenoszenie i zmiana nazwy: mv zrodlo cel.\nKopiowanie plików: cp plik_zrodlowy plik_docelowy.\nKopiowanie całych katalogów z zawartością: cp -r katalog_zrodlowy katalog_docelowy.\nUsuwanie plików: rm plik.\nUsuwanie katalogów z zawartością: rm -r katalog.\nUsuwanie pustych katalogów: rmdir katalog.\nUwaga na utratę danych: W wierszu poleceń usunięcie plików za pomocą rm jest trwałe i natychmiastowe (brak kosza systemowego).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operacje na plikach i katalogach (File operations)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html",
+    "href": "materials/04-text_manipulation.html",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "",
+    "text": "4.1 Przeglądanie zawartości plików\nW analizie danych satelitarnych i telemetrycznych często zachodzi potrzeba szybkiego sprawdzenia zawartości plików bez konieczności uruchamiania ciężkich edytorów graficznych. Jest to szczególnie istotne przy plikach o dużych rozmiarach (np. raportach dziennych, metadanych scen czy logach przetwarzania).\nPrzejdźmy do katalogu z danymi i wyświetlmy zawartość pliku specyfikacji pasm sensorów w orbital_catalog za pomocą polecenia cat (concatenate – łączenie/wypisywanie):\nPolecenie cat wypisuje cały plik na ekranie. Jeśli jednak plik ma tysiące linii, cat zaleje terminal tekstem.\nAby sprawdzić tylko początkowe linie pliku (np. nagłówek tabeli z nazwami kolumn), używamy polecenia head:\nDomyślnie head wyświetla pierwsze 10 linii. Liczbę wyświetlanych wierszy można zmienić opcją -n:\nAnalogicznie, do wyświetlenia końcowych linii pliku (np. najnowszych wpisów w logu stacji naziemnej) służy polecenie tail:\nDo interaktywnego, wygodnego przeglądania długich plików strona po stronie służy program less:\nW przeglądarce less: - Strzałki ↑ i ↓ przewijają plik linia po linii. - Klawisze Page Up i Page Down (lub Spacja) przewijają o całą stronę. - Naciśnięcie klawisza / pozwala na wyszukiwanie frazy w tekście (naciśnięcie n przechodzi do kolejnego dopasowania, a Shift + n do poprzedniego). - Naciśnięcie klawisza Q zamyka program i powraca do wiersza poleceń.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#przeglądanie-zawartości-plików",
+    "href": "materials/04-text_manipulation.html#przeglądanie-zawartości-plików",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "",
+    "text": "cd ~/Desktop/dane_do_cwiczen\ncat orbital_catalog/sensor_bands_spec.tsv\nsensor  band_id band_name   central_wavelength_nm   bandwidth_nm    spatial_res_m   spectrum_region\nMSI-Sentinel-2  B01 Coastal Aerosol 443 20  60  VNIR\nMSI-Sentinel-2  B02 Blue    490 65  10  VNIR\nMSI-Sentinel-2  B03 Green   560 35  10  VNIR\nMSI-Sentinel-2  B04 Red 665 30  10  VNIR\n...\n\n\nhead cloud_cover_reports/poland_sentinel2_2024.csv\n\nhead -n 3 cloud_cover_reports/poland_sentinel2_2024.csv\nscene_id,date,satellite,tile_id,orbit_relative,cloud_coverage_percent,nodata_pixel_percent,snow_ice_percent,sun_zenith_angle,quality_flag\nS2A_MSIL2A_20240510T100031_N0510_R122_T33UWT,2024-05-10,SENTINEL-2A,T33UWT,122,12.40,0.50,0.00,34.80,PASSED\nS2B_MSIL2A_20240512T095029_N0510_R079_T33UWT,2024-05-12,SENTINEL-2B,T33UWT,79,4.20,1.20,0.00,33.50,PASSED\n\ntail -n 3 telemetry_logs/ground_station_SVB_2024-05-01.log\n\nless orbital_catalog/satellites_tle_catalog.tsv",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#zliczanie-linii-słów-i-znaków-wc",
+    "href": "materials/04-text_manipulation.html#zliczanie-linii-słów-i-znaków-wc",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.2 Zliczanie linii, słów i znaków (wc)",
+    "text": "4.2 Zliczanie linii, słów i znaków (wc)\nDo zliczania rekordów i linii w plikach tekstowych służy polecenie wc (word count):\nwc -l cloud_cover_reports/*.csv\n  251 cloud_cover_reports/poland_sentinel2_2024.csv\n  221 cloud_cover_reports/poland_sentinel2_2023.csv\n  301 cloud_cover_reports/central_europe_sentinel2_2024.csv\n  281 cloud_cover_reports/scandinavia_sentinel2_2024.csv\n  201 cloud_cover_reports/alps_landsat_sentinel_2024.csv\n 1255 total\nFlagi wc: - -l – zlicza wyłącznie linie (lines). - -w – zlicza słowa (words). - -c – zlicza bajty / znaki (characters/bytes).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#łączenie-wielu-plików-cat",
+    "href": "materials/04-text_manipulation.html#łączenie-wielu-plików-cat",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.3 Łączenie wielu plików (cat)",
+    "text": "4.3 Łączenie wielu plików (cat)\nPolecenie cat (od concatenate) może przyjąć wiele plików jako argumenty i połączyć ich zawartość w jeden ciągły strumień tekstu:\ncat cloud_cover_reports/poland_sentinel2_2023.csv cloud_cover_reports/poland_sentinel2_2024.csv &gt; poland_combined.csv",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#przekierowanie-wyjścia-oraz",
+    "href": "materials/04-text_manipulation.html#przekierowanie-wyjścia-oraz",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.4 Przekierowanie wyjścia (> oraz >>)",
+    "text": "4.4 Przekierowanie wyjścia (&gt; oraz &gt;&gt;)\nDomyślnie polecenia wypisują wyniki w terminalu (tzw. standardowe wyjście – stdout). Możemy jednak przekierować wyjście do pliku za pomocą operatora &gt;:\nwc -l telemetry_logs/*.log &gt; summary_logs.txt\n\n\n\n\n\n\nWarningNadpisywanie a dopisywanie (&gt; vs &gt;&gt;)\n\n\n\n\nOperator &gt; nadpisuje zawartość pliku docelowego.\nOperator &gt;&gt; dopisuje nowe linie na końcu istniejącego pliku (append).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#wyszukiwanie-wzorców-tekstowych-grep",
+    "href": "materials/04-text_manipulation.html#wyszukiwanie-wzorców-tekstowych-grep",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.5 Wyszukiwanie wzorców tekstowych (grep)",
+    "text": "4.5 Wyszukiwanie wzorców tekstowych (grep)\nPolecenie grep (Global Regular Expression Print) służy do przeszukiwania plików i wypisywania linii pasujących do wzorca.\nWyszukajmy wszystkie operacje zakończone błędem w logach telemetrycznych stacji Spitsbergen:\ngrep \"ERROR\" telemetry_logs/ground_station_SVB_2024-05-01.log\nNajważniejsze opcje polecenia grep: - -i – ignoruje wielkość liter (case-insensitive), np. grep -i \"sentinel\" catalog.tsv. - -v – odwraca dopasowanie (invert match), wypisując linie, które nie zawierają podanego wzorca (np. grep -v \"^#\" plik.log pomija linie komentarzy zaczynające się od #). - -n – wyświetla numery wierszy w pliku. - -c – zwraca liczbę pasujących wierszy. - -r (lub -R) – rekurencyjne przeszukiwanie wszystkich plików w katalogu.\n\n\n\nKomiks i ściągawka polecenia grep autorstwa Julii Evans",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#ćwiczenia",
+    "href": "materials/04-text_manipulation.html#ćwiczenia",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.6 Ćwiczenia",
+    "text": "4.6 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Przekierowanie strumieni (&gt; oraz &gt;&gt;)\n\n\n\n\n\n\nLevel: \nPrzejdź do katalogu dane_do_cwiczen i wykonaj zadania:\n\nWyszukaj wszystkie wpisy ze statusem ERROR w logach stacji Kiruna (telemetry_logs/ground_station_KIR_*.log) i zapisz je do nowego pliku kiruna_errors.txt.\nSprawdź liczbę znalezionych błędów za pomocą wc -l kiruna_errors.txt.\nUżywając operatora &gt;&gt;, dopisz do tego samego pliku błędy ze stacji Spitsbergen (telemetry_logs/ground_station_SVB_*.log).\nSprawdź ponownie liczbę wierszy w kiruna_errors.txt.\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nZadanie 1\ngrep \"ERROR\" telemetry_logs/ground_station_KIR_*.log &gt; kiruna_errors.txt\nZadanie 2\nwc -l kiruna_errors.txt\nZadanie 3\ngrep \"ERROR\" telemetry_logs/ground_station_SVB_*.log &gt;&gt; kiruna_errors.txt\nZadanie 4\nwc -l kiruna_errors.txt\nLiczba wierszy wzrosła o liczbę błędów dopisanych ze stacji SVB.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 2 - Zliczanie i filtrowanie scen satelitarnych\n\n\n\n\n\n\nLevel: \nW pliku cloud_cover_reports/poland_sentinel2_2024.csv:\n\nPodejrzyj nagłówek i pierwsze 4 wiersze danych za pomocą head.\nIle łącznie scen zarejestrowano w tym raporcie? (wc -l)\nUżyj grep, aby wyodrębnić tylko sceny pozyskane przez satelitę SENTINEL-2A i zapisać je do pliku s2a_poland.csv.\nIle scen pozyskał satelita Sentinel-2A?\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nhead -n 5 cloud_cover_reports/poland_sentinel2_2024.csv\nwc -l cloud_cover_reports/poland_sentinel2_2024.csv\ngrep \"SENTINEL-2A\" cloud_cover_reports/poland_sentinel2_2024.csv &gt; s2a_poland.csv\nwc -l s2a_poland.csv\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 3 - Wyszukiwanie pasm termalnych i radarowych\n\n\n\n\n\n\nLevel: \nW pliku orbital_catalog/sensor_bands_spec.tsv:\n\nWyszukaj pasma rejestrujące promieniowanie podczerwone (zawierające słowo “Infrared” lub “SWIR”).\nUżyj opcji -i, aby wyszukiwanie nie zależało od wielkości liter.\nPolicz ile takich pasm znajduje się w katalogu.\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\ngrep -i \"infrared\" orbital_catalog/sensor_bands_spec.tsv\ngrep -i \"infrared\" orbital_catalog/sensor_bands_spec.tsv | wc -l",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-text_manipulation.html#podsumowanie",
+    "href": "materials/04-text_manipulation.html#podsumowanie",
+    "title": "4  Praca z plikami tekstowymi (Working with text)",
+    "section": "4.7 Podsumowanie",
+    "text": "4.7 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nPolecenia head i tail pozwalają podejrzeć odpowiednio początek lub koniec raportu lub logu.\nProgram less umożliwia interaktywne przewijanie i przeszukiwanie plików o dowolnym rozmiarze (Q kończy pracę).\nPolecenie wc -l zlicza liczbę wierszy w plikach.\nOperator &gt; przekierowuje wyjście programu do pliku (tworzy nowy lub nadpisuje istniejący).\nOperator &gt;&gt; dopisuje wyjście programu na końcu istniejącego pliku.\nPolecenie grep wyszukuje linie tekstu pasujące do podanego wzorca (np. grep -i \"ERROR\" telemetry_logs/*.log).",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Praca z plikami tekstowymi (Working with text)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-combining_commands.html",
+    "href": "materials/05-combining_commands.html",
+    "title": "5  Łączenie poleceń i potoki (Combining commands)",
+    "section": "",
+    "text": "5.1 Operator potoku (| - Pipe)\nW poprzednim rozdziale filtrowaliśmy i zliczaliśmy błędy w plikach w kilku oddzielnych krokach, zapisując pliki tymczasowe na dysku:\nTworzenie plików pośrednich na dysku jest niewygodne, zajmuje miejsce i spowalnia analizę.\nW systemach Unix jednym z najpotężniejszych mechanizmów jest potok (pipe), oznaczany symbolem pionowej kreski |.\nPotok przekazuje standardowe wyjście (stdout) jednego programu bezpośrednio jako standardowe wejście (stdin) kolejnego programu, bez konieczności zapisu danych pośrednich na dysku:\nW tym jednolinijkowym potoku wyjście polecenia cat trafia do grep, a przefiltrowany wynik z grep trafia bezpośrednio do wc -l.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-combining_commands.html#operator-potoku---pipe",
+    "href": "materials/05-combining_commands.html#operator-potoku---pipe",
+    "title": "5  Łączenie poleceń i potoki (Combining commands)",
+    "section": "",
+    "text": "Połączenie raportów: cat cloud_cover_reports/poland_*.csv &gt; all_poland.csv\nPrzefiltrowanie do nowego pliku: grep \"SENTINEL-2A\" all_poland.csv &gt; s2a.csv\nZliczenie wierszy: wc -l s2a.csv\n\n\n\ncat cloud_cover_reports/poland_*.csv | grep \"SENTINEL-2A\" | wc -l",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-combining_commands.html#przetwarzanie-tabelaryczne-cut-sort-uniq",
+    "href": "materials/05-combining_commands.html#przetwarzanie-tabelaryczne-cut-sort-uniq",
+    "title": "5  Łączenie poleceń i potoki (Combining commands)",
+    "section": "5.2 Przetwarzanie tabelaryczne: cut, sort, uniq",
+    "text": "5.2 Przetwarzanie tabelaryczne: cut, sort, uniq\nPołączenie potokami kilku wyspecjalizowanych narzędzi pozwala budować zaawansowane łańcuchy analizy danych tabelarycznych (CSV, TSV, logi telemetryczne).\n\n5.2.1 Ekstrakcja kolumn (cut)\nPolecenie cut służy do wycinania określonych kolumn/pól z każdego wiersza tekstu:\ncat cloud_cover_reports/poland_sentinel2_2024.csv | cut -d \",\" -f 4\nOpcje: - -d \",\" – określa separator kolumn (delimiter). W plikach CSV separatorem jest przecinek. Domyślnym separatorem dla polecenia cut jest znak tabulacji (\\t). - -f 4 – wskazuje numer pola/kolumny (field), którą chcemy wyodrębnić (w tym przypadku identyfikator kafelka MGRS tile_id).\n\n\n5.2.2 Sortowanie danych (sort)\nPolecenie sort sortuje wiersze tekstu:\ncat cloud_cover_reports/poland_sentinel2_2024.csv | cut -d \",\" -f 4 | sort\nDomyślnie sort porządkuje wiersze alfabetycznie (leksykalnie).\n\n\n\n\n\n\nNoteSortowanie alfabetyczne a numeryczne (sort -n)\n\n\n\n\n\nDomyślnie ciąg 10 w sortowaniu alfabetycznym znajdzie się przed 2 (ponieważ 1 jest przed 2).\nJeśli sortujesz liczby (np. procent zachmurzenia, wysokości orbit, SNR), zawsze dodawaj opcję numeryczną: sort -n.\nAby odwrócić porządek (od największej do najmniejszej wartości), dodaj opcję -r (reverse): sort -n -r.\n\n\n\n\n\n5.2.3 Deduplikacja i zliczanie (uniq)\nPolecenie uniq usuwa powtarzające się sąsiednie linie tekstu.\nWażne: uniq wykrywa duplikaty tylko wtedy, gdy wiersze znajdują się bezpośrednio obok siebie – dlatego przed użyciem uniq dane muszą być posortowane za pomocą sort!\ncat cloud_cover_reports/poland_sentinel2_2024.csv | cut -d \",\" -f 4 | grep -v \"tile_id\" | sort | uniq\nAby nie tylko usunąć duplikaty, ale także policzyć liczbę wystąpień każdego kafelka, używamy opcji -c (count):\ncat cloud_cover_reports/poland_sentinel2_2024.csv | cut -d \",\" -f 4 | grep -v \"tile_id\" | sort | uniq -c | sort -n -r\n\n\n\nKomiks i ściągawka poleceń sort i uniq autorstwa Julii Evans",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-combining_commands.html#ćwiczenia",
+    "href": "materials/05-combining_commands.html#ćwiczenia",
+    "title": "5  Łączenie poleceń i potoki (Combining commands)",
+    "section": "5.3 Ćwiczenia",
+    "text": "5.3 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Zrozumienie działania potoku\n\n\n\n\n\n\nLevel: \n(Zadanie koncepcyjne)\nMając dwa pliki z rejestrem sesji stacji naziemnych:\ncat telemetry_station1.txt:\nSENTINEL-2A\nLANDSAT-8\nSENTINEL-1A\nLANDSAT-8\ncat telemetry_station2.txt:\nSENTINEL-2A\nSENTINEL-3A\nLANDSAT-8\nSENTINEL-2B\nJaki wynik zwróci następujące polecenie?\ncat telemetry_station*.txt | head -n 6 | tail -n 1\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nWynikiem będzie SENTINEL-3A.\nKrok po kroku: 1. cat telemetry_station*.txt łączy oba pliki w jeden strumień 8 wierszy. 2. head -n 6 pobiera pierwsze 6 wierszy połączonego strumienia. 3. tail -n 1 wybiera ostatni (szósty) wiersz z tego zestawu, którym jest SENTINEL-3A.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 2 - Ranking operatorów satelitarnych w katalogu TLE\n\n\n\n\n\n\nLevel: \nW katalogu orbital_catalog znajduje się plik satellites_tle_catalog.tsv (dane rozdzielane tabulatorem).\n\nPodejrzyj zawartość za pomocą head -n 5 satellites_tle_catalog.tsv.\nTrzecia kolumna zawiera nazwę operatora satelity (operator, np. ESA, USGS/NASA, NOAA, EUMETSAT).\nZbuduj potok, który:\n\nWyodrębni 3. kolumnę (cut -f 3).\nOdrzuci wiersz nagłówka (grep -v \"operator\").\nPosortuje nazwy operatorów (sort).\nZliczy liczbę satelitów dla każdego operatora (uniq -c).\nPosortuje wynik malejąco według liczby satelitów (sort -n -r).\n\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\ncd ~/Desktop/dane_do_cwiczen/orbital_catalog\ncat satellites_tle_catalog.tsv | cut -f 3 | grep -v \"operator\" | sort | uniq -c | sort -n -r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 3 - Praca ze skompresowanymi logami telemetrycznymi (zcat)\n\n\n\n\n\n\nLevel: \nWiele surowych danych satelitarnych, telemetrycznych i naukowych jest kompresowanych do formatu .gz (GZip) w celu zaoszczędzenia pamięci masowej.\nAby przeglądać i przetwarzać skompresowane pliki tekstowe w locie bez konieczności wcześniejszego ich rozpakowywania na dysku, używamy polecenia zcat (w systemie macOS: gzcat).\nW katalogu telemetry_logs znajduje się skompresowany plik archiwalny ground_station_SVB_2024-04_archive.log.gz:\n\nPodejrzyj jego zawartość strumieniowo za pomocą zcat telemetry_logs/ground_station_SVB_2024-04_archive.log.gz | head -n 10.\nWyszukaj i zlicz wszystkie wpisy ze statusem ERROR w tym archiwalnym logu.\nPolicz ile różnych sesji zrealizowano dla poszczególnych satelitów w kwietniu 2024.\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nZadanie 1\nzcat telemetry_logs/ground_station_SVB_2024-04_archive.log.gz | head -n 10\nZadanie 2\nzcat telemetry_logs/ground_station_SVB_2024-04_archive.log.gz | grep \"ERROR\" | wc -l\nZadanie 3\nzcat telemetry_logs/ground_station_SVB_2024-04_archive.log.gz | grep -v \"^#\" | cut -d \"|\" -f 3 | sort | uniq -c | sort -n -r",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-combining_commands.html#podsumowanie",
+    "href": "materials/05-combining_commands.html#podsumowanie",
+    "title": "5  Łączenie poleceń i potoki (Combining commands)",
+    "section": "5.4 Podsumowanie",
+    "text": "5.4 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nOperator potoku | łączy wyjście jednego polecenia z wejściem kolejnego, eliminując potrzebę tworzenia plików tymczasowych.\ncut -d \"separator\" -f numer_kolumny – wycina wybrane kolumny z wierszy tekstu.\nsort – sortuje wiersze alfabetycznie, a sort -n sortuje numerycznie. Flaga -r odwraca porządek sortowania (malejąco).\nuniq – usuwa powtarzające się sąsiednie wiersze (wymaga wcześniejszego posortowania danych).\nuniq -c – zlicza liczbę powtórzeń każdej unikalnej wartości.\nzcat / gzcat – umożliwia strumieniowe odczytywanie plików skompresowanych algorytmem gzip bezpośrednio do potoku.",
+    "crumbs": [
+      "Podstawy wiersza poleceń",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Łączenie poleceń i potoki (Combining commands)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/slides02-scripting.html",
+    "href": "materials/slides02-scripting.html",
+    "title": " Slajdy",
+    "section": "",
+    "text": "TipPobieranie slajdów\n\n\n\nOryginalna prezentacja dostępna jest tutaj, skąd można ją pobrać w różnych formatach (Plik &gt; Pobierz).",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "{{< iconify mdi:presentation >}} Slajdy"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html",
+    "href": "materials/06-scripts.html",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "",
+    "text": "6.1 Czym są skrypty powłoki?\nDo tej pory wpisywaliśmy polecenia pojedynczo w trybie interaktywnym.\nAby jednak zautomatyzować przetwarzanie danych i zapewnić powtarzalność analiz inżynierskich, sekwencję poleceń zapisujemy w pliku tekstowym z rozszerzeniem .sh. Taki plik nazywamy skryptem powłoki (shell script).\nDzięki skryptom możemy jednym poleceniem uruchomić potok przetwarzający tysiące plików metadanych, zdjęć satelitarnych czy logów stacji naziemnych.\nZałóżmy, że chcemy regularnie sprawdzać liczbę błędów w logach telemetrycznych stacji Spitsbergen:",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#czym-są-skrypty-powłoki",
+    "href": "materials/06-scripts.html#czym-są-skrypty-powłoki",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "",
+    "text": "cat telemetry_logs/ground_station_SVB_*.log | grep \"ERROR\" | wc -l",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#edycja-plików-w-terminalu-nano",
+    "href": "materials/06-scripts.html#edycja-plików-w-terminalu-nano",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "6.2 Edycja plików w terminalu (nano)",
+    "text": "6.2 Edycja plików w terminalu (nano)\nW środowisku wiersza poleceń podstawowym edytorem tekstowym jest nano.\nPrzejdźmy do katalogu danych i utwórzmy nowy skrypt:\ncd ~/Desktop/dane_do_cwiczen\nnano check_telemetry.sh\nW otwartym oknie edytora wpisz poniższy kod:\n#!/usr/bin/env bash\n\n# Skrypt analizujacy bledy w logach telemetrycznych stacji SVB\necho \"Liczba zarejestrowanych bledow na stacji Spitsbergen (SVB):\"\ncat telemetry_logs/ground_station_SVB_*.log | grep \"ERROR\" | wc -l\nKluczowe elementy skryptu: - #!/usr/bin/env bash – tzw. shebang (lub hashbang). Informuje system operacyjny, jakiego interpretera należy użyć do wykonania pliku. - Linie zaczynające się od znaku # to komentarze. Są ignorowane przez interpreter i służą do opisywania logiki skryptu dla autorów i współpracowników.\n\n6.2.1 Zapisywanie i wychodzenie z nano\n\nNaciśnij skrót Ctrl + X (wyjście).\nNa pytanie Save modified buffer? naciśnij Y (Yes / Tak).\nPotwierdź nazwę pliku, naciskając Enter ↵.\n\n\n\n\n\n\n\nNoteEdytory tekstu w pracy inżynierskiej\n\n\n\n\nW terminalu: nano (prosty i intuicyjny), vim / neovim lub emacs (zaawansowane, wysoce konfigurowalne narzędzia terminalowe).\nInterfejs graficzny: Visual Studio Code (rekomendowane zintegrowane środowisko z obsługą wtyczek WSL, SSH, Git i Pythona).",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#uruchamianie-skryptu",
+    "href": "materials/06-scripts.html#uruchamianie-skryptu",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "6.3 Uruchamianie skryptu",
+    "text": "6.3 Uruchamianie skryptu\nSkrypt uruchamiamy, przekazując jego nazwę do interpretera bash:\nbash check_telemetry.sh\nLiczba zarejestrowanych bledow na stacji Spitsbergen (SVB):\n24\nUruchomienie skryptu wykonuje dokładnie te same instrukcje, co wpisanie ich ręcznie w terminalu, ale gwarantuje: 1. Powtarzalność (Reproducibility) – każdy krok jest udokumentowany i wykonywany w tej samej kolejności. 2. Oszczędność czasu – złożone zadania można uruchamiać cyklicznie jednym poleceniem. 3. Współdzielenie w zespole – skrypt można umieścić w repozytorium Git (np. w ramach zarządzania projektem informatycznym).",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#dzielenie-długich-poleceń-na-wiele-wierszy",
+    "href": "materials/06-scripts.html#dzielenie-długich-poleceń-na-wiele-wierszy",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "6.4 Dzielenie długich poleceń na wiele wierszy (\\)",
+    "text": "6.4 Dzielenie długich poleceń na wiele wierszy (\\)\nW potokach przetwarzania danych satelitarnych polecenia z wieloma parametrami bywają bardzo długie. Aby poprawić ich czytelność, używamy znaku ukośnika wstecznego \\\\ (line continuation):\n#!/usr/bin/env bash\n\n# Czytelny potok wieloliniowy\ncat cloud_cover_reports/poland_sentinel2_2024.csv | \\\n  cut -d \",\" -f 4 | \\\n  grep -v \"tile_id\" | \\\n  sort | \\\n  uniq -c | \\\n  sort -n -r\n\n\n\n\n\n\nImportant\n\n\n\nZnak \\ musi być ostatnim znakiem w linii – nie może po nim występować spacja ani żaden inny znak!",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#ćwiczenia",
+    "href": "materials/06-scripts.html#ćwiczenia",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "6.5 Ćwiczenia",
+    "text": "6.5 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Skrypt generujący raport czystych scen dla Polski\n\n\n\n\n\n\nLevel: \nUtwórz w edytorze nano skrypt count_clean_scenes.sh, który: 1. Wypisze komunikat: Raport scen o niskim zachmurzeniu (Polska 2024): 2. Wyszuka sceny z jakością PASSED w pliku cloud_cover_reports/poland_sentinel2_2024.csv. 3. Zliczy łączną liczbę takich scen i wypisze wynik na ekranie.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nW nano count_clean_scenes.sh:\n#!/usr/bin/env bash\n\necho \"Raport scen o niskim zachmurzeniu (Polska 2024):\"\ngrep \"PASSED\" cloud_cover_reports/poland_sentinel2_2024.csv | wc -l\nUruchomienie:\nbash count_clean_scenes.sh",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-scripts.html#podsumowanie",
+    "href": "materials/06-scripts.html#podsumowanie",
+    "title": "6  Tworzenie skryptów powłoki (Shell scripts)",
+    "section": "6.6 Podsumowanie",
+    "text": "6.6 Podsumowanie\n\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nEdytor nano pozwala na szybkie tworzenie i edycję plików bezpośrednio w terminalu.\nSkrypty powłoki zapisujemy z rozszerzeniem .sh.\nSkrypt rozpoczynamy nagłówkiem shebang: #!/usr/bin/env bash.\nSkrypt uruchamiamy poleceniem bash nazwa_skryptu.sh.\nZnak \\ na końcu linii pozwala przenieść długie polecenie do kolejnego wiersza.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Tworzenie skryptów powłoki (Shell scripts)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-variables.html",
+    "href": "materials/07-variables.html",
+    "title": "7  Zmienne i argumenty w Bashu (Variables & arguments)",
+    "section": "",
+    "text": "7.1 Przekazywanie parametrów do skryptu (Argumenty pozycyjne)\nW poprzednim rozdziale napisaliśmy skrypt analizujący błędy ze stacji SVB.\nAby skrypt stał się uniwersalnym narzędziem dla inżyniera danych, powinien przyjmować kod stacji lub ścieżkę do pliku jako parametr przekazany przez użytkownika.\nW powłoce Bash służą do tego zmienne pozycyjne: - $1 – pierwszy argument przekazany po nazwie skryptu, - $2 – drugi argument, - $3 – trzeci argument, itd.\nNapiszmy skrypt analyze_station.sh:\nTeraz możemy uruchomić skrypt dla dowolnej stacji bez edycji kodu:",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Zmienne i argumenty w Bashu (Variables & arguments)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-variables.html#przekazywanie-parametrów-do-skryptu-argumenty-pozycyjne",
+    "href": "materials/07-variables.html#przekazywanie-parametrów-do-skryptu-argumenty-pozycyjne",
+    "title": "7  Zmienne i argumenty w Bashu (Variables & arguments)",
+    "section": "",
+    "text": "#!/usr/bin/env bash\n\nstation=\"$1\"\n\necho \"=== Analiza stacji naziemnej: $station ===\"\ncat telemetry_logs/ground_station_${station}_*.log | grep \"ERROR\" | wc -l\n\nbash analyze_station.sh KIR\n=== Analiza stacji naziemnej: KIR ===\n18",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Zmienne i argumenty w Bashu (Variables & arguments)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-variables.html#zmienne-w-powłoce-bash",
+    "href": "materials/07-variables.html#zmienne-w-powłoce-bash",
+    "title": "7  Zmienne i argumenty w Bashu (Variables & arguments)",
+    "section": "7.2 Zmienne w powłoce Bash",
+    "text": "7.2 Zmienne w powłoce Bash\nZmienne w Bashu pozwalają na przechowywanie tekstu, ścieżek do katalogów ze scenami satelitarnymi czy parametrów filtracji.\nZmienną tworzymy za pomocą znaku równości:\nsatellite=\"SENTINEL-2A\"\n\n\n\n\n\n\nImportantBrak spacji wokół znaku =\n\n\n\nW powłoce Bash nie wolno stawiać spacji przed ani po znaku =.\n- Poprawnie: satellite=\"SENTINEL-2A\" - Błędnie: satellite = \"SENTINEL-2A\" (Bash potraktuje satellite jako nazwę programu do uruchomienia).\n\n\nAby odczytać wartość zmiennej, poprzedzamy jej nazwę symbolem dolara $:\necho \"$satellite\"\nSENTINEL-2A\n\n\n\n\n\n\nNoteCudzysłów podwójny \" vs apostrof '\n\n\n\n\nW cudzysłowie podwójnym (\"...\") zmienne są interpretowane i zastępowane ich wartościami:\necho \"Przetwarzanie misji: $satellite\"\n# Wynik: Przetwarzanie misji: SENTINEL-2A\nW apostrofach pojedynczych ('...') tekst jest traktowany dosłownie:\necho 'Przetwarzanie misji: $satellite'\n# Wynik: Przetwarzanie misji: $satellite\n\n\n\n\n7.2.1 Łączenie zmiennych z tekstem (${zmienna})\nDobrą praktyką programistyczną w Bashu jest ujmowanie nazwy zmiennej w nawiasy klamrowe ${...}:\ntile=\"T33UWT\"\necho \"scene_${tile}_clean.csv\"\nscene_T33UWT_clean.csv\n\n\n7.2.2 Zapisywanie wyniku polecenia do zmiennej ($())\nCzęsto zachodzi potrzeba zapisania wyniku wykonania polecenia do zmiennej:\nzmienna=$(polecenie)\nPrzykład:\nerror_count=$(cat telemetry_logs/ground_station_KIR_*.log | grep \"ERROR\" | wc -l)\necho \"Laczna liczba wykrytych anomalii: $error_count\"",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Zmienne i argumenty w Bashu (Variables & arguments)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-variables.html#ćwiczenia",
+    "href": "materials/07-variables.html#ćwiczenia",
+    "title": "7  Zmienne i argumenty w Bashu (Variables & arguments)",
+    "section": "7.3 Ćwiczenia",
+    "text": "7.3 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Zrozumienie zmiennych i podstawień\n\n\n\n\n\n\nLevel: \n(Zadanie koncepcyjne)\nJaki wynik zwróci poniższy fragment kodu?\ndatadir=\"/home/participant/Desktop/dane_do_cwiczen\"\ncatalog_files=$(ls \"$datadir/orbital_catalog\")\necho \"${catalog_files}\"\n\n/home/participant/Desktop/dane_do_cwiczen\n/home/participant/Desktop/dane_do_cwiczen/orbital_catalog\nNazwy plików w katalogu orbital_catalog (satellites_tle_catalog.tsv, sensor_bands_spec.tsv, itd.)\nBłąd wykonania\n\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nPrawidłowa odpowiedź: 3. Polecenie ls \"$datadir/orbital_catalog\" zwraca listę nazw plików wewnątrz tego katalogu, która następnie zostaje zapisana w zmiennej catalog_files i wyświetlona.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 2 - Skrypt filtrujący sceny według kafelka MGRS i satelity\n\n\n\n\n\n\nLevel: \nNapisz skrypt filter_scenes.sh, który przyjmuje 3 parametry: - $1 – plik raportu CSV (np. cloud_cover_reports/poland_sentinel2_2024.csv) - $2 – kod kafelka (np. T33UWT) - $3 – nazwę satelity (np. SENTINEL-2A)\nSkrypt powinien: 1. Wypisać informację: Wyszukiwanie scen kafelka $2 dla satelity $3 w pliku $1 2. Przefiltrować raport i wypisać liczbę znalezionych scen.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\nW pliku filter_scenes.sh:\n#!/usr/bin/env bash\n\nreport=\"$1\"\ntile=\"$2\"\nsat=\"$3\"\n\necho \"Wyszukiwanie scen kafelka $tile dla satelity $sat w pliku $report\"\ngrep \"$tile\" \"$report\" | grep \"$sat\" | wc -l\nUruchomienie:\nbash filter_scenes.sh cloud_cover_reports/poland_sentinel2_2024.csv T33UWT SENTINEL-2A\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExerciseExercise 3 - Automatyczne tworzenie raportów wyjściowych (basename)\n\n\n\n\n\n\nLevel: \nPolecenie basename wyodrębnia samą nazwę pliku ze ścieżki oraz pozwala odciąć rozszerzenie:\nbasename telemetry_logs/ground_station_SVB_2024-05-01.log .log\n# Wynik: ground_station_SVB_2024-05-01\nNapisz skrypt extract_station_errors.sh, który przyjmuje ścieżkę do pliku logu jako $1, wyciąga nazwę bazową i zapisuje wszystkie linie z błędem ERROR do nowego pliku ${base}_errors.txt.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\n#!/usr/bin/env bash\n\ninput_file=\"$1\"\nbase_name=$(basename \"$input_file\" \".log\")\n\necho \"Przetwarzanie logu: $input_file\"\ngrep \"ERROR\" \"$input_file\" &gt; \"${base_name}_errors.txt\"\necho \"Bledy zapisano w pliku: ${base_name}_errors.txt\"\nUruchomienie:\nbash extract_station_errors.sh telemetry_logs/ground_station_SVB_2024-05-01.log",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Zmienne i argumenty w Bashu (Variables & arguments)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-variables.html#podsumowanie",
+    "href": "materials/07-variables.html#podsumowanie",
+    "title": "7  Zmienne i argumenty w Bashu (Variables & arguments)",
+    "section": "7.4 Podsumowanie",
+    "text": "7.4 Podsumowanie\n\n\n\nKomiks i ściągawka o zmiennych w powłoce Bash autorstwa Julii Evans\n\n\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nZmienne w Bashu definiujemy bez spacji: nazwa=\"wartosc\".\nWartość zmiennej odczytujemy za pomocą $nazwa lub bezpieczniej \"${nazwa}\".\nW cudzysłowie \"\" zmienne są rozwijane, w apostrofach '' zachowują formę dosłowną.\nZmienne pozycyjne $1, $2, $3 przechowują argumenty przekazane do skryptu z wiersza poleceń.\nPodstawienie polecenia: wynik=$(polecenie) wykonuje polecenie i przypisuje jego wynik tekstowy do zmiennej.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Zmienne i argumenty w Bashu (Variables & arguments)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html",
+    "href": "materials/08-streams.html",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "",
+    "text": "8.1 Wejście i wyjście programu\nKażdy program uruchamiany w systemie Unix może pobierać dane wejściowe i generować dane wyjściowe.\nNa przykład:\nJeśli jednak program napotka problem (np. nieistniejący plik lub katalog):\nKomunikat o błędzie trafia do oddzielnego kanału.\nW architekturze Unix każdy proces posiada trzy domyślne strumienie standardowe:\nMimo że w oknie terminala zarówno stdout, jak i stderr wyświetlają się razem, powłoka traktuje je jako dwa całkowicie odrębne kanały komunikacji.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#wejście-i-wyjście-programu",
+    "href": "materials/08-streams.html#wejście-i-wyjście-programu",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "",
+    "text": "ls sentinel2_scenes\n\nŚcieżka sentinel2_scenes stanowi dane wejściowe dla programu ls.\nZwrócona lista katalogów scen to standardowy wynik działania polecenia.\n\n\nls sentinel2_scenes/S2A_nonexistent_scene\nls: cannot access 'sentinel2_scenes/S2A_nonexistent_scene': No such file or directory\n\n\nStandardowe wejście (stdin, deskryptor 0) – dane przekazywane do programu (np. wpisywane z klawiatury lub przekazywane potokiem |).\nStandardowe wyjście (stdout, deskryptor 1) – prawidłowe wyniki działania programu.\nStandardowe wyjście błędów (stderr, deskryptor 2) – komunikaty o błędach, ostrzeżeniach i statusie wykonania.\n\n\n\n\nSchemat standardowych strumieni wejścia/wyjścia (źródło: Wikimedia Commons)",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#przekierowywanie-strumieni-wyjściowych",
+    "href": "materials/08-streams.html#przekierowywanie-strumieni-wyjściowych",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "8.2 Przekierowywanie strumieni wyjściowych",
+    "text": "8.2 Przekierowywanie strumieni wyjściowych\nRozróżnienie między stdout a stderr możemy zilustrować za pomocą operatorów przekierowania.\nPolecenie:\nls sentinel2_scenes &gt; valid_scenes.txt\nZapisuje listę katalogów do pliku valid_scenes.txt. Na ekranie nie pojawia się żaden tekst.\nZobaczmy co się stanie, gdy wykonamy polecenie generujące błąd:\nls sentinel2_scenes/S2A_nonexistent &gt; valid_scenes.txt\nls: cannot access 'sentinel2_scenes/S2A_nonexistent': No such file or directory\nBłąd nadal pojawił się na ekranie, a plik docelowy pozostał pusty!\nDzieje się tak, ponieważ domyślny operator &gt; (równoważny 1&gt;) przekierowuje wyłącznie standardowe wyjście (stdout).\nAby przekierować strumień błędów (stderr), używamy operatora 2&gt;:\nls sentinel2_scenes/S2A_nonexistent &gt; valid_scenes.txt 2&gt; error_log.txt\nTeraz w terminalu nie pojawi się żaden komunikat: błąd został bezpiecznie zapisany w pliku error_log.txt.\n\n\n\n\n\n\nNoteZastosowanie w inżynierii danych satelitarnych\n\n\n\nRozdzielanie stdout i stderr jest kluczowe podczas wsadowego przetwarzania danych satelitarnych (np. konwersji tysięcy scen Sentinel przez GDAL, SNAP lub biblioteki Pythona). Dzięki temu czyste dane wyjściowe trafiają do bazy lub pliku wynikowego, a wszystkie ostrzeżenia o brakujących kanałach czy chmurach są zbierane w odrębnym pliku diagnostycznym (errors.log).",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#łączenie-strumieni-stderr-i-stdout",
+    "href": "materials/08-streams.html#łączenie-strumieni-stderr-i-stdout",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "8.3 Łączenie strumieni stderr i stdout",
+    "text": "8.3 Łączenie strumieni stderr i stdout\nCzęsto w skryptach chcemy zapisać pełny przebieg analizy (zarówno komunikaty informacyjne, jak i ewentualne błędy) do jednego wspólnego pliku logu:\nls sentinel2_scenes sentinel2_scenes/S2A_nonexistent &gt; full_run.log 2&gt;&1\nZapis 2&gt;&1 oznacza: „przekieruj strumień błędu (2&gt;) do tego samego miejsca, w które wskazuje standardowe wyjście (&1)”.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#wyciszanie-komunikatów-za-pomocą-devnull",
+    "href": "materials/08-streams.html#wyciszanie-komunikatów-za-pomocą-devnull",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "8.4 Wyciszanie komunikatów za pomocą /dev/null",
+    "text": "8.4 Wyciszanie komunikatów za pomocą /dev/null\nW systemach Unix /dev/null to specjalne wirtualne urządzenie (tzw. „czarna dziura” lub kosz), które natychmiast bezpowrotnie porzuca wszystkie przesłane do niego dane.\nJeśli narzędzie generuje dużą liczbę zbędnych ostrzeżeń, które chcemy zignorować:\nls sentinel2_scenes sentinel2_scenes/fake_scene 2&gt; /dev/null\nBłędy dotyczące nieistniejących plików zostaną wyciszone i pominięte.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#ćwiczenia",
+    "href": "materials/08-streams.html#ćwiczenia",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "8.5 Ćwiczenia",
+    "text": "8.5 Ćwiczenia\n\n\n\n\n\n\nExerciseExercise 1 - Rejestracja błędów przetwarzania\n\n\n\n\n\n\nLevel: \nNapisz skrypt process_all_logs.sh, który próbuje wylistować i sprawdzić logi dla kilku stacji naziemnych: SVB, KIR, FAKE_STATION, MAS.\nSkrypt powinien: 1. Przekierować nazwy istniejących plików do available_logs.txt. 2. Przekierować błędy o braku plików dla nieistniejących stacji do missing_stations.log.\n\n\n\n\n\n\nAnswerAnswer\n\n\n\n\n\n\n#!/usr/bin/env bash\n\nls telemetry_logs/ground_station_SVB_*.log \\\n   telemetry_logs/ground_station_KIR_*.log \\\n   telemetry_logs/ground_station_FAKE_STATION_*.log \\\n   telemetry_logs/ground_station_MAS_*.log \\\n   &gt; available_logs.txt 2&gt; missing_stations.log\n\necho \"Dostepne pliki zapisano w: available_logs.txt\"\necho \"Brakujace stacje odnotowano w: missing_stations.log\"",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-streams.html#podsumowanie",
+    "href": "materials/08-streams.html#podsumowanie",
+    "title": "8  Strumienie standardowe i przekierowania (Standard streams)",
+    "section": "8.6 Podsumowanie",
+    "text": "8.6 Podsumowanie\n\n\n\n\n\n\nTipGłówne punkty\n\n\n\n\nPowłoka obsługuje trzy standardowe strumienie danych dla każdego procesu:\n\nstdin (deskryptor 0) – dane wejściowe programu.\nstdout (deskryptor 1) – standardowe wyjście (wyniki).\nstderr (deskryptor 2) – wyjście diagnostyczne (ostrzeżenia i błędy).\n\nOperatory przekierowania:\n\n&gt; (lub 1&gt;) – przekierowuje stdout do pliku.\n2&gt; – przekierowuje stderr do pliku logu.\n2&gt;&1 – scala strumień błędów ze standardowym wyjściem.\n2&gt; /dev/null – wycisza i odrzuca strumień błędów.",
+    "crumbs": [
+      "Podstawy tworzenia skryptów",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Strumienie standardowe i przekierowania (Standard streams)</span>"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html",
+    "href": "materials/a01-cheatsheet.html",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "",
+    "text": "Pomoc i dokumentacja\nNiniejszy dokument zawiera podsumowanie najważniejszych poleceń powłoki Unix.\nWartości w nawiasach klamrowych {...} oznaczają parametry podawane przez użytkownika (samych nawiasów klamrowych nie wpisujemy w poleceniu).",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#pomoc-i-dokumentacja",
+    "href": "materials/a01-cheatsheet.html#pomoc-i-dokumentacja",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "",
+    "text": "man {polecenie}\nStrona podręcznika systemowego dla danego programu\n\n\nwhatis {polecenie}\nKrótki, jednozdaniowy opis programu\n\n\n{polecenie} --help\nWyświetlenie pomocy i listy dostępnych opcji/flag",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#wyświetlanie-zawartości-katalogów-ls",
+    "href": "materials/a01-cheatsheet.html#wyświetlanie-zawartości-katalogów-ls",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Wyświetlanie zawartości katalogów (ls)",
+    "text": "Wyświetlanie zawartości katalogów (ls)\n\n\n\n\n\n\n\nls\nWypisanie plików i folderów w bieżącym katalogu\n\n\nls {sciezka}\nWypisanie zawartości wskazanego katalogu\n\n\nls -l {sciezka}\nWyświetlenie szczegółowych informacji (uprawnienia, rozmiar, data modyfikacji)\n\n\nls -a {sciezka}\nWyświetlenie wszystkich plików (w tym plików ukrytych zaczynających się od kropki .)\n\n\nls -lh {sciezka}\nWyświetlenie rozmiarów w czytelnym formacie (human-readable, np. KB, MB, GB)",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#nawigacja-po-systemie-plików-cd-pwd",
+    "href": "materials/a01-cheatsheet.html#nawigacja-po-systemie-plików-cd-pwd",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Nawigacja po systemie plików (cd, pwd)",
+    "text": "Nawigacja po systemie plików (cd, pwd)\n\n\n\n\n\n\n\ncd {sciezka}\nPrzejście do wskazanego katalogu\n\n\ncd lub cd ~\nPowrót do katalogu domowego użytkownika\n\n\ncd ..\nPrzejście o jeden poziom wyżej (do katalogu nadrzędnego)\n\n\npwd\nWypisanie pełnej ścieżki bieżącego katalogu roboczego (print working directory)",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#tworzenie-i-usuwanie-katalogów",
+    "href": "materials/a01-cheatsheet.html#tworzenie-i-usuwanie-katalogów",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Tworzenie i usuwanie katalogów",
+    "text": "Tworzenie i usuwanie katalogów\n\n\n\n\n\n\n\nmkdir {katalog}\nUtworzenie nowego katalogu\n\n\nmkdir -p {sciezka/zagniezdzona}\nUtworzenie zagnieżdżonej struktury katalogów wraz z brakującymi folderami nadrzędnymi\n\n\nrmdir {katalog}\nUsunięcie pustego katalogu\n\n\nrm -r {katalog}\nRekurencyjne usunięcie katalogu wraz z całą jego zawartością (uwaga: operacja nieodwracalna)",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#kopiowanie-przenoszenie-i-usuwanie-plików",
+    "href": "materials/a01-cheatsheet.html#kopiowanie-przenoszenie-i-usuwanie-plików",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Kopiowanie, przenoszenie i usuwanie plików",
+    "text": "Kopiowanie, przenoszenie i usuwanie plików\n\n\n\n\n\n\n\ncp {zrodlo} {katalog_docelowy/}\nSkopiowanie pliku do wskazanego katalogu z zachowaniem nazwy\n\n\ncp {zrodlo} {nowy_plik}\nSkopiowanie pliku pod nową nazwą\n\n\ncp -r {katalog_zrodlowy} {katalog_docelowy}\nSkopiowanie całego katalogu rekurencyjnie\n\n\nmv {zrodlo} {katalog_docelowy/}\nPrzeniesienie pliku do wskazanego katalogu\n\n\nmv {stara_nazwa} {nowa_nazwa}\nZmiana nazwy pliku lub katalogu\n\n\nrm {plik}\nTrwałe usunięcie pliku",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#przeglądanie-i-analiza-plików-tekstowych",
+    "href": "materials/a01-cheatsheet.html#przeglądanie-i-analiza-plików-tekstowych",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Przeglądanie i analiza plików tekstowych",
+    "text": "Przeglądanie i analiza plików tekstowych\n\n\n\n\n\n\n\nless {plik}\nInteraktywne przeglądanie pliku strona po stronie (Q wyjście, / szukanie)\n\n\nhead {plik}\nWyświetlenie pierwszych 10 linii pliku\n\n\nhead -n {N} {plik}\nWyświetlenie pierwszych N linii pliku\n\n\ntail {plik}\nWyświetlenie ostatnich 10 linii pliku\n\n\ntail -n {N} {plik}\nWyświetlenie ostatnich N linii pliku\n\n\ncat {plik}\nWypisanie całej zawartości pliku do terminala\n\n\ncat {plik1} {plik2} &gt; {scalony}\nPołączenie zawartości kilku plików w jeden\n\n\nwc -l {plik}\nZliczenie liczby wierszy w pliku\n\n\nzcat {plik.gz}\nStrumieniowe odczytanie pliku skompresowanego (w macOS: gzcat)",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#wyszukiwanie-wzorców-grep",
+    "href": "materials/a01-cheatsheet.html#wyszukiwanie-wzorców-grep",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Wyszukiwanie wzorców (grep)",
+    "text": "Wyszukiwanie wzorców (grep)\n\n\n\n\n\n\n\ngrep \"{wzorzec}\" {plik}\nWyświetlenie wierszy zawierających podany wzorzec tekstowy\n\n\ngrep -i \"{wzorzec}\" {plik}\nWyszukiwanie bez rozróżniania wielkości liter (case-insensitive)\n\n\ngrep -v \"{wzorzec}\" {plik}\nOdwrócenie dopasowania (wyświetlenie wierszy niezawierających wzorca)\n\n\ngrep -r \"{wzorzec}\" {katalog}\nRekurencyjne przeszukanie wszystkich plików w katalogu",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#symbole-wieloznaczne-wildcards",
+    "href": "materials/a01-cheatsheet.html#symbole-wieloznaczne-wildcards",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Symbole wieloznaczne (Wildcards)",
+    "text": "Symbole wieloznaczne (Wildcards)\n\n\n\n*\nDopasowanie dowolnego ciągu znaków (zero lub więcej)\n\n\n?\nDopasowanie dokładnie jednego znaku\n\n\nls *.tif\nWylistowanie wszystkich plików rastrowych .tif\n\n\nls S2A_*.nc\nWylistowanie plików netCDF misji Sentinel-2A",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a01-cheatsheet.html#przekierowania-i-potoki",
+    "href": "materials/a01-cheatsheet.html#przekierowania-i-potoki",
+    "title": "Ściągawka z poleceń Unix (Cheat sheet)",
+    "section": "Przekierowania i potoki",
+    "text": "Przekierowania i potoki\n\n\n\n\n\n\n\n{polecenie} &gt; {plik}\nPrzekierowanie standardowego wyjścia (stdout) do pliku (nadpisanie)\n\n\n{polecenie} &gt;&gt; {plik}\nDopisywanie standardowego wyjścia na końcu pliku (append)\n\n\n{polecenie} 2&gt; {plik}\nPrzekierowanie strumienia błędów (stderr) do pliku\n\n\n{polecenie} &gt; {plik} 2&gt;&1\nPrzekierowanie zarówno stdout, jak i stderr do jednego pliku\n\n\n{polecenie1} \\| {polecenie2}\nPrzekazanie wyjścia polecenie1 jako wejścia do polecenie2\n\n\ncat *.csv \\| cut -d \",\" -f 2 \\| sort \\| uniq -c\nEkstrakcja kolumny, posortowanie i zliczenie unikalnych wartości",
+    "crumbs": [
+      "Appendices",
+      "Ściągawka z poleceń Unix (Cheat sheet)"
+    ]
+  },
+  {
+    "objectID": "materials/a02-wsl.html",
+    "href": "materials/a02-wsl.html",
+    "title": "Unix w systemie Windows (WSL)",
+    "section": "",
+    "text": "Instalacja WSL2\nW rozdziale Dane i przygotowanie środowiska rekomendowaliśmy instalację programu MobaXterm jako prostego sposobu na uruchomienie powłoki w systemie Windows.\nChoć MobaXterm jest wygodny w konfiguracji, nie stanowi pełnego środowiska Linux. Jeśli w pracy inżynierskiej chcesz korzystać ze specjalistycznego oprogramowania natywnie linuksowego (narzędzia teledetekcyjne, GDAL, biblioteki przetwarzania danych satelitarnych i uczenia maszynowego), idealnym rozwiązaniem jest Windows Subsystem for Linux (WSL2).\nWSL2 to oficjalna technologia firmy Microsoft dla Windows 10 i 11, pozwalająca uruchamiać prawdziwe jądro Linuksa (Ubuntu) bezpośrednio obok systemu Windows, z bezpośrednim dostępem do plików na dyskach Windows.\nSzczegółowy podręcznik znajduje się na stronie dokumentacji Microsoft.\nKrótka instrukcja:",
+    "crumbs": [
+      "Appendices",
+      "Unix w systemie Windows (WSL)"
+    ]
+  },
+  {
+    "objectID": "materials/a02-wsl.html#instalacja-wsl2",
+    "href": "materials/a02-wsl.html#instalacja-wsl2",
+    "title": "Unix w systemie Windows (WSL)",
+    "section": "",
+    "text": "Wyszukaj w menu Start aplikację PowerShell, kliknij prawym przyciskiem myszy i wybierz Uruchom jako administrator.\nW oknie PowerShell wpisz polecenie:\nwsl --install\nPo zakończeniu pobierania i instalacji uruchom ponownie komputer (Restart).\nPo ponownym uruchomieniu otworzy się okno terminala Ubuntu z prośbą o utworzenie nazwy użytkownika (username) i hasła (password).\n\nUwaga: Podczas wpisywania hasła w terminalu znaki nie pojawiają się na ekranie (jest to standardowe zabezpieczenie w Linuksie). Wpisz hasło i naciśnij Enter.",
+    "crumbs": [
+      "Appendices",
+      "Unix w systemie Windows (WSL)"
+    ]
+  },
+  {
+    "objectID": "materials/a02-wsl.html#dostęp-do-dysków-windows-z-poziomu-wsl2",
+    "href": "materials/a02-wsl.html#dostęp-do-dysków-windows-z-poziomu-wsl2",
+    "title": "Unix w systemie Windows (WSL)",
+    "section": "Dostęp do dysków Windows z poziomu WSL2",
+    "text": "Dostęp do dysków Windows z poziomu WSL2\nGłówny dysk systemowy Windows C:\\ jest dostępny w WSL pod ścieżką /mnt/c/.\nAby ułatwić sobie nawigację, możesz utworzyć dowiązania symboliczne (symlinks) do swoich folderów Pulpitu i Dokumentów:\nln -s $(wslpath $(powershell.exe '[environment]::getfolderpath(\"MyDocuments\")' | tr -d '\\r')) ~/Documents\nln -s $(wslpath $(powershell.exe '[environment]::getfolderpath(\"Desktop\")' | tr -d '\\r')) ~/Desktop",
+    "crumbs": [
+      "Appendices",
+      "Unix w systemie Windows (WSL)"
+    ]
+  },
+  {
+    "objectID": "materials/a02-wsl.html#integracja-z-visual-studio-code",
+    "href": "materials/a02-wsl.html#integracja-z-visual-studio-code",
+    "title": "Unix w systemie Windows (WSL)",
+    "section": "Integracja z Visual Studio Code",
+    "text": "Integracja z Visual Studio Code\nVisual Studio Code doskonale integruje się z WSL2.\n\nPobierz i zainstaluj VS Code w systemie Windows.\nZainstaluj w VS Code rozszerzenie WSL (od Microsoftu).\nBędąc w terminalu WSL w wybranym katalogu projektu, wpisz:\ncode .\nVS Code otworzy się w środowisku Windows, ale będzie bezpośrednio edytować pliki i uruchamiać procesy wewnątrz Linuksa WSL.",
+    "crumbs": [
+      "Appendices",
+      "Unix w systemie Windows (WSL)"
+    ]
+  },
+  {
+    "objectID": "materials/a03-faqs.html",
+    "href": "materials/a03-faqs.html",
+    "title": "Często zadawane pytania (FAQ)",
+    "section": "",
+    "text": "Podstawy powłoki",
+    "crumbs": [
+      "Appendices",
+      "Często zadawane pytania (FAQ)"
+    ]
+  },
+  {
+    "objectID": "materials/a03-faqs.html#podstawy-powłoki",
+    "href": "materials/a03-faqs.html#podstawy-powłoki",
+    "title": "Często zadawane pytania (FAQ)",
+    "section": "",
+    "text": "Czym różni się jądro systemu (kernel) od powłoki (shell)?\nJądro (kernel) to centralny komponent systemu operacyjnego zarządzający sprzętem (procesorem, pamięcią, dyskami, kartami sieciowymi).\nPowłoka (shell) to interpreter wiersza poleceń stanowiący interfejs pośredniczący między użytkownikiem a jądrem systemu.\n\n\nJakie są najpopularniejsze powłoki Unix?\n\nBash (Bourne Again SHell) – domyślny standard w większości dystrybucji Linuksa.\nZsh (Z Shell) – domyślna powłoka w nowszych wersjach systemu macOS, w pełni kompatybilna z większością składni Basha.\nSh (Bourne Shell) – pierwotna, minimalistyczna powłoka uniksowa.",
+    "crumbs": [
+      "Appendices",
+      "Często zadawane pytania (FAQ)"
+    ]
+  },
+  {
+    "objectID": "materials/a03-faqs.html#składnia-skróty-klawiszowe-i-rozwiązywanie-problemów",
+    "href": "materials/a03-faqs.html#składnia-skróty-klawiszowe-i-rozwiązywanie-problemów",
+    "title": "Często zadawane pytania (FAQ)",
+    "section": "Składnia, skróty klawiszowe i rozwiązywanie problemów",
+    "text": "Składnia, skróty klawiszowe i rozwiązywanie problemów\n\nCo zrobić, gdy polecenie „zawiesiło się” lub trwa zbyt długo?\nNaciśnij kombinację klawiszy Ctrl + C. Spowoduje to natychmiastowe przerwanie bieżącego procesu (wysłanie sygnału SIGINT) i powrót do znaku zachęty powłoki.\n\n\nJak wyczyścić ekran terminala?\nNaciśnij skrót Ctrl + L lub wpisz polecenie clear.\n\n\nJak działa autouzupełnianie nazw plików i katalogów?\nWpisz pierwsze litery nazwy i naciśnij klawisz Tab ⇥. Dwukrotne naciśnięcie Tab ⇥ wyświetli wszystkie pasujące nazwy. Pamiętaj, że w systemie Unix wielkość liter ma znaczenie (case-sensitive).\n\n\nJak przywołać wcześniej wpisywane polecenia?\nNaciskaj strzałkę w górę ↑ na klawiaturze. Możesz także przeszukiwać historię poleceń za pomocą skrótu Ctrl + R.\n\n\nDlaczego w projektach informatycznych zaleca się stosowanie ścieżek względnych?\nStosowanie ścieżek względnych (relative paths) wewnątrz katalogu projektu sprawia, że cały projekt staje się przenośny (portable): - Jeśli cały folder projektu zostanie skopiowany na inny dysk, inny serwer obliczeniowy lub pobrany przez współpracownika z repozytorium Git, wszystkie skrypty i potoki przetwarzania będą działać bez konieczności poprawiania zakodowanych na sztywno ścieżek (np. /home/jan/...).",
+    "crumbs": [
+      "Appendices",
+      "Często zadawane pytania (FAQ)"
+    ]
+  },
+  {
+    "objectID": "materials/a03-faqs.html#operacje-na-plikach-i-danych",
+    "href": "materials/a03-faqs.html#operacje-na-plikach-i-danych",
+    "title": "Często zadawane pytania (FAQ)",
+    "section": "Operacje na plikach i danych",
+    "text": "Operacje na plikach i danych\n\nCzy pliki usunięte poleceniem rm trafiają do kosza?\nNie. Polecenie rm bezpowrotnie usuwa wskaźniki do plików w systemie plików. W wierszu poleceń nie ma kosza systemowego (Trash / Recycle Bin). Dlatego operacji rm (a w szczególności rm -r) należy używać z dużą rozwagą.\n\n\nJaka jest różnica między operatorami &gt; a &gt;&gt;?\n\nOperator &gt; nadpisuje plik docelowy (tworzy nowy lub usuwa dotychczasową zawartość).\nOperator &gt;&gt; dopisuje nowe wiersze na końcu istniejącego pliku (append).\n\n\n\nCzym różni się sortowanie sort -n od domyślnego sort?\nDomyślne polecenie sort sortuje ciągi alfabetycznie (leksykograficznie), przez co wartość 100 znajdzie się przed 2. Flaga -n wymusza interpretację i porządkowanie wartości jako liczb (numeric sort).",
+    "crumbs": [
+      "Appendices",
+      "Często zadawane pytania (FAQ)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html",
+    "href": "materials/a04-dataset_reference.html",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "",
+    "text": "Przegląd struktury katalogów\nNiniejszy dodatek zawiera szczegółową dokumentację techniczną wszystkich katalogów, plików, formatów oraz kolumn danych zawartych w pakiecie dane_do_cwiczen/.\nZestaw ten symuluje rzeczywiste środowisko pracy inżyniera danych satelitarnych w centrach przetwarzania danych teledetekcyjnych (np. ESA Copernicus Data Space Ecosystem, USGS EarthExplorer, EUMETSAT Data Store, sieci geodezyjne ASG-EUPOS / EPN).",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#przegląd-struktury-katalogów",
+    "href": "materials/a04-dataset_reference.html#przegląd-struktury-katalogów",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "",
+    "text": "dane_do_cwiczen/\n├── README.txt                    # Informacje ogólne o pakiecie danych\n├── sources.txt                   # Wykaz źródeł, serwisów satelitarnych i dokumentacji\n├── sentinel2_scenes/             # Produkty misji ESA Sentinel-2 L2A w standardzie .SAFE\n├── landsat_scenes/               # Produkty misji USGS/NASA Landsat-8 i Landsat-9 L2SP\n├── telemetry_logs/               # Dobowe logi stacji naziemnych oraz archiwa .log.gz\n├── cloud_cover_reports/          # Raporty CSV statystyk zachmurzenia i jakości scen\n├── orbital_catalog/              # Parametry TLE orbit satelitów oraz specyfikacje sensorów\n├── gnss_stations/                # Logi jakości i obserwacje RINEX stacji geodezyjnych\n├── raw_telemetry_chunks/         # Setki surowych pakietów binarno-tekstowych strumieni CCSDS\n└── scripts_repo/                 # Wzorce skryptów automatyzujących powłoki Bash",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#produkty-satelitarne-sentinel-2-sentinel2_scenes",
+    "href": "materials/a04-dataset_reference.html#produkty-satelitarne-sentinel-2-sentinel2_scenes",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "1. Produkty satelitarne Sentinel-2 (sentinel2_scenes/)",
+    "text": "1. Produkty satelitarne Sentinel-2 (sentinel2_scenes/)\nKatalog zawiera produkty poziomu Level-2A (reflektancja powierzchniowa BOA po korekcji atmosferycznej) w standardzie dystrybucyjnym ESA SAFE (Standard Archive Format for Europe).\n\nKonwencja nazewnictwa katalogów .SAFE\nMMM_MSIL2A_YYYYMMDDTHHMMSS_Nxxyy_ROOO_Txxxxx_&lt;Product Discriminator&gt;.SAFE\n\nMMM: Identyfikator satelity (S2A, S2B, S2C).\nMSIL2A: Sensor MSI (MultiSpectral Instrument), poziom Level-2A.\nYYYYMMDDTHHMMSS: Czas pozyskania sceny w formacie UTC (np. 20240510T100031).\nNxxyy: Numer wersji przetwarzania ESA (Processing Baseline, np. N0510).\nROOO: Względny numer orbity (Relative Orbit, np. R122, R079, R036).\nTxxxxx: Kafelek siatki podziału MGRS (np. T33UWT Wrocław, T34UCA Warszawa, T33UXT Poznań, T34UDE Kraków, T34UEC Gdańsk, T33UWS Sudety, T32TMS Alpy).\n\n\n\nWewnętrzne pliki składowe\n\nmanifest.safe: Główny plik manifestu w formacie XML opisujący zawartość paczki i identyfikatory sceny.\nMTD_MSIL2A.xml: Globalne metadane produktu (statystyki zachmurzenia, kąty zenitalne słońca, status jakości geometrycznej i radiometrycznej).\nGRANULE/&lt;Granule_ID&gt;/IMG_DATA/R10m/: Rastry o rozdzielczości terenowej 10 m (B02 Blue, B03 Green, B04 Red, B08 NIR, TCI True Color Image).\nGRANULE/&lt;Granule_ID&gt;/IMG_DATA/R20m/: Rastry o rozdzielczości terenowej 20 m (B05, B06, B07 Red Edge, B8A Narrow NIR, B11, B12 SWIR, SCL Scene Classification Layer).\nGRANULE/&lt;Granule_ID&gt;/QI_DATA/: Wskaźniki kontroli jakości oraz poligonowe maski chmur (cloud_mask.gml, report.xml).",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#produkty-satelitarne-landsat-landsat_scenes",
+    "href": "materials/a04-dataset_reference.html#produkty-satelitarne-landsat-landsat_scenes",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "2. Produkty satelitarne Landsat (landsat_scenes/)",
+    "text": "2. Produkty satelitarne Landsat (landsat_scenes/)\nKatalog zawiera produkty misji Landsat-8 oraz Landsat-9 w standardzie USGS Collection 2 Level-2 Surface Reflectance (L2SP).\n\nKonwencja nazewnictwa\nLXSS_LLLL_PPPRRR_YYYYMMDD_yyyymmdd_CC_TX\n\nLXSS: LC08 (Landsat-8 OLI/TIRS) lub LC09 (Landsat-9 OLI-2/TIRS-2).\nLLLL: Poziom przetwarzania (L2SP – Surface Reflectance Standard Product).\nPPPRRR: Ścieżka i rząd w globalnym systemie WRS-2 (Path/Row, np. 190024, 191024 dla Polski).\nYYYYMMDD: Data pozyskania zobrazowania.\nyyyymmdd: Data wygenerowania produktu w USGS.\nCC / TX: Numer kolekcji (02) i kategoria jakości (T1 – Tier 1).\n\n\n\nPliki wewnątrz produktu:\n\n*_MTL.txt: Plik metadanych tekstowych zawierający parametry kalibracyjne, współczynniki nasłonecznienia i procent zachmurzenia.\n*_ANG.txt: Kąty oświetlenia i obserwacji sensora.\n*_SR_B1.TIF do *_SR_B7.TIF: Warstwy rastrowe reflektancji powierzchniowej (pasma spektralne).\n*_QA_PIXEL.TIF, *_QA_RADSAT.TIF: Rastrowe maski jakości pikseli i nasycenia radiometrycznego.",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#dzienniki-stacji-naziemnych-telemetry_logs",
+    "href": "materials/a04-dataset_reference.html#dzienniki-stacji-naziemnych-telemetry_logs",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "3. Dzienniki stacji naziemnych (telemetry_logs/)",
+    "text": "3. Dzienniki stacji naziemnych (telemetry_logs/)\nKatalog zawiera ponad 360 dobowych plików tekstowych oraz 24 skompresowane archiwa miesięczne (.log.gz), rejestrujące sesje pobierania danych (downlink telemetry) dla 8 globalnych stacji naziemnych:\n\n\n\n\n\n\n\n\nKod stacji\nNazwa stacji naziemnej\nWspółrzędne\n\n\n\n\nSVB\nSpitsbergen (SvalSat, Norwegia)\n78.23° N, 15.39° E\n\n\nKIR\nKiruna (Szwecja)\n67.85° N, 20.96° E\n\n\nMAS\nMaspalomas (Wyspy Kanaryjskie, Hiszpania)\n27.76° N, 15.63° W\n\n\nKRU\nKourou (Gujana Francuska)\n5.25° N, 52.80° W\n\n\nTRL\nTroll (Antarktyda)\n72.01° S, 2.53° E\n\n\nMAT\nMatera (Włochy)\n40.65° N, 16.70° E\n\n\nINU\nInuvik (Kanada)\n68.36° N, 133.72° W\n\n\nPUN\nPunta Arenas (Chile)\n53.16° S, 70.91° W\n\n\n\n\nFormat rekordów w logach telemetrycznych:\nTIMESTAMP_UTC | PASS_ID | SATELLITE_ID | FREQ_GHZ | SNR_DB | BER | PACKETS_RECV | PACKETS_LOST | DOWNLINK_MB | STATUS\n\nTIMESTAMP_UTC: Czas rozpoczęcia sesji (ISO 8601).\nPASS_ID: Unikalny identyfikator przelotu nad stacją.\nSATELLITE_ID: Identyfikator satelity (SENTINEL-1A, SENTINEL-2A, LANDSAT-8, itp.).\nFREQ_GHZ: Częstotliwość pasma X (np. 8.150 GHz).\nSNR_DB: Stosunek sygnału do szumu w decybelach (Signal-to-Noise Ratio).\nBER: Bitowa stopa błędów (Bit Error Rate).\nPACKETS_RECV: Liczba odebranych pakietów telekomunikacyjnych.\nPACKETS_LOST: Liczba utraconych pakietów (dla STATUS=OK wynosi 0).\nDOWNLINK_MB: Łączna objętość odebranych danych w megabajtach.\nSTATUS: Status sesji: OK, WARNING_PACKET_LOSS, WARNING_HIGH_TEMPERATURE, ERROR_CHECKSUM_FAILED, ERROR_SIGNAL_LOST, ERROR_SYNC_FAILED.",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#raporty-zachmurzenia-i-metadanych-cloud_cover_reports",
+    "href": "materials/a04-dataset_reference.html#raporty-zachmurzenia-i-metadanych-cloud_cover_reports",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "4. Raporty zachmurzenia i metadanych (cloud_cover_reports/)",
+    "text": "4. Raporty zachmurzenia i metadanych (cloud_cover_reports/)\nPliki tabelaryczne CSV zawierające łącznie ponad 6000 rekordów z parametrami geometrycznymi i atmosferycznymi scen satelitarnych:\n\npoland_sentinel2_2024.csv – 850 obserwacji nad terytorium Polski z 2024 roku.\npoland_sentinel2_2023.csv – 750 obserwacji z 2023 roku.\npoland_sentinel2_2022.csv – 680 obserwacji z 2022 roku.\ncentral_europe_sentinel2_2024.csv – 1200 obserwacji dla Europy Środkowej (Polska, Niemcy, Czechy, Słowacja).\nscandinavia_sentinel2_2024.csv – 950 obserwacji dla Skandynawii.\nalps_landsat_sentinel_2024.csv – 600 obserwacji obszarów alpejskich.\nmediterranean_sentinel2_2024.csv – 1100 obserwacji dla basenu Morza Śródziemnego.\n\n\nStruktura kolumn w plikach CSV:\n\nscene_id – Pełny identyfikator sceny satelitarnej.\ndate – Data akwizycji (YYYY-MM-DD).\nsatellite – Nazwa platformy (SENTINEL-2A, SENTINEL-2B, LANDSAT-8, LANDSAT-9).\ntile_id – Identyfikator kafelka siatki MGRS.\norbit_relative – Numer względnej orbity.\ncloud_coverage_percent – Procentowe zachmurzenie sceny (0.00 – 100.00%).\nnodata_pixel_percent – Procent pikseli poza zasięgiem matrycy sensora.\nsnow_ice_percent – Pokrycie śniegiem i lodem.\nsun_zenith_angle – Kąt zenitalny słońca w stopniach.\nquality_flag – Flaga jakościowa: PASSED, SUSPECT_HAZE, FAILED_CORRUPTION, PASSED_HIGH_SUN_GLINT.",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#katalogi-orbitalne-i-sensoryczne-orbital_catalog",
+    "href": "materials/a04-dataset_reference.html#katalogi-orbitalne-i-sensoryczne-orbital_catalog",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "5. Katalogi orbitalne i sensoryczne (orbital_catalog/)",
+    "text": "5. Katalogi orbitalne i sensoryczne (orbital_catalog/)\n\nsatellites_tle_catalog.tsv\nBaza danych (TSV) ponad 80 aktywnych satelitów obserwacji Ziemi (misje naukowe ESA, NASA, NOAA, EUMETSAT oraz konstelacje komercyjne PlanetScope, ICEYE SAR, Spire Lemur).\nKolumny: - norad_id: Numer katalogowy US Space Command / NORAD. - satellite_name: Oficjalna nazwa satelity. - operator: Agencja lub podmiot komercyjny. - launch_year: Rok wystrzelenia na orbitę. - inclination_deg: Inklinacja orbity w stopniach. - altitude_km: Średnia wysokość orbity. - apogee_km / perigee_km: Apogeum i perygeum orbity. - period_min: Okres orbitalny w minutach. - orbit_type: Typ orbity (SSO – heliosynchroniczna, NON-SSO). - status: Status operacyjny (OPERATIONAL, DECOMMISSIONED, DEGRADED, PLANNED).\n\n\nsensor_bands_spec.tsv\nCharakterystyki spektralne kanałów sensorów MSI (Sentinel-2) oraz OLI/TIRS (Landsat-8/9): - sensor: Typ sensora. - band_id: Oznaczenie kanału (B01–B12, B8A, TCI). - band_name: Nazwa opisowa pasma (np. Coastal Aerosol, Blue, Red Edge, NIR, SWIR, Thermal). - central_wavelength_nm: Długość fali centralnej w nanometrach. - bandwidth_nm: Szerokość pasma spektralnego w nanometrach. - spatial_res_m: Rozdzielczość przestrzenna w metrach (10m, 20m, 30m, 60m, 100m). - spectrum_region: Zakres widmowy (VNIR, SWIR, TIR).",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#stacje-sieci-geodezyjnych-gnss-gnss_stations",
+    "href": "materials/a04-dataset_reference.html#stacje-sieci-geodezyjnych-gnss-gnss_stations",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "6. Stacje sieci geodezyjnych GNSS (gnss_stations/)",
+    "text": "6. Stacje sieci geodezyjnych GNSS (gnss_stations/)\nStruktury danych dla 15 europejskich permanentnych stacji referencyjnych sieci ASG-EUPOS oraz EUREF EPN: - WROC (Wrocław, UPWr) - JOZE (Józefosław, Politechnika Warszawska) - KRAK (Kraków, AGH) - GDAN (Gdańsk, Politechnika Gdańska) - LODZ (Łódź) - POZN (Poznań, CBK PAN) - KATW (Katowice) - BIAY (Białystok) - SZCZ (Szczecin) - ZAKO (Zakopane) - BOR1 (Borowiec, CBK PAN) - GOPE (Ondřejov, Czechy) - POTS (Poczdam, GFZ Niemcy) - WTZR (Wettzell, BKG Niemcy) - ONSA (Onsala, Szwecja)\n\nZawartość każdego podkatalogu stacji:\n\nstation_info.json: Metadane stacji (współrzędne elipsoidalne WGS84, typ odbiornika, typ anteny, przynależność do sieci).\n&lt;CODE&gt;_2024_daily_status.log: Dobowy raport kontroli jakości (liczba epok, ubytki danych, zjawiska cycle slips, multipath MP1/MP2, status QC).\n&lt;CODE&gt;00POL_R_..._MO.rnx.gz: Skompresowane dobowe pliki obserwacji wielosystemowych w standardzie RINEX 3.04 (GPS, GLONASS, Galileo, BeiDou).",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks",
+    "href": "materials/a04-dataset_reference.html#surowe-strumienie-pakietów-telemetrycznych-raw_telemetry_chunks",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "7. Surowe strumienie pakietów telemetrycznych (raw_telemetry_chunks/)",
+    "text": "7. Surowe strumienie pakietów telemetrycznych (raw_telemetry_chunks/)\nKatalog zawiera 500 surowych plików binarno-tekstowych (telemetry_stream_chunk_0001.dat do chunk_0500.dat) symulujących pakiety protokołu CCSDS (Consultative Committee for Space Data Systems).\nPrzykładowy fragment:\n# RAW TELEMETRY PACKET STREAM CHUNK #0042\nHEADER: CCSDS_SYNC=0x1ACFFC1D STREAM_ID=0042 BITRATE_MBPS=150.0\nPKT_0042_001 | V=28.12V | T=24.50C | CRC_OK\nPKT_0042_002 | V=28.15V | T=24.62C | CRC_OK\nPKT_0042_003 | V=27.90V | T=38.90C | CRC_ERR\nZastosowanie: testowanie potęgi poleceń find, xargs, cat *.dat | grep oraz równoległego przetwarzania w skryptach powłoki Bash.",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  },
+  {
+    "objectID": "materials/a04-dataset_reference.html#repozytorium-skryptów-demonstracyjnych-scripts_repo",
+    "href": "materials/a04-dataset_reference.html#repozytorium-skryptów-demonstracyjnych-scripts_repo",
+    "title": "Opis pakietu danych do ćwiczeń (Dataset Reference)",
+    "section": "8. Repozytorium skryptów demonstracyjnych (scripts_repo/)",
+    "text": "8. Repozytorium skryptów demonstracyjnych (scripts_repo/)\nWzorce gotowych skryptów Bash dla studentów: - filter_clouds.sh: Skrypt filtrujący sceny z raportów CSV według zadanego kafelka i progu zachmurzenia. - count_telemetry_errors.sh: Skrypt zliczający błędy stacji naziemnych z obsługą argumentów pozycyjnych. - batch_qc_check.sh: Skrypt do wsadowego audytu integralności pakietów we wszystkich 500 plikach raw_telemetry_chunks/.",
+    "crumbs": [
+      "Appendices",
+      "Opis pakietu danych do ćwiczeń (Dataset Reference)"
+    ]
+  }
+]

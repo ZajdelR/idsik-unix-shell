@@ -1,6 +1,13 @@
 # Quarto files
 /.quarto/
 _site
+site_libs/
+*.html
+materials/*.html
+
+# IDE / Editor
+.idea/
+.vscode/
 
 # python notebooks
 *.ipynb
@@ -27,3 +34,4 @@ _site
 
 # Positron bug
 snowflake.log
+/dane_do_cwiczen/

@@ -1,215 +1,145 @@
 ---
-pagetitle: "Unix course"
+pagetitle: "Skrypty powłoki Bash"
 ---
 
-# Shell scripts
+# Tworzenie skryptów powłoki (Shell scripts)
 
 ::: {.callout-tip}
-## Learning Objectives
+## Cele szkolenia
 
-- Create files from the command line using a text editor.
-- Write a shell script that runs a command or series of commands for a fixed set of files.
-- Run a shell script from the command line.
+- Tworzyć i edytować pliki tekstowe bezpośrednio z wiersza poleceń za pomocą edytora `nano`.
+- Pisać skrypty powłoki (`.sh`) automatyzujące wykonanie sekwencji poleceń dla danych satelitarnych.
+- Uruchamiać skrypty powłoki i dzielić długie potoki na wiele wierszy za pomocą `\`.
+- Stosować polecenie `echo` do formatowania komunikatów dla użytkownika.
 
 :::
 
-## Shell Scripts
+## Czym są skrypty powłoki?
 
-So far, we have been running commands directly on the console in an interactive way.
-However, to re-run a series of commands (or an analysis), we can save the commands in a file and execute all those operations again later by typing a single command.
-The file containing the commands is usually called a **shell script** (you can think of them as small programs).
+Do tej pory wpisywaliśmy polecenia pojedynczo w trybie interaktywnym.  
+Aby jednak zautomatyzować przetwarzanie danych i zapewnić powtarzalność analiz inżynierskich, sekwencję poleceń zapisujemy w pliku tekstowym z rozszerzeniem `.sh`. Taki plik nazywamy **skryptem powłoki** (*shell script*).
 
-For example, let's create a shell script that counts the number of atoms in one of our molecule files (in the `molecules` directory):
-We could achieve this with the following command:
+Dzięki skryptom możemy jednym poleceniem uruchomić potok przetwarzający tysiące plików metadanych, zdjęć satelitarnych czy logów stacji naziemnych.
 
-```bash
-cat cubane.pdb | grep "ATOM" | wc -l
-```
-
-To write a shell script we have to save this command within a text file.
-But first we need to see how we can create a text file from within the command line.
-
-:::{.callout-important collapse=true}
-#### Text editor on Windows/MobaXterm
-
-The text editor we will use from the command line is not installed by default on MobaXterm.
-To do so, run the following command:
+Załóżmy, że chcemy regularnie sprawdzać liczbę błędów w logach telemetrycznych stacji Spitsbergen:
 
 ```bash
-apt install nano
+cat telemetry_logs/ground_station_SVB_*.log | grep "ERROR" | wc -l
 ```
 
-When asked, type "**y**" to continue, then "**y**" again to confirm the installation.
-Several packages will start downloading and installing.
-:::
+## Edycja plików w terminalu (`nano`)
 
+W środowisku wiersza poleceń podstawowym edytorem tekstowym jest `nano`.
 
-## Editing Files
-
-There are many text editors available for programming, but we will cover a simple one that can be called from the command line: `nano`, which is purely based on the terminal.
-
-We can create a file with _Nano_ in the following way:
+Przejdźmy do katalogu danych i utwórzmy nowy skrypt:
 
 ```bash
-nano count_atoms.sh
+cd ~/Desktop/dane_do_cwiczen
+nano check_telemetry.sh
 ```
 
-This opens a text editor, where you can type the commands you want to save in the file.
-Note that the mouse does not work with `nano`, you have to use your <kdb>←</kbd> <kdb>→</kbd> <kdb>↑</kbd> <kdb>↓</kbd> arrow keys to move around.
-
-For now, type this code to your script (or copy-paste it):
+W otwartym oknie edytora wpisz poniższy kod:
 
 ```bash
 #!/usr/bin/env bash
 
-# count the number of lines containing the word "ATOM"
-cat cubane.pdb | grep "ATOM" | wc -l
+# Skrypt analizujacy bledy w logach telemetrycznych stacji SVB
+echo "Liczba zarejestrowanych bledow na stacji Spitsbergen (SVB):"
+cat telemetry_logs/ground_station_SVB_*.log | grep "ERROR" | wc -l
 ```
 
-Two things to note about our code:
+Kluczowe elementy skryptu:
+- `#!/usr/bin/env bash` – tzw. **shebang** (lub *hashbang*). Informuje system operacyjny, jakiego interpretera należy użyć do wykonania pliku.
+- Linie zaczynające się od znaku `#` to **komentarze**. Są ignorowane przez interpreter i służą do opisywania logiki skryptu dla autorów i współpracowników.
 
-- We started the script with a special `#!/usr/bin/env bash` line, which is known as a [**shebang**](https://en.wikipedia.org/wiki/Shebang_(Unix)).
-  The _shebang_ is optional, but in some cases is used to inform that this script should use the program `bash` to be executed.
-- The other line starting with the `#` hash character is known as a **comment** and is not executed by `bash` (it is ignored).
-  Comments are extremely useful because they allow us to annotate our code with information about the commands we're executing.
-
-Once we're happy with our text, we can press <kbd>Ctrl</kbd>+<kbd>X</kbd> to exit the program.
-As we have made changes to the file, we will be asked the following:
-
-```text
-Save modified buffer?
- Y Yes
- N No    ^C Cancel
-```
-
-That's a slightly strange way that `nano` has of asking if we want to save the file.
-We can press <kbd>Y</kbd> and then we're asked to confirm the file name.
-At this point we can press <kbd>Enter ↵</kbd> and this will exit _Nano_ and take us back to the console.
-We can check with `ls` that our new file is there.
-
-Note that because we saved our file with `.sh` extension (the conventional extension used for shell scripts), _Nano_ does some colouring of our commands (this is called _syntax highlighting_) to make it easier to read the code.
-
-Alternatively, you can use a text editor with a graphical user interface, which can be more user-friendly.
-There are many text editors available, for example [VS Code](https://code.visualstudio.com/) is a popular one.
-
-![Screenshot of the command line text editor _Nano_ (left) and a text editor with a graphical user interface (right).](images/nano_gedit.png){fig.alt="Two screenshots of these programs side-by-side, displaying the code described in the text."}
+### Zapisywanie i wychodzenie z `nano`
+1. Naciśnij skrót <kbd>Ctrl</kbd> + <kbd>X</kbd> (wyjście).
+2. Na pytanie `Save modified buffer?` naciśnij <kbd>Y</kbd> (Yes / Tak).
+3. Potwierdź nazwę pliku, naciskając <kbd>Enter ↵</kbd>.
 
 ::: {.callout-note}
-#### Text editors
-
-When we say "`nano` is a text editor", we really do mean "text": they only work with plain character data, not tables, images, or any other human-friendly media.
-We use it in examples because it is one of the least complex text editors.
-However, because of this trait, it may not be powerful enough or flexible enough for the work you need to do after this workshop.
-
-On Unix systems (such as Linux and Mac OS X), many programmers use [Emacs](http://www.gnu.org/software/emacs/) or [Vim](http://www.vim.org/).
-Both of these run from the terminal and have very advanced features, but require more time to learn.
-
-Alternatively, programmers also use graphical editors, such as [Visual Studio Code](https://code.visualstudio.com/).
-This software offers many advanced capabilities and extensions and works on Windows, macOS and Linux.
+#### Edytory tekstu w pracy inżynierskiej
+- **W terminalu:** `nano` (prosty i intuicyjny), `vim` / `neovim` lub `emacs` (zaawansowane, wysoce konfigurowalne narzędzia terminalowe).
+- **Interfejs graficzny:** [Visual Studio Code](https://code.visualstudio.com/) (rekomendowane zintegrowane środowisko z obsługą wtyczek WSL, SSH, Git i Pythona).
 :::
 
-## Running Scripts
+## Uruchamianie skryptu
 
-Now that we have our script, we can run it using the program `bash`:
+Skrypt uruchamiamy, przekazując jego nazwę do interpretera `bash`:
 
 ```bash
-bash count_atoms.sh
+bash check_telemetry.sh
 ```
 
 ```output
-16
+Liczba zarejestrowanych bledow na stacji Spitsbergen (SVB):
+24
 ```
 
-Which prints the result of running those commands on our screen.
-In summary, running a shell script is exactly the same as running the commands one-by-one on the shell.
-However, saving our commands in a script has some advantages: it serves as a **record** of our analysis, making it more **reproducible** and it allows us to **adapt and reuse** our code to run other similar analysis.
+Uruchomienie skryptu wykonuje dokładnie te same instrukcje, co wpisanie ich ręcznie w terminalu, ale gwarantuje:
+1. **Powtarzalność (Reproducibility)** – każdy krok jest udokumentowany i wykonywany w tej samej kolejności.
+2. **Oszczędność czasu** – złożone zadania można uruchamiać cyklicznie jednym poleceniem.
+3. **Współdzielenie w zespole** – skrypt można umieścić w repozytorium Git (np. w ramach zarządzania projektem informatycznym).
 
-## Splitting long commands across lines
+## Dzielenie długich poleceń na wiele wierszy (`\`)
 
-In some cases, we may want to split a long command across multiple lines to make it easier to read.
-We can do this by using the backslash `\` character at the end of a line, which tells the shell that the command continues on the next line.
-For example, we could rewrite our previous script as:
+W potokach przetwarzania danych satelitarnych polecenia z wieloma parametrami bywają bardzo długie. Aby poprawić ich czytelność, używamy znaku ukośnika wstecznego `\\` (*line continuation*):
 
 ```bash
 #!/usr/bin/env bash
 
-# count the number of lines containing the word "ATOM"
-cat cubane.pdb | \
-  grep "ATOM" | \
-  wc -l
+# Czytelny potok wieloliniowy
+cat cloud_cover_reports/poland_sentinel2_2024.csv | \
+  cut -d "," -f 4 | \
+  grep -v "tile_id" | \
+  sort | \
+  uniq -c | \
+  sort -n -r
 ```
 
-In this particular case, the command wasn't extremely long, but in other cases it can be useful to read the different parts of the code more easily.
-There are two things to note:
-
-- The backslash `\` character must be the last character on the line, otherwise it will not work.
-  When we say last, we really mean it: **you must not have an empty space after the backslash** (this is a very common mistake).
-- You may notice we've indented the code above with two spaces - this is not mandatory, and is intended for readibility only.
-  It indicates the commands are connected to each other and are part of the same command, but it is not required for the code to work.
-
-::: {.callout-note collapse=true}
-#### The escape operator `\`
-
-The character we just used to split our command across multiple lines is called the **escape operator**.
-It is used to tell the shell that the next character should be treated differently than it normally would.
-For example, we can use it to escape special characters, such as spaces, so that they are treated as part of a filename rather than as a separator between arguments.
-
-Imagine a user named their file "Thesis Notes.txt" (with a space in the filename).
-If we try to run the command `cat Thesis Notes.txt`, the shell will interpret this as trying to run the command `cat` on two files: "Thesis" and "Notes.txt".
-To avoid this, we can use the escape operator to tell the shell to treat the space as part of the filename, like this:
-
-```bash
-cat Thesis\ Notes.txt
-```
+::: {.callout-important}
+Znak `\` musi być **ostatnim znakiem w linii** – nie może po nim występować spacja ani żaden inny znak!
 :::
 
-## Exercises
+## Ćwiczenia
 
 :::{.callout-exercise}
-#### Shell scripts
+#### Skrypt generujący raport czystych scen dla Polski
 {{< level 1 >}}
 
-The `echo` command can be used to print a message to the screen.
-This can be particularly useful in scripts, as we can use it to give information to the user about the output.
+Utwórz w edytorze `nano` skrypt `count_clean_scenes.sh`, który:
+1. Wypisze komunikat: `Raport scen o niskim zachmurzeniu (Polska 2024):`
+2. Wyszuka sceny z jakością `PASSED` w pliku `cloud_cover_reports/poland_sentinel2_2024.csv`.
+3. Zliczy łączną liczbę takich scen i wypisze wynik na ekranie.
 
-Using either `nano` or `gedit`, open the script `count_atoms.sh` that we just created so that the output of the script when you run it is:
+::: {.callout-answer collapse=true}
 
-```output
-The number of atoms in cubane.pdb is:
-16
-```
-
-:::{.callout-answer collapse=true}
-
-We can use `nano count_atoms.sh` to open our script, and add a new line of code with an `echo` command, like this:
+W `nano count_clean_scenes.sh`:
 
 ```bash
 #!/usr/bin/env bash
 
-# print a message
-echo "The number of atoms in ethane.pdb is:"
-
-# count the number of lines containing the word "ATOM"
-cat cubane.pdb | grep "ATOM" | wc -l
+echo "Raport scen o niskim zachmurzeniu (Polska 2024):"
+grep "PASSED" cloud_cover_reports/poland_sentinel2_2024.csv | wc -l
 ```
 
-We can then exit nano <kbd>Ctrl</kbd>+<kbd>X</kbd>, confirm that we want to save the changes by pressing <kbd>Y</kbd> and finally confirm the filename by pressing <kbd>Enter ↵</kbd>.
-
-When we run the modified script with `bash count_atoms.sh`, we should get the desired output.
-
+Uruchomienie:
+```bash
+bash count_clean_scenes.sh
+```
 :::
 :::
 
-## Summary
+## Podsumowanie
 
-![](images/scripts.svg){fig-alt="Diagram summarising how a shell script is organised, including the shebang, comments and code."}
+![](images/scripts.svg){fig-alt="Diagram podsumowujący budowę skryptu: shebang, komentarze i kod poleceń"}
 
 ::: {.callout-tip}
-#### Key points
+#### Główne punkty
 
-- The `nano` text editor can be used to create or edit files from the command line.
-  - The `gedit` text editor is a graphical alternative available on most Linux distributions.
-  - A recommended graphical text editor availabe on all major operating systems is [Visual Studio Code](https://code.visualstudio.com/).
-- We can save commands in a text file, which we call a _shell script_. Shell scripts have extension `.sh`.
-- Shell scripts can be executed using the program `bash`.
+- Edytor `nano` pozwala na szybkie tworzenie i edycję plików bezpośrednio w terminalu.
+- Skrypty powłoki zapisujemy z rozszerzeniem `.sh`.
+- Skrypt rozpoczynamy nagłówkiem *shebang*: `#!/usr/bin/env bash`.
+- Skrypt uruchamiamy poleceniem `bash nazwa_skryptu.sh`.
+- Znak `\` na końcu linii pozwala przenieść długie polecenie do kolejnego wiersza.
 :::

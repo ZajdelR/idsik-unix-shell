@@ -1,445 +1,228 @@
 ---
-pagetitle: "Unix course"
+pagetitle: "Praca z tekstem i plikami danych"
 ---
 
-# Working with text
+# Praca z plikami tekstowymi (Working with text)
 
 ::: {.callout-tip}
-## Learning Objectives
+## Cele szkolenia
 
-- Inspect the content of text files (`head`, `tail`, `cat`, `zcat`, `less`).
-- Use the `*` wildcard to work with multiple files at once.
-- Redirect the output of a command to a file (`>`, `>>`).
-- Find a pattern in a text file (`grep`).
+- Przeglądać zawartość raportów, logów telemetrycznych i tabel danych (`head`, `tail`, `cat`, `less`).
+- Wykorzystywać symbol wieloznaczny `*` do jednoczesnej pracy z wieloma plikami.
+- Przekierowywać wyjście poleceń do plików za pomocą operatorów `>` oraz `>>`.
+- Wyszukiwać wzorce tekstowe w plikach i logach za pomocą polecenia `grep`.
 
 :::
 
-## Looking Inside Files
+## Przeglądanie zawartości plików
 
-Often we want to investigate the content of a file, without having to open it in a text editor. 
-This is especially useful if the file is very large (as is often the case in bioinformatic applications). 
+W analizie danych satelitarnych i telemetrycznych często zachodzi potrzeba szybkiego sprawdzenia zawartości plików bez konieczności uruchamiania ciężkich edytorów graficznych. Jest to szczególnie istotne przy plikach o dużych rozmiarach (np. raportach dziennych, metadanych scen czy logach przetwarzania).
 
-For example, let's take a look at the `cubane.pdb` file in the `molecules` directory. 
-We will start by printing the whole content of the file with the `cat` command, which stands for "concatenate" (we will see why it's called this way in a little while):
+Przejdźmy do katalogu z danymi i wyświetlmy zawartość pliku specyfikacji pasm sensorów w `orbital_catalog` za pomocą polecenia `cat` (*concatenate* – łączenie/wypisywanie):
 
 ```bash
-cd molecules
-cat cubane.pdb
+cd ~/Desktop/dane_do_cwiczen
+cat orbital_catalog/sensor_bands_spec.tsv
 ```
 
 ```output
-COMPND      CUBANE
-AUTHOR      DAVE WOODCOCK  95 12 06
-ATOM      1  C           1       0.789  -0.852   0.504  1.00  0.00
-ATOM      2  C           1      -0.161  -1.104  -0.624  1.00  0.00
-ATOM      3  C           1      -1.262  -0.440   0.160  1.00  0.00
-ATOM      4  C           1      -0.289  -0.202   1.284  1.00  0.00
-ATOM      5  C           1       1.203   0.513  -0.094  1.00  0.00
-ATOM      6  C           1       0.099   1.184   0.694  1.00  0.00
-ATOM      7  C           1      -0.885   0.959  -0.460  1.00  0.00
-ATOM      8  C           1       0.236   0.283  -1.269  1.00  0.00
-ATOM      9  H           1       1.410  -1.631   0.942  1.00  0.00
-ATOM     10  H           1      -0.262  -2.112  -1.024  1.00  0.00
-ATOM     11  H           1      -2.224  -0.925   0.328  1.00  0.00
-ATOM     12  H           1      -0.468  -0.501   2.315  1.00  0.00
-ATOM     13  H           1       2.224   0.892  -0.134  1.00  0.00
-ATOM     14  H           1       0.240   2.112   1.251  1.00  0.00
-ATOM     15  H           1      -1.565   1.730  -0.831  1.00  0.00
-ATOM     16  H           1       0.472   0.494  -2.315  1.00  0.00
-TER      17              1
-END
+sensor	band_id	band_name	central_wavelength_nm	bandwidth_nm	spatial_res_m	spectrum_region
+MSI-Sentinel-2	B01	Coastal Aerosol	443	20	60	VNIR
+MSI-Sentinel-2	B02	Blue	490	65	10	VNIR
+MSI-Sentinel-2	B03	Green	560	35	10	VNIR
+MSI-Sentinel-2	B04	Red	665	30	10	VNIR
+...
 ```
 
-Sometimes it is useful to look only at only the top few lines of a file (especially for very large files). 
-We can do this with the `head` command:
+Polecenie `cat` wypisuje cały plik na ekranie. Jeśli jednak plik ma tysiące linii, `cat` zaleje terminal tekstem.
+
+Aby sprawdzić tylko **początkowe linie pliku** (np. nagłówek tabeli z nazwami kolumn), używamy polecenia `head`:
 
 ```bash
-head cubane.pdb
+head cloud_cover_reports/poland_sentinel2_2024.csv
+```
+
+Domyślnie `head` wyświetla pierwsze 10 linii. Liczbę wyświetlanych wierszy można zmienić opcją `-n`:
+
+```bash
+head -n 3 cloud_cover_reports/poland_sentinel2_2024.csv
 ```
 
 ```output
-COMPND      CUBANE
-AUTHOR      DAVE WOODCOCK  95 12 06
-ATOM      1  C           1       0.789  -0.852   0.504  1.00  0.00
-ATOM      2  C           1      -0.161  -1.104  -0.624  1.00  0.00
-ATOM      3  C           1      -1.262  -0.440   0.160  1.00  0.00
-ATOM      4  C           1      -0.289  -0.202   1.284  1.00  0.00
-ATOM      5  C           1       1.203   0.513  -0.094  1.00  0.00
-ATOM      6  C           1       0.099   1.184   0.694  1.00  0.00
-ATOM      7  C           1      -0.885   0.959  -0.460  1.00  0.00
-ATOM      8  C           1       0.236   0.283  -1.269  1.00  0.00
+scene_id,date,satellite,tile_id,orbit_relative,cloud_coverage_percent,nodata_pixel_percent,snow_ice_percent,sun_zenith_angle,quality_flag
+S2A_MSIL2A_20240510T100031_N0510_R122_T33UWT,2024-05-10,SENTINEL-2A,T33UWT,122,12.40,0.50,0.00,34.80,PASSED
+S2B_MSIL2A_20240512T095029_N0510_R079_T33UWT,2024-05-12,SENTINEL-2B,T33UWT,79,4.20,1.20,0.00,33.50,PASSED
 ```
 
-By default, `head` prints the first 10 lines of the file. 
-We can change this using the `-n` option, followed by a number, for example: 
+Analogicznie, do wyświetlenia **końcowych linii pliku** (np. najnowszych wpisów w logu stacji naziemnej) służy polecenie `tail`:
 
 ```bash
-head -n 2 cubane.pdb
+tail -n 3 telemetry_logs/ground_station_SVB_2024-05-01.log
+```
+
+Do interaktywnego, wygodnego przeglądania długich plików strona po stronie służy program `less`:
+
+```bash
+less orbital_catalog/satellites_tle_catalog.tsv
+```
+
+W przeglądarce `less`:
+- Strzałki <kbd>↑</kbd> i <kbd>↓</kbd> przewijają plik linia po linii.
+- Klawisze <kbd>Page Up</kbd> i <kbd>Page Down</kbd> (lub <kbd>Spacja</kbd>) przewijają o całą stronę.
+- Naciśnięcie klawisza <kbd>/</kbd> pozwala na **wyszukiwanie frazy w tekście** (naciśnięcie <kbd>n</kbd> przechodzi do kolejnego dopasowania, a <kbd>Shift</kbd> + <kbd>n</kbd> do poprzedniego).
+- Naciśnięcie klawisza <kbd>Q</kbd> zamyka program i powraca do wiersza poleceń.
+
+## Zliczanie linii, słów i znaków (`wc`)
+
+Do zliczania rekordów i linii w plikach tekstowych służy polecenie `wc` (*word count*):
+
+```bash
+wc -l cloud_cover_reports/*.csv
 ```
 
 ```output
-COMPND      CUBANE
-AUTHOR      DAVE WOODCOCK  95 12 06
+  251 cloud_cover_reports/poland_sentinel2_2024.csv
+  221 cloud_cover_reports/poland_sentinel2_2023.csv
+  301 cloud_cover_reports/central_europe_sentinel2_2024.csv
+  281 cloud_cover_reports/scandinavia_sentinel2_2024.csv
+  201 cloud_cover_reports/alps_landsat_sentinel_2024.csv
+ 1255 total
 ```
 
-Similarly, we can look at the _bottom_ few lines of a file with the `tail` command:
+Flagi `wc`:
+- `-l` – zlicza wyłącznie linie (*lines*).
+- `-w` – zlicza słowa (*words*).
+- `-c` – zlicza bajty / znaki (*characters/bytes*).
+
+## Łączenie wielu plików (`cat`)
+
+Polecenie `cat` (od *concatenate*) może przyjąć wiele plików jako argumenty i połączyć ich zawartość w jeden ciągły strumień tekstu:
 
 ```bash
-tail -n 2 cubane.pdb
+cat cloud_cover_reports/poland_sentinel2_2023.csv cloud_cover_reports/poland_sentinel2_2024.csv > poland_combined.csv
 ```
 
-```output
-TER      17              1
-END
-```
+## Przekierowanie wyjścia (`>` oraz `>>`)
 
-Finally, if we want to open the file and browse through it, we can use the `less` command: 
+Domyślnie polecenia wypisują wyniki w terminalu (tzw. standardowe wyjście – *stdout*). Możemy jednak **przekierować wyjście do pliku** za pomocą operatora `>`:
 
 ```bash
-less cubane.pdb
+wc -l telemetry_logs/*.log > summary_logs.txt
 ```
 
-`less` will open the file and you can use <kbd>↑</kbd> and <kbd>↓</kbd> to move line-by-line or the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys to move page-by-page. 
-You can exit `less` by pressing <kbd>Q</kbd> (for "quit"). 
-This will bring you back to the console. 
-
-::: {.callout-note}
-#### Searching Text with `less`
-
-When you open a file with the `less` program, you can also search for text within the file. 
-To do this, press `/` and you will notice the bottom of the terminal changes to `/`. 
-Now, type the word (or part of a word) that you want to search for and press <kbd>Enter ↵</kbd>.  
-Less will search of the word in the file and highlight it for you. 
-If you want to move to the next match press <kbd>n</kbd> and to move to the previous match press <kbd><kbd>Shift</kbd> + <kbd>n</kbd></kbd>.
+::: {.callout-warning}
+#### Nadpisywanie a dopisywanie (`>` vs `>>`)
+- Operator `>` **nadpisuje** zawartość pliku docelowego.
+- Operator `>>` **dopisuje** nowe linie na końcu istniejącego pliku (*append*).
 :::
 
+## Wyszukiwanie wzorców tekstowych (`grep`)
 
-## Count Words/Lines/Characters
+Polecenie `grep` (*Global Regular Expression Print*) służy do przeszukiwania plików i wypisywania linii pasujących do wzorca.
 
-Often it can be useful to _count_ how many lines, words and characters a file has.
-We can use the `wc` command for this:
-
-```bash
-wc *.pdb
-```
-
-```output
-  20  156 1158 cubane.pdb
-  12   84  622 ethane.pdb
-   9   57  422 methane.pdb
-  30  246 1828 octane.pdb
-  21  165 1226 pentane.pdb
-  15  111  825 propane.pdb
- 107  819 6081 total
-```
-
-In this case, we used the `*` wildcard to count lines, words and characters (in that order, left-to-right) of all our PDB files. 
-Often, we only want to count one of these things, and `wc` has options for all of them:
-
-- `-l` counts lines only.
-- `-w` counts words only.
-- `-c` counts characters only.
-
-For example, the following counts only the number of lines in each file:
+Wyszukajmy wszystkie operacje zakończone błędem w logach telemetrycznych stacji Spitsbergen:
 
 ```bash
-wc -l *.pdb
+grep "ERROR" telemetry_logs/ground_station_SVB_2024-05-01.log
 ```
 
-```output
-  20 cubane.pdb
-  12 ethane.pdb
-   9 methane.pdb
-  30 octane.pdb
-  21 pentane.pdb
-  15 propane.pdb
- 107 total
-```
+Najważniejsze opcje polecenia `grep`:
+- `-i` – ignoruje wielkość liter (*case-insensitive*), np. `grep -i "sentinel" catalog.tsv`.
+- `-v` – odwraca dopasowanie (*invert match*), wypisując linie, które **nie zawierają** podanego wzorca (np. `grep -v "^#" plik.log` pomija linie komentarzy zaczynające się od `#`).
+- `-n` – wyświetla numery wierszy w pliku.
+- `-c` – zwraca liczbę pasujących wierszy.
+- `-r` (lub `-R`) – rekurencyjne przeszukiwanie wszystkich plików w katalogu.
 
+![Komiks i ściągawka polecenia `grep` autorstwa [Julii Evans](https://wizardzines.com/comics/grep/)](https://wizardzines.com/comics/grep/grep.png)
 
-## Combining several files
-
-Earlier, we said that the `cat` command stands for "concatenate". 
-This is because this command can be used to _concatenate_ (combine) several files together. 
-For example, if we wanted to combine all PDB files into one: 
-
-```bash
-cat *.pdb
-```
-
-
-## Redirecting Output
-
-The commands we've been using so far, print their output to the terminal. 
-But what if we wanted to save it into a file? 
-We can achieve this by **redirecting** the output of the command to a file using the `>` operator. 
-
-```bash
-wc -l *.pdb > number_lines.txt
-```
-
-Now, the output is not printed to the console, but instead sent to a new file. 
-We can check that the file was created with `ls`. 
-
-If we use `>` and the output file already exists, its content will be replaced. 
-If what we want to do is _append_ the result of the command to the existing file, we can use `>>` instead. 
-Let's see this in practice in the next exercise. 
-
-
-## Finding Patterns
-
-Something it can be very useful to find lines of a file that match a particular text pattern. 
-We can use the tool `grep` ("global regular expression print") to achieve this.  
-Going back to our molecules directory (`cd ../molecules`), let's find the word "ATOM" in our `cubane.pdb` molecule file:
-
-```bash
-grep "ATOM" cubane.pdb
-```
-
-```output
-ATOM      1  C           1       0.789  -0.852   0.504  1.00  0.00
-ATOM      2  C           1      -0.161  -1.104  -0.624  1.00  0.00
-ATOM      3  C           1      -1.262  -0.440   0.160  1.00  0.00
-ATOM      4  C           1      -0.289  -0.202   1.284  1.00  0.00
-ATOM      5  C           1       1.203   0.513  -0.094  1.00  0.00
-ATOM      6  C           1       0.099   1.184   0.694  1.00  0.00
-ATOM      7  C           1      -0.885   0.959  -0.460  1.00  0.00
-ATOM      8  C           1       0.236   0.283  -1.269  1.00  0.00
-ATOM      9  H           1       1.410  -1.631   0.942  1.00  0.00
-ATOM     10  H           1      -0.262  -2.112  -1.024  1.00  0.00
-ATOM     11  H           1      -2.224  -0.925   0.328  1.00  0.00
-ATOM     12  H           1      -0.468  -0.501   2.315  1.00  0.00
-ATOM     13  H           1       2.224   0.892  -0.134  1.00  0.00
-ATOM     14  H           1       0.240   2.112   1.251  1.00  0.00
-ATOM     15  H           1      -1.565   1.730  -0.831  1.00  0.00
-ATOM     16  H           1       0.472   0.494  -2.315  1.00  0.00
-```
-
-We can see the result is all the lines that matched this word pattern. 
-
-`grep` has many other options available, which can be useful depending on the result you want to get. 
-Some of the more useful ones are illustrated below. 
-
-![Illustration of the `grep` command by [Julia Evans](https://wizardzines.com/comics/grep/)](https://wizardzines.com/comics/grep/grep.png)
-
-
-## Exercises
+## Ćwiczenia
 
 :::{.callout-exercise}
-#### Redirection
+#### Przekierowanie strumieni (`>` oraz `>>`)
 {{< level 1 >}}
 
-Move to the directory `sequencing` and do the following:
+Przejdź do katalogu `dane_do_cwiczen` i wykonaj zadania:
 
-1. List the files in the `run1/` directory. Save the output in a file called `sequencing_files.txt`.
-2. Inspect the content of the file, e.g. using `cat`.
-3. What happens to the content of that file after you run the command `ls run2 > sequencing_files.txt`?
-4. The operator `>>` can be used to _append_ the output of a command to an existing file. Run the following code and inspect the file content again. What happens now?
-
-    ```bash
-    ls run1/ > sequencing_files.txt
-    ls run2/ >> sequencing_files.txt
-    ```
+1. Wyszukaj wszystkie wpisy ze statusem `ERROR` w logach stacji Kiruna (`telemetry_logs/ground_station_KIR_*.log`) i zapisz je do nowego pliku `kiruna_errors.txt`.
+2. Sprawdź liczbę znalezionych błędów za pomocą `wc -l kiruna_errors.txt`.
+3. Używając operatora `>>`, dopisz do tego samego pliku błędy ze stacji Spitsbergen (`telemetry_logs/ground_station_SVB_*.log`).
+4. Sprawdź ponownie liczbę wierszy w `kiruna_errors.txt`.
 
 ::: {.callout-answer collapse=true}
 
-**Task 1**
-
-To list the files in the directory we use `ls`, followed by `>` to save the output in a file:
-
+**Zadanie 1**
 ```bash
-ls run1 > sequencing_files.txt
+grep "ERROR" telemetry_logs/ground_station_KIR_*.log > kiruna_errors.txt
 ```
 
-----
-
-**Task 2**
-
-We can check the content of the file:
-
+**Zadanie 2**
 ```bash
-cat sequencing_files.txt
+wc -l kiruna_errors.txt
 ```
 
-```output
-sampleA_1.fq.gz
-sampleA_2.fq.gz
-sampleB_1.fq.gz
-sampleB_2.fq.gz
-sampleC_1.fq.gz
-sampleC_2.fq.gz
-sampleD_1.fq.gz
-sampleD_2.fq.gz
-```
-
-----
-
-**Task 3**
-
-If we run `ls run2/ > sequencing_files.txt`, we will replace the content of the file:
-
+**Zadanie 3**
 ```bash
-cat sequencing_files.txt
+grep "ERROR" telemetry_logs/ground_station_SVB_*.log >> kiruna_errors.txt
 ```
 
-```output
-sampleE_1.fq.gz
-sampleE_2.fq.gz
-sampleF_1.fq.gz
-sampleF_2.fq.gz
-```
-
-----
-
-**Task 4**
-
-If we start again from the beginning, but instead use the `>>` operator the second time we run the command, we will append the output to the file instead of replacing it:
-
+**Zadanie 4**
 ```bash
-ls run1/ > sequencing_files.txt
-ls run2/ >> sequencing_files.txt
-cat sequencing_files.txt
+wc -l kiruna_errors.txt
 ```
-
-```output
-sampleA_1.fq.gz
-sampleA_2.fq.gz
-sampleB_1.fq.gz
-sampleB_2.fq.gz
-sampleC_1.fq.gz
-sampleC_2.fq.gz
-sampleD_1.fq.gz
-sampleD_2.fq.gz
-sampleE_1.fq.gz
-sampleE_2.fq.gz
-sampleF_1.fq.gz
-sampleF_2.fq.gz
-```
-
+Liczba wierszy wzrosła o liczbę błędów dopisanych ze stacji SVB.
 :::
 :::
 
 :::{.callout-exercise}
-#### Counting lines
+#### Zliczanie i filtrowanie scen satelitarnych
 {{< level 1 >}}
 
-In the directory `coronavirus/variants/`, there are several CSV files with information about Coronavirus samples that were classified according to _variants_ (e.g. "Alpha", "Delta", "Omicron").
+W pliku `cloud_cover_reports/poland_sentinel2_2024.csv`:
 
-1. Inspect the top and bottom few lines of one of the files.
-2. Each sample is represented by one line in the file. How many samples are there in each file?
+1. Podejrzyj nagłówek i pierwsze 4 wiersze danych za pomocą `head`.
+2. Ile łącznie scen zarejestrowano w tym raporcie? (`wc -l`)
+3. Użyj `grep`, aby wyodrębnić tylko sceny pozyskane przez satelitę `SENTINEL-2A` i zapisać je do pliku `s2a_poland.csv`.
+4. Ile scen pozyskał satelita Sentinel-2A?
 
-:::{.callout-answer}
-
-**Task 1**
-
-We can use `head` and `tail` to inspect the top and bottom few lines of one of the files, e.g.:
+::: {.callout-answer}
 
 ```bash
-head -n 3 uk_variants.csv
+head -n 5 cloud_cover_reports/poland_sentinel2_2024.csv
+wc -l cloud_cover_reports/poland_sentinel2_2024.csv
+grep "SENTINEL-2A" cloud_cover_reports/poland_sentinel2_2024.csv > s2a_poland.csv
+wc -l s2a_poland.csv
 ```
-
-```output
-Sample,clade
-GB01,20I (Alpha; V1)
-GB02,20I (Alpha; V1)
-```
-
-```bash
-tail -n 3 uk_variants.csv
-```
-
-```output
-GB46,21J (Delta)
-GB47,21J (Delta)
-GB48,21J (Delta)
-```
-
-**Task 2**
-
-We can use `wc -l` to count the number of lines in a single file:
-
-```bash
-wc -l uk_variants.csv
-```
-
-```output
-49 uk_variants.csv
-```
-
-To count the number of lines in all files at once, we can use the `*` wildcard:
-
-```bash
-wc -l *_variants.csv
-```
-
-```output
-  49 india_variants.csv
-  49 ireland_variants.csv
-  49 southafrica_variants.csv
-  60 switzerland_variants.csv
-  49 uk_variants.csv
- 256 total
-```
-
 :::
 :::
 
 :::{.callout-exercise}
-#### Combining files and pattern matching
+#### Wyszukiwanie pasm termalnych i radarowych
 {{< level 2 >}}
 
-In the directory `coronavirus/variants/`, there are several CSV files with information about SARS-CoV-2 virus samples that were classified according to clades (these are also commonly known as _coronavirus variants_). 
+W pliku `orbital_catalog/sensor_bands_spec.tsv`:
 
-1. Combine all files into a new file called `all_countries.csv`.  
-  <details><summary>Hint</summary>You can use `cat` to combine multiple text files. You can use `>` to _redirect_ the output of a command to a new file.</details>
-3. Create another file called `alpha.csv` that contains only the Alpha variant samples.  
-  <details><summary>Hint</summary>You can use `grep` to find a pattern in a file. You can use `>` to _redirect_ the output of a command to a new file.</details>
-1. How many Alpha samples are there in total?
+1. Wyszukaj pasma rejestrujące promieniowanie podczerwone (zawierające słowo "Infrared" lub "SWIR").
+2. Użyj opcji `-i`, aby wyszukiwanie nie zależało od wielkości liter.
+3. Policz ile takich pasm znajduje się w katalogu.
 
 ::: {.callout-answer collapse=true}
 
-**Task 1**
-
-We can use `cat` to combine all the files into a single file:
-
 ```bash
-cat *_variants.csv > all_countries.csv
+grep -i "infrared" orbital_catalog/sensor_bands_spec.tsv
+grep -i "infrared" orbital_catalog/sensor_bands_spec.tsv | wc -l
 ```
-
-**Task 2**
-
-We can use `grep` to find a pattern in our text file and use `>` to save the output in a new file:
-
-```bash
-grep "Alpha" all_countries.csv > alpha.csv
-```
-
-We could investigate the output of our command using `less alpha.csv`.
-
-----
-
-**Task 3**
-
-We can use `wc` to count the lines of the newly created file:
-
-```bash
-wc -l alpha.csv
-```
-
-Giving us 38 as the result.
-
 :::
 :::
 
-## Summary
+## Podsumowanie
 
 ::: {.callout-tip}
-#### Key points
+#### Główne punkty
 
-- The `head` and `tail` commands can be used to look at the top or bottom of a file, respectively.
-- The `less` command can be used to interactively investigate the content of a file. Use <kbd>↑</kbd> and <kbd>↓</kbd> to browse the file and <kbd>Q</kbd> to quit and return to the console.
-- The `cat` command can be used to combine multiple files together. The `zcat` command can be used instead if the files are compressed.
-- The `>` operator redirects the output of a command into a file. If the file already exists, it's content will be overwritten.
-- The `>>` operator also redictects the output of a command into a file, but _appends_ it to any content that already exists. 
-- The `grep` command can be used to find the lines in a text file that match a text pattern.
+- Polecenia `head` i `tail` pozwalają podejrzeć odpowiednio początek lub koniec raportu lub logu.
+- Program `less` umożliwia interaktywne przewijanie i przeszukiwanie plików o dowolnym rozmiarze (<kbd>Q</kbd> kończy pracę).
+- Polecenie `wc -l` zlicza liczbę wierszy w plikach.
+- Operator `>` przekierowuje wyjście programu do pliku (tworzy nowy lub **nadpisuje** istniejący).
+- Operator `>>` **dopisuje** wyjście programu na końcu istniejącego pliku.
+- Polecenie `grep` wyszukuje linie tekstu pasujące do podanego wzorca (np. `grep -i "ERROR" telemetry_logs/*.log`).
 :::

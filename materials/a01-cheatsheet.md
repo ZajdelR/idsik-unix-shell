@@ -1,114 +1,98 @@
 ---
-pagetitle: "Unix Shell"
+pagetitle: "Ściągawka z poleceń Unix"
 ---
 
-# Unix cheat sheet {.unnumbered}
+# Ściągawka z poleceń Unix (Cheat sheet) {.unnumbered}
 
-This document gives a brief summary of useful Unix commands.
-Anything within `{` and `}` indicates a user-provided input (`{` and `}` should not be included in the commands).
+Niniejszy dokument zawiera podsumowanie najważniejszych poleceń powłoki Unix.  
+Wartości w nawiasach klamrowych `{...}` oznaczają parametry podawane przez użytkownika (samych nawiasów klamrowych nie wpisujemy w poleceniu).
 
-
-## Documentation and Help
-
-|||
-| :---- | :---- |
-| `man {command}`      | manual page for the program |
-| `whatis {command}`   | short description of the program |
-| `{command} --help`   | many programs use the `--help` flag to print documentation |
-
-## Listing files
+## Pomoc i dokumentacja
 
 |||
 | :---- | :---- |
-| `ls` | list files in the current directory |
-| `ls {path}` | list files in the specified path |
-| `ls -l {path}` | list files in long format (more information) |
-| `ls -a {path}` | list all files (including hidden files) |
+| `man {polecenie}` | Strona podręcznika systemowego dla danego programu |
+| `whatis {polecenie}` | Krótki, jednozdaniowy opis programu |
+| `{polecenie} --help` | Wyświetlenie pomocy i listy dostępnych opcji/flag |
 
-
-## Change Directories 
+## Wyświetlanie zawartości katalogów (`ls`)
 
 |||
 | :---- | :---- |
-| `cd {path}` | change to the specified directory |
-| `cd` or `cd ~`    | change to the home directory |
-| `cd ..`           | move back one directory |
-| `pwd` | print working directory. Shows the full path of where you are at the moment (useful if you are lost) |
+| `ls` | Wypisanie plików i folderów w bieżącym katalogu |
+| `ls {sciezka}` | Wypisanie zawartości wskazanego katalogu |
+| `ls -l {sciezka}` | Wyświetlenie szczegółowych informacji (uprawnienia, rozmiar, data modyfikacji) |
+| `ls -a {sciezka}` | Wyświetlenie wszystkich plików (w tym plików ukrytych zaczynających się od kropki `.`) |
+| `ls -lh {sciezka}` | Wyświetlenie rozmiarów w czytelnym formacie (*human-readable*, np. KB, MB, GB) |
 
-
-## Make or Remove Directories
-
-|||
-| :---- | :---- |
-| `mkdir {dirname}`     | create a directory with specified name |
-| `rmdir {dirname}`     | remove a directory (only works if the directory is empty) |
-| `rm -r {dirname}`  | remove the directory and all it's contents (use with care) |
-
-
-## Copy, Move and Remove Files 
+## Nawigacja po systemie plików (`cd`, `pwd`)
 
 |||
 | :---- | :---- |
-| `cp {source/path/file1} {target/path/}` | copy "file1" to another directory keeping its name |
-| `cp {source/path/file1} {target/path/file2}` | copy "file1" to another directory naming it "file2" |
-| `cp {file1} {file2}` | make a copy of "file1" in the same directory with a new name "file2" |
-| `mv {source/path/file1} {target/path/}` | move "file1" to another directory keeping its name |
-| `mv {source/path/file1} {target/path/file2}` | move "file1" to another directory renaming it as "file2" |
-| `mv {file1} {file2}` | is equivalent to renaming a file |
-| `rm {filename}`        | remove a file |
+| `cd {sciezka}` | Przejście do wskazanego katalogu |
+| `cd` lub `cd ~` | Powrót do katalogu domowego użytkownika |
+| `cd ..` | Przejście o jeden poziom wyżej (do katalogu nadrzędnego) |
+| `pwd` | Wypisanie pełnej ścieżki bieżącego katalogu roboczego (*print working directory*) |
 
-
-## View Text Files
+## Tworzenie i usuwanie katalogów
 
 |||
 | :---- | :---- |
-| `less {file}` | view and scroll through a text file |
-| `head {file}` | print the first 10 lines of a file |
-| `head -n {N} {file}` | print the first N lines of a file |
-| `tail {file}` | print the last 10 lines of a file |
-| `tail -n {N} {file}` | print the last N lines of a file |
-| `head -n {N} {file} | tail -n 1` | print the Nth line of a file |
-| `cat {file}` | print the whole content of the file |
-| `cat {file1} {file2} {...} {fileN}` | concatenate files and print the result |
-| `zcat {file}` and `zless {file}` | like `cat` and `less` but for _compressed_ files (_.zip_ or _.gz_) |
+| `mkdir {katalog}` | Utworzenie nowego katalogu |
+| `mkdir -p {sciezka/zagniezdzona}` | Utworzenie zagnieżdżonej struktury katalogów wraz z brakującymi folderami nadrzędnymi |
+| `rmdir {katalog}` | Usunięcie pustego katalogu |
+| `rm -r {katalog}` | Rekurencyjne usunięcie katalogu wraz z całą jego zawartością (**uwaga: operacja nieodwracalna**) |
 
-
-## Find Patterns
-
-Finding (and replacing) patterns in text is a very powerful feature of several command line programs. The patterns are specified using _regular expressions_ (shortened as _regex_), which are not covered in this document. 
-See this [Regular Expressions Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/pdf/) for a comprehensive overview. 
+## Kopiowanie, przenoszenie i usuwanie plików
 
 |||
 | :---- | :---- |
-| `grep {regex} {file}` | print the lines of the file that have a match with the regular expression pattern |
+| `cp {zrodlo} {katalog_docelowy/}` | Skopiowanie pliku do wskazanego katalogu z zachowaniem nazwy |
+| `cp {zrodlo} {nowy_plik}` | Skopiowanie pliku pod nową nazwą |
+| `cp -r {katalog_zrodlowy} {katalog_docelowy}` | Skopiowanie całego katalogu rekurencyjnie |
+| `mv {zrodlo} {katalog_docelowy/}` | Przeniesienie pliku do wskazanego katalogu |
+| `mv {stara_nazwa} {nowa_nazwa}` | Zmiana nazwy pliku lub katalogu |
+| `rm {plik}` | Trwałe usunięcie pliku |
 
-
-## Wildcards
-
-|||
-| :---- | :---- |
-| `*` | match any number of characters |
-| `?` | match any character only once |
-| _Examples_ | |
-| `ls sample*` | list all files that start with the word "sample" |
-| `ls *.txt` | list all the files with _.txt_ extension |
-| `cp * {another/directory}` | copy all the files in the current directory to a different directory |
-
-
-## Redirect Output
+## Przeglądanie i analiza plików tekstowych
 
 |||
 | :---- | :---- |
-| `{command} > {file}` | redirect output to a file (overwrites if the file exists) |
-| `{command} >> {file}` | append output to a file (creates a new file if it does not already exist) |
+| `less {plik}` | Interaktywne przeglądanie pliku strona po stronie (<kbd>Q</kbd> wyjście, <kbd>/</kbd> szukanie) |
+| `head {plik}` | Wyświetlenie pierwszych 10 linii pliku |
+| `head -n {N} {plik}` | Wyświetlenie pierwszych N linii pliku |
+| `tail {plik}` | Wyświetlenie ostatnich 10 linii pliku |
+| `tail -n {N} {plik}` | Wyświetlenie ostatnich N linii pliku |
+| `cat {plik}` | Wypisanie całej zawartości pliku do terminala |
+| `cat {plik1} {plik2} > {scalony}` | Połączenie zawartości kilku plików w jeden |
+| `wc -l {plik}` | Zliczenie liczby wierszy w pliku |
+| `zcat {plik.gz}` | Strumieniowe odczytanie pliku skompresowanego (w macOS: `gzcat`) |
 
-
-## Combining Commands with `|` Pipes
+## Wyszukiwanie wzorców (`grep`)
 
 |||
 | :---- | :---- |
-| `<command1> | <command2>` | the output of "command1" is passed as input to "command2" |
-| _Examples_ | |
-| `ls | wc -l` | count the number of files in a directory |
-| `cat {file1} {file2} | less` | concatenate files and view them with _less_ |
-| `cat {file} | grep "{pattern}" | wc -l` | count how many lines in the file have a match with "pattern" |
+| `grep "{wzorzec}" {plik}` | Wyświetlenie wierszy zawierających podany wzorzec tekstowy |
+| `grep -i "{wzorzec}" {plik}` | Wyszukiwanie bez rozróżniania wielkości liter (*case-insensitive*) |
+| `grep -v "{wzorzec}" {plik}` | Odwrócenie dopasowania (wyświetlenie wierszy **niezawierających** wzorca) |
+| `grep -r "{wzorzec}" {katalog}` | Rekurencyjne przeszukanie wszystkich plików w katalogu |
+
+## Symbole wieloznaczne (Wildcards)
+
+|||
+| :---- | :---- |
+| `*` | Dopasowanie dowolnego ciągu znaków (zero lub więcej) |
+| `?` | Dopasowanie dokładnie jednego znaku |
+| `ls *.tif` | Wylistowanie wszystkich plików rastrowych `.tif` |
+| `ls S2A_*.nc` | Wylistowanie plików netCDF misji Sentinel-2A |
+
+## Przekierowania i potoki
+
+|||
+| :---- | :---- |
+| `{polecenie} > {plik}` | Przekierowanie standardowego wyjścia (`stdout`) do pliku (nadpisanie) |
+| `{polecenie} >> {plik}` | Dopisywanie standardowego wyjścia na końcu pliku (*append*) |
+| `{polecenie} 2> {plik}` | Przekierowanie strumienia błędów (`stderr`) do pliku |
+| `{polecenie} > {plik} 2>&1` | Przekierowanie zarówno `stdout`, jak i `stderr` do jednego pliku |
+| `{polecenie1} \| {polecenie2}` | Przekazanie wyjścia `polecenie1` jako wejścia do `polecenie2` |
+| `cat *.csv \| cut -d "," -f 2 \| sort \| uniq -c` | Ekstrakcja kolumny, posortowanie i zliczenie unikalnych wartości |

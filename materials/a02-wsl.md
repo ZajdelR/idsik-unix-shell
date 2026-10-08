@@ -1,75 +1,46 @@
 ---
-pagetitle: "Unix Shell"
+pagetitle: "Unix w systemie Windows (WSL)"
 ---
 
-# Unix on Windows {.unnumbered}
+# Unix w systemie Windows (WSL) {.unnumbered}
 
-In [Data & Setup](../../setup.md) we recommended installing _MobaXterm_ as a way to have a Linux-like terminal on Windows. 
-While easy to install, _MobaXterm_ is not a fully-featured Linux environment. 
-This means that if you want to run specialised software which only runs on Linux (e.g. in the field of bioinformatics or machine learning), then _MobaXterm_ is quite limited.
+W rozdziale [Dane i przygotowanie środowiska](../../setup.md) rekomendowaliśmy instalację programu _MobaXterm_ jako prostego sposobu na uruchomienie powłoki w systemie Windows.  
+Choć *MobaXterm* jest wygodny w konfiguracji, nie stanowi pełnego środowiska Linux. Jeśli w pracy inżynierskiej chcesz korzystać ze specjalistycznego oprogramowania natywnie linuksowego (narzędzia teledetekcyjne, GDAL, biblioteki przetwarzania danych satelitarnych i uczenia maszynowego), idealnym rozwiązaniem jest **Windows Subsystem for Linux (WSL2)**.
 
-The recommended alternative is to install the **Windows Subsystem for Linux (WSL2)**, available for Windows 11 (and recent versions of Windows 10). 
-WSL2 is a compatibility layer within Windows that enables users to run a Linux "core" alongside the Windows operating system. 
-It provides a seamless integration between Windows and Linux environments, allowing users to execute native Linux commands and run Linux applications directly on a Windows machine. 
-WSL2 is designed to be compatible with the Windows filesystem, allowing you to seamlessly interact with your Windows files.
+WSL2 to oficjalna technologia firmy Microsoft dla Windows 10 i 11, pozwalająca uruchamiać prawdziwe jądro Linuksa (*Ubuntu*) bezpośrednio obok systemu Windows, z bezpośrednim dostępem do plików na dyskach Windows.
 
+## Instalacja WSL2
 
-## Installing WSL2
+Szczegółowy podręcznik znajduje się na [stronie dokumentacji Microsoft](https://learn.microsoft.com/pl-pl/windows/wsl/install).  
+Krótka instrukcja:
 
-There are detailed instructions on how to install WSL on the [Microsoft documentation page](https://learn.microsoft.com/en-us/windows/wsl/install). 
-But briefly:
+1. Wyszukaj w menu Start aplikację **PowerShell**, kliknij prawym przyciskiem myszy i wybierz **Uruchom jako administrator**.
+2. W oknie PowerShell wpisz polecenie:
+   ```powershell
+   wsl --install
+   ```
+3. Po zakończeniu pobierania i instalacji uruchom ponownie komputer (*Restart*).
+4. Po ponownym uruchomieniu otworzy się okno terminala Ubuntu z prośbą o utworzenie nazwy użytkownika (*username*) i hasła (*password*).
+   - *Uwaga:* Podczas wpisywania hasła w terminalu znaki nie pojawiają się na ekranie (jest to standardowe zabezpieczenie w Linuksie). Wpisz hasło i naciśnij <kbd>Enter</kbd>.
 
-- Click the Windows key and search for  _Windows PowerShell_, right-click on the app and choose **Run as administrator**. 
-- Answer "Yes" when it asks if you want the App to make changes on your computer. 
-- A terminal will open; run the command: `wsl --install`.  
-  Progress bars will show while installing "Virtual Machine Platform", "Windows Subsystem for Linux" and finally "Ubuntu" (this process can take a long time).
-    - **Note:** it has happened to us in the past that the terminal freezes at the step of installing "Ubuntu". If it is frozen for ~1h at that step, press <kbd>Ctrl + C</kdb> and hopefully you will get a message saying "Ubuntu installed successfully".
-- After installation completes, restart your computer.
-- After restart, a terminal window will open asking you to create a username and password.  
-  If it doesn't, click the Windows key and search for _Ubuntu_, click on the App and it should open a new terminal. 
-  - You can use the same username and password that you have on Windows, or a different one - it's your choice. Spaces and other special characters are not allowed for your Ubuntu username.
-  - **Note:** when you type your password nothing seems to be happening as the cursor doesn't move. However, the terminal is recording your password as you type. You will be asked to type the new password again to confirm it, so you can always try again if you get it wrong the first time.
+## Dostęp do dysków Windows z poziomu WSL2
 
-You should now have access to a Ubuntu Linux terminal. 
-This behaves very much like a regular Ubuntu server. 
-
-
-### Configuring WSL2
-
-After installation, it is useful to **create shortcuts to your files on Windows**. 
-Your main `C:\` drive is located in `/mnt/c/` and other drives will be equally available based on their letter. 
-To create shortcuts to commonly-used directories you use _symbolic links_. 
-Here are some commands to automatically create shortcuts to your Windows "Documents",  "Desktop" and "Downloads" folders (copy/paste these commands on the terminal):
+Główny dysk systemowy Windows `C:\` jest dostępny w WSL pod ścieżką `/mnt/c/`.  
+Aby ułatwić sobie nawigację, możesz utworzyć dowiązania symboliczne (*symlinks*) do swoich folderów Pulpitu i Dokumentów:
 
 ```bash
 ln -s $(wslpath $(powershell.exe '[environment]::getfolderpath("MyDocuments")' | tr -d '\r')) ~/Documents
 ln -s $(wslpath $(powershell.exe '[environment]::getfolderpath("Desktop")' | tr -d '\r')) ~/Desktop
-ln -s $(wslpath $(powershell.exe '[environment]::getfolderpath("UserProfile")' | tr -d '\r'))/Downloads ~/Downloads
 ```
 
-You may also want to **configure the Windows terminal to automatically open _WSL2_** (instead of the default Windows Command Prompt or Powershell):
+## Integracja z Visual Studio Code
 
-- Search for and open the "<i class="fa-solid fa-terminal"></i> Terminal" application.
-- Click on the down arrow <i class="fa-solid fa-chevron-down"></i> in the toolbar.
-- Click on "<i class="fa-solid fa-gear"></i> Settings".
-- Under "Default Profile" select "<i class="fa-brands fa-linux"></i> Ubuntu".
+[Visual Studio Code](https://code.visualstudio.com/) doskonale integruje się z WSL2.
 
-
-## Visual Studio Code
-
-This is an additional software recommendation for a text editor. 
-Strictly speaking, you do not need this software for working on _WSL2_, but we recommend it because of how well it integrates with it. 
-Although you can use `nano` to edit your scripts, _Visual Studio Code_ offers a more user-friendly and fully-featured alternative to it. 
-
-To install _Visual Studio Code_:
-
-- Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for your operating system. 
-  Double-click the downloaded file to install the software, accepting all the default options. 
-- After completing the installation, search for "Visual Studio Code" and launch the application. 
-- Go to "_File > Preferences > Settings_", then select "_Text Editor > Files_" on the drop-down menu on the left. Scroll down to the section named "_EOL_" and choose "_\\n_" (this will ensure that the files you edit on Windows are compatible with the Linux operating system).
-- Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>. Search for "**Terminal: Select Default Profile**" and click. Then click on either "**WSL Ubuntu**" or "**bash**".
-- You can now close _VS Code_.
-
-Now, when you are working on _WSL2_, you can open _VS Code_ from the directory you are working from by typing the command `code .`.
-_VS Code_ provides a file explorer panel on the left, from where you can conveniently open any scripts you are working on. 
-You can also open a terminal from within _VS Code_ by going to "Terminal > New Terminal".
+1. Pobierz i zainstaluj VS Code w systemie Windows.
+2. Zainstaluj w VS Code rozszerzenie **WSL** (od Microsoftu).
+3. Będąc w terminalu WSL w wybranym katalogu projektu, wpisz:
+   ```bash
+   code .
+   ```
+   VS Code otworzy się w środowisku Windows, ale będzie bezpośrednio edytować pliki i uruchamiać procesy wewnątrz Linuksa WSL.

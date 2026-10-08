@@ -1,9 +1,9 @@
-# {{< iconify mdi:presentation >}} Slides {.unnumbered}
+# {{< iconify mdi:presentation >}} Slajdy {.unnumbered}
 
 ::: {.callout-tip}
-#### Downloading the slides
+#### Pobieranie slajdów
 
-The original presentation can be found <a href="https://docs.google.com/presentation/d/1gytDhTLHfewoIINK2phQIhjyYAggne9OsLNlf46qdvM/edit?usp=sharing" target="_blank">here</a>, where it can be easily downloaded in different formats (File > Download).
+Oryginalna prezentacja dostępna jest <a href="https://docs.google.com/presentation/d/1gytDhTLHfewoIINK2phQIhjyYAggne9OsLNlf46qdvM/edit?usp=sharing" target="_blank">tutaj</a>, skąd można ją pobrać w różnych formatach (Plik > Pobierz).
 :::
 
 <style>

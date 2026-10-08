@@ -1,111 +1,71 @@
 ---
-pagetitle: "Unix course"
+pagetitle: "Dane i przygotowanie środowiska"
 number-sections: false
 ---
 
-# Data & Setup {.unnumbered}
+# Dane i przygotowanie środowiska {.unnumbered}
 
-<!--
-Note for Training Developers:
-We provide instructions for commonly-used software as commented sections below.
-Uncomment the sections relevant for your materials, and add additional instructions where needed (e.g. specific packages used).
-Note that we use tabsets to provide instructions for all three major operating systems.
--->
+## Rozszerzony pakiet danych satelitarnych do ćwiczeń (`dane_do_cwiczen`)
 
-<!-- ::: {.callout-tip}
-#### Workshop Attendees
+Wszystkie ćwiczenia i przykłady w ramach kursu opierają się na dedykowanym pakiecie danych inżynierii satelitarnej `dane_do_cwiczen` (ponad **1600 plików** symulujących rzeczywiste centrum przetwarzania danych teledetekcyjnych i kosmicznych).
 
-If you are attending one of our workshops, we will provide a training environment with all of the required software and data.
-If you want to setup your own computer to run the analysis demonstrated on this course, you can follow the instructions below.
-::: -->
+Zestaw zawiera m.in.:
 
-## Data
+- **`sentinel2_scenes/`** – wieloczasowe struktury produktów poziomu L2A misji Sentinel-2 (katalogi `.SAFE` z metadanymi XML i rastrami spektralnymi 10m i 20m dla Wrocławia, Warszawy, Poznania, Krakowa, Gdańska i Alp).
+- **`landsat_scenes/`** – produkty Landsat-8 i Landsat-9 Collection 2 Level-2 z plikami metadanych MTL, współczynnikami kątowymi oraz maskami jakości pikseli QA.
+- **`telemetry_logs/`** – setki dobowych dzienników stacji naziemnych (Spitsbergen, Kiruna, Maspalomas, Kourou, Troll, Matera, Inuvik, Punta Arenas) oraz archiwa skompresowane `.log.gz`.
+- **`cloud_cover_reports/`** – bazy danych CSV z tysiącami rekordów obserwacji satelitarnych dla Polski i Europy.
+- **`orbital_catalog/`** – katalogi parametrów orbitalnych (TLE) ponad 80 aktywnych satelitów (ESA, NASA, NOAA, konstelacje komercyjne) oraz specyfikacje kanałów sensorów (MSI, OLI, TIRS).
+- **`gnss_stations/`** – dobowe raporty jakości i skompresowane pliki obserwacyjne RINEX dla 15 europejskich stacji geodezyjnych (m.in. `WROC`, `JOZE`, `KRAK`, `GDAN`, `POZN`, `POTS`, `WTZR`, `ONSA`).
+- **`raw_telemetry_chunks/`** – setki surowych strumieni pakietów telemetrycznych (`chunk_*.dat`) do testowania wydajności potoków powłoki Bash, poleceń `find`, `xargs` i `grep`.
+- **`scripts_repo/`** – wzorce skryptów automatyzujących przetwarzanie i kontrolę jakości (QC) w powłoce Bash.
 
-The data used in these materials is provided as a zip file.
-Download and unzip the folder to your Desktop to follow along with the materials.
+### Pobieranie i rozpakowanie danych
 
-<!-- Note for Training Developers: adjust the link as relevant -->
-<a href="https://www.dropbox.com/scl/fi/kgfq7pnt97weh45pogcxt/data-shell.zip?rlkey=gjz3pmb5ctku7q1fzwemfqbfl&st=6m0ct67p&dl=1">
-  <button class="btn"><i class="fa fa-download"></i> Download</button>
-</a>
+Pobierz archiwum ZIP i rozpakuj je na Pulpicie (`Desktop`) lub w swoim katalogu roboczym:
 
-You can also download the data from the terminal using the following commands:
+Możesz to zrobić bezpośrednio z poziomu terminala:
 
 ```bash
 cd ~/Desktop
-wget -O data-shell.zip "https://www.dropbox.com/scl/fi/kgfq7pnt97weh45pogcxt/data-shell.zip?rlkey=gjz3pmb5ctku7q1fzwemfqbfl&st=6m0ct67p&dl=1"
-unzip data-shell.zip
+# Jeśli posiadasz plik dane_do_cwiczen.zip lokalnie:
+unzip dane_do_cwiczen.zip
+cd dane_do_cwiczen
+ls
 ```
 
-## Software
+## Oprogramowanie
 
-### Unix Terminal
+### Terminal Unix
 
 ::: {.panel-tabset group="os"}
 #### Windows 10/11
 
-To get ready for our workshop please download and setup the **MobaXterm** application:
+Aby przygotować środowisko na systemie Windows, zalecamy skorzystanie z aplikacji **MobaXterm** lub **Windows Subsystem for Linux (WSL2)**:
 
-- Go the the [**MobaXterm download page**](https://mobaxterm.mobatek.net/download-home-edition.html).
-- Download the **Portable edition** (blue button).
-- **Unzip the file** and copy the folder to a convenient location, such as your Desktop.
-- Open the folder and double-click the executable file called **MobaXterm_Personal_XX.X.exe**.
-  - If asked "Do you want to allow public and private networks to access this app?" press **Allow**.
-- Click on **Start local terminal**.
-- Type the command `apt install nano`, then type `y` ("yes"), followed by `y` again.
-  - A progress message should print on the screen as an additional application is installed
-- Once finished, you can close MobaXterm.
+- **MobaXterm**:
+  - Pobierz wersję [**MobaXterm Portable edition**](https://mobaxterm.mobatek.net/download-home-edition.html).
+  - Rozpakuj plik ZIP na Pulpicie i uruchom `MobaXterm_Personal_XX.X.exe`.
+  - Kliknij **Start local terminal**.
+  - Zainstaluj edytor tekstu wpisując: `apt install nano` (potwierdź klawiszem `y`).
+- **WSL2 (rekomendowane rozwiązanie zaawansowane)**:
+  - Szczegółowy poradnik konfiguracji Ubuntu i VS Code znajdziesz w rozdziale [Unix w systemie Windows (WSL)](materials/a02-wsl.md).
 
-For more advanced usage see the "[Unix on Windows](materials/a02-wsl.md)" appendix.
+#### macOS
 
-#### Mac
+System macOS posiada wbudowany terminal powłoki (zsh/bash).
+Naciśnij <kbd><kbd>⌘</kbd> + <kbd>Spacja</kbd></kbd>, aby otworzyć wyszukiwarkę *Spotlight*, i wpisz `terminal`.
 
-Mac OS already has a terminal available.
-Press <kbd><kbd>&#8984;</kbd> + <kbd>space</kbd></kbd> to open _spotlight search_ and type "terminal".
-
-Optionally, if you would like a terminal with more modern features, we recommend installing [_iTerm2_](https://iterm2.com).ss
+Opcjonalnie możesz zainstalować nowoczesny emulator terminala [_iTerm2_](https://iterm2.com).
 
 :::{.callout-warning}
-#### macOS permissions
-
-If you get the following error when you run the command `ls` from the terminal:
-
-```
-ls: .: operation not permitted
-```
-
-Then, follow [these instructions](https://cleanmymac.com/blog/operation-not-permitted-terminal) to enable access to your filesystem.
+#### Uprawnienia w systemie macOS
+Jeśli podczas wykonywania polecenia `ls` w terminalu pojawi się komunikat o braku uprawnień, przejdź do: *Ustawienia systemowe -> Prywatność i ochrona -> Pełny dostęp do dysku* i zaznacz aplikację Terminal.
 :::
 
 #### Linux
 
-Linux distributions already have a terminal available.
-On _Ubuntu_ you can press <kbd><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></kbd> to open it.
+Dystrybucje Linuksa (np. Ubuntu, Fedora, Debian) mają domyślnie zainstalowany terminal.
+W systemie _Ubuntu_ terminal można otworzyć skrótem klawiszowym <kbd><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></kbd>.
 
 :::
-
-<!--
-## Visual Studio Code
-
-::: {.panel-tabset group="os"}
-
-### Windows
-
-- Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for your operating system.
-  Double-click the downloaded file to install the software, accepting all the default options.
-- After completing the installation, go to your Windows Menu, search for "Visual Studio Code" and launch the application.
-- Go to "_File > Preferences > Settings_", then select "_Text Editor > Files_" on the drop-down menu on the left. Scroll down to the section named "_EOL_" and choose "_\\n_" (this will ensure that the files you edit on Windows are compatible with the Linux operating system).
-
-### Mac OS
-
-- Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for Mac.
-- Go to the Downloads folder and double-click the file you just downloaded to extract the application. Drag-and-drop the "Visual Studio Code" file to your "Applications" folder.
-- You can now open the installed application to check that it was installed successfully (the first time you launch the application you will get a warning that this is an application downloaded from the internet - you can go ahead and click "Open").
-
-### Linux (Ubuntu)
-
-- Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for your Linux distribution. Install the package using your system's installer.
-
-:::
--->
-

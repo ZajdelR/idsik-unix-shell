@@ -1,350 +1,246 @@
 ---
-pagetitle: "Unix course"
+pagetitle: "Operacje na plikach i katalogach"
 ---
 
-# File operations
+# Operacje na plikach i katalogach (File operations)
 
 ::: {.callout-tip}
-## Learning Objectives
+## Cele szkolenia
 
-- Distinguish between copying and moving files.
-- Recognise how accidental and irreversible data loss may occur when moving or copying files.
-- Create, move, copy and remove files and directories using the commands `mkdir`, `rmdir`, `rm`, `cp` and `mv`.
+- Rozróżniać kopiowanie (`cp`) i przenoszenie/zmianę nazwy (`mv`) plików oraz katalogów.
+- Zrozumieć ryzyko nieodwracalnej utraty danych podczas nadpisywania i usuwania plików w powłoce.
+- Tworzyć, przenosić, kopiować i usuwać pliki oraz foldery za pomocą poleceń `mkdir`, `rmdir`, `rm`, `cp` i `mv`.
 
 :::
 
-## Creating directories
+## Tworzenie katalogów (`mkdir`)
 
-We now know how to explore files and directories, but how do we create them in the first place?
-First, we should see where we are and what we already have.
-Let's go back to our `data-shell` directory and use `ls` to see what it contains:
+Wiemy już, jak nawigować po systemie plików. Jak jednak tworzyć nowe foldery i organizować przestrzeń roboczą dla projektów satelitarnych?  
+Przejdźmy do naszego folderu z danymi i sprawdźmy jego zawartość:
 
 ```bash
-cd ~/Desktop/data-shell
+cd ~/Desktop/dane_do_cwiczen
 ls
 ```
 
 ```output
-README.txt  coronavirus  molecules  sequencing
+README.txt            cloud_cover_reports   orbital_catalog       sources.txt
+sentinel2_scenes      gnss_stations         scripts_repo          telemetry_logs
 ```
 
-Now, let's **create a new directory** called `thesis_notes` using the command `mkdir` ("make directory"):
+Utwórzmy nowy katalog o nazwie `project_wroclaw` za pomocą polecenia `mkdir` (*make directory*):
 
 ```bash
-mkdir thesis_notes
+mkdir project_wroclaw
 ```
 
-The new directory is created in the current working directory:
+Nowy katalog zostanie utworzony w bieżącym katalogu roboczym:
 
 ```bash
 ls
 ```
 
 ```output
-README.txt  coronavirus  molecules  sequencing  thesis_notes  things.txt
+README.txt            cloud_cover_reports   orbital_catalog       project_wroclaw
+sentinel2_scenes      gnss_stations         scripts_repo          sources.txt
+telemetry_logs
 ```
 
-Note that using the shell to create a directory is no different than using a file explorer.
-If you open the current directory using your operating system's graphical file explorer <i class="fa-solid fa-folder"></i>, the `results` directory will appear there too.
-While the shell and the file explorer are two different ways of interacting with the files, the files and directories themselves are the same.
-
-You may notice that if you try to **create multiple nested directories at once**, the command will fail if the parent directory does not already exist.
-For example, if we try to create a directory called `thesis_notes/papers/reading` without first creating the `thesis_notes/papers` directories, we will get an error:
+Jeśli spróbujemy **utworzyć zagnieżdżoną strukturę katalogów za jednym razem**, polecenie zgłosi błąd, jeśli katalog nadrzędny jeszcze nie istnieje:
 
 ```bash
-mkdir thesis_notes/papers/reading
+mkdir project_wroclaw/sentinel2/cloud_masks
 ```
 
 ```output
-mkdir: No such file or directory
+mkdir: cannot create directory 'project_wroclaw/sentinel2/cloud_masks': No such file or directory
 ```
 
-There are two solutions to this problem:
+Mamy dwa rozwiązania tego problemu:
 
-- Create directories one-by-one sequencially, starting with the parent directory:
+1. Tworzyć katalogi krok po kroku:
+   ```bash
+   mkdir project_wroclaw/sentinel2
+   mkdir project_wroclaw/sentinel2/cloud_masks
+   ```
+2. Użyć flagi `-p` (*parents*), która automatycznie utworzy brakujące katalogi nadrzędne:
+   ```bash
+   mkdir -p project_wroclaw/sentinel2/cloud_masks
+   ```
 
-```bash
-mkdir thesis_notes/papers
-mkdir thesis_notes/papers/reading
-```
-
-- Use the `-p` option with `mkdir`, which will create any parent directories that do not already exist:
-
-```bash
-mkdir -p thesis_notes/papers/reading
-```
-
-The `-p` option can also be useful to **avoid errors when creating a directory that already exists**.
-For example:
-
-```bash
-mkdir thesis_notes
-```
-
-```output
-mkdir: thesis_notes: File exists
-```
-
-However, if you add the `-p` option, the command will succeed without any error messages (it simply ignores the fact that the directory already exists).
+Flaga `-p` zapobiega także wyświetlaniu błędu, jeśli wskazany katalog już istnieje.
 
 ::: {.callout-note collapse=true}
+#### Dobre praktyki nazewnictwa plików w projektach inżynierskich
+Nieodpowiednie nazwy plików mogą znacznie utrudnić pracę w wierszu poleceń i automatyzację skryptami:
 
-#### Good naming conventions - click here for some tips
-
-Complicated names of files and directories can make your life painful when working on the command line.
-Here are some useful tips for naming your files:
-
-1. Don't use spaces.
-   Spaces can make a name more meaningful, but since spaces are used to separate arguments on the command line it is better to avoid them in names of files and directories.
-   You can use `-` or `_` instead (e.g. `thesis_notes/` rather than `thesis notes/`).
-2. Don't begin the name with `-` (dash).
-   Commands treat names starting with `-` as options.
-3. Only use letters, numbers, `.` period, `-` hyphen and `_` underscore.
-   Many other characters (such as `!`, `@`, `$`, `"`, etc.) have special meanings on the command line and can cause your command to not work as expected or even lead to data loss.
-
-If you need to refer to names of files or directories that have spaces or other special characters, you should surround the name in quotes (`""`).
-
+1. **Unikaj spacji w nazwach.** Spacja w powłoce rozdziela polecenia i argumenty. Zamiast `dane sentinel maj.csv` stosuj `dane_sentinel_maj.csv` lub `dane-sentinel-maj.csv`.
+2. **Nie zaczynaj nazwy od myślnika (`-`).** Programy mogą potraktować taki plik jako opcję (flagę).
+3. **Używaj tylko bezpiecznych znaków:** liter (bez polskich znaków diakrytycznych w nazwach plików technicznych), cyfr, kropek `.`, myślników `-` i podkreśleń `_`.
+4. Jeśli musisz odwołać się do pliku ze spacją w nazwie, ujmij jego nazwę w cudzysłów: `"moje dane.txt"`.
 :::
 
-## Moving & renaming
+## Przenoszenie i zmiana nazwy (`mv`)
 
-In our `data-shell` directory we have a file called `things.txt`, which contains a note of books to read for our thesis.
-Let's move this file to the `thesis_notes` directory we created earlier, using the command `mv` ("move"):
+W katalogu `dane_do_cwiczen` znajduje się plik `sources.txt` (zawierający notatki z wykazem serwisów danych satelitarnych).  
+Przenieśmy ten plik do nowo utworzonego katalogu `project_wroclaw` za pomocą polecenia `mv` (*move*):
 
 ```bash
-mv things.txt thesis_notes/
+mv sources.txt project_wroclaw/
 ```
 
-The first argument tells `mv` what we're "moving", while the second is where it's to go.
-In this case, we're moving `things.txt` to `thesis_notes/`.
-We can check the file has moved there:
+Pierwszy argument wskazuje plik źródłowy, a drugi – miejsce docelowe. Sprawdźmy:
 
 ```bash
-ls thesis_notes
+ls project_wroclaw
 ```
 
 ```output
-things.txt
+sentinel2  sources.txt
 ```
 
-This isn't a particularly informative name for our file, so let's change it!
-Interestingly, we also use the `mv` command to change a file's name.
-Here's how we would do it:
+Zmieńmy teraz nazwę pliku z `sources.txt` na `documentation_links.txt`.  
+W systemie Unix do **zmiany nazwy pliku** również służy polecenie `mv`:
 
 ```bash
-mv thesis_notes/things.txt thesis_notes/books.txt
+mv project_wroclaw/sources.txt project_wroclaw/documentation_links.txt
 ```
 
-In this case, we are "moving" the file to the same place but with a different name.
-Be careful when specifying the target file name, since `mv` will silently overwrite any existing file with the same name, which could lead to data loss.
-
-The command `mv` also works with directories, and you can use it to move/rename an entire directory just as you use it to move an individual file.
-
-:::{.callout-note}
-
-#### Exercise
-
-See the [renaming files exercise](#rename-exr) to test your knowledge.
-
+::: {.callout-warning}
+#### Uwaga na nadpisywanie plików
+Polecenie `mv` bez ostrzeżenia nadpisze istniejący plik docelowy, jeśli w folderze docelowym istnieje już plik o identycznej nazwie!
 :::
 
-## Copying Files and Directories
+## Kopiowanie plików i katalogów (`cp`)
 
-The `cp` command works very much like `mv`, except it copies a file instead of moving it.
-For example, let's make a copy of our `books.txt` file:
+Polecenie `cp` (*copy*) działa podobnie do `mv`, z tą różnicą, że tworzy kopię, pozostawiając plik źródłowy bez zmian:
 
 ```bash
-cp thesis_notes/books.txt books_copy.txt
+cp project_wroclaw/documentation_links.txt links_backup.txt
 ls
 ```
 
 ```output
-README.txt  books_copy.txt  coronavirus  molecules  sequencing  thesis_notes
+README.txt            cloud_cover_reports   links_backup.txt      orbital_catalog
+project_wroclaw       gnss_stations         scripts_repo          telemetry_logs
+sentinel2_scenes
 ```
 
-Unlike the `mv` command, in this case the original file remains in the original directory:
+Aby **skopiować cały katalog wraz z zawartością**, musimy dodać opcję rekurencyjną `-r` (*recursive*):
 
 ```bash
-ls thesis_notes/
+cp -r scripts_repo scripts_backup
+```
+
+## Usuwanie plików i katalogów (`rm`, `rmdir`)
+
+Do usuwania plików służy polecenie `rm` (*remove*):
+
+```bash
+rm links_backup.txt
+```
+
+Co się stanie, gdy spróbujemy usunąć katalog `scripts_backup`?
+
+```bash
+rm scripts_backup
 ```
 
 ```output
-books.txt
+rm: cannot remove 'scripts_backup': Is a directory
 ```
 
-For copying directories, we need to use the `-r` option with the `cp` command (`-r` means "recursive"):
+Domyślnie `rm` odmawia usuwania katalogów. Aby usunąć katalog wraz ze wszystkimi zawartymi w nim plikami i podfolderami, należy użyć opcji `-r`:
 
 ```bash
-cp -r molecules molecules_copy
+rm -r scripts_backup
 ```
 
-:::{.callout-note}
-
-#### Exercise
-
-See the [copying directories](#copy-exr) and [copying multiple files](#cp-multiple-exr) exercises to test your knowledge.
-
+::: {.callout-danger}
+#### W powłoce Unix usunięcie jest bezpowrotne!
+W wierszu poleceń **nie ma Kosza** (*Trash / Recycle Bin*). Usunięte poleceniem `rm` pliki są natychmiast wymazywane z systemu plików.  
+Używaj `rm -r` z najwyższą ostrożnością. Aby powłoka pytała o potwierdzenie przed usunięciem każdego pliku, można użyć opcji interaktywnej: `rm -r -i nazwa_katalogu`.
 :::
 
-## Removing Files and Directories
+Do bezpiecznego usuwania **wyłącznie pustych katalogów** służy polecenie `rmdir` (*remove directory*).
 
-The Unix command used to remove or delete files is `rm` ("remove").
-For example, let's remove one of the files we just copied:
-
-```bash
-rm molecules_copy/cubane.pdb
-```
-
-We can confirm the file is gone using `ls molecules_copy/`.
-
-What if we try to remove the whole `molecules_copy` directory we created in the previous exercise?
-
-```bash
-rm molecules_copy
-```
-
-```output
-rm: cannot remove `molecules_copy': Is a directory
-```
-
-We get an error.
-This happens, because `rm` _by default_ only works on files, not directories.
-
-`rm` can remove a directory _and all its contents_ if we use the recursive option `-r`, and it will do so **without any confirmation prompts**:
-
-```bash
-rm -r molecules_copy
-```
-
-Given that there is no way to retrieve files deleted using the shell, **`rm -r` should be used with great caution** (you might consider adding the interactive option `rm -r -i`).
-
-To remove _empty_ directories, we can also use the `rmdir` command.
-This is a safer option than `rm -r`, because it will never delete the directory if it contains files, giving us a chance to check whether we really want to delete all its contents.
-
-::: {.callout-warning}
-#### Deleting Is Forever
-
-The Unix shell doesn't have a trash bin that we can recover deleted files from (though most graphical interfaces to Unix do).
-Instead, when we delete files, they are unlinked from the filesystem so that their storage space on disk can be recycled.
-Tools for finding and recovering deleted files do exist, but there's no guarantee they'll work in any particular situation, since the computer may recycle the file's disk space right away.
-
-:::
-
-## Exercises
+## Ćwiczenia
 
 :::{.callout-exercise #rename-exr}
-#### Renaming files
+#### Zmiana nazwy pliku konfiguracyjnego
 {{< level 1 >}}
 
-(**Note:** this is a conceptual exercise, you don't need to use your own terminal.)
+*(Zadanie koncepcyjne)*
 
-Suppose that you created a plain-text file in your current directory to contain a list of the statistical tests you will need to do to analyze your data, and named it `statstics.txt`.
+Załóżmy, że w bieżącym katalogu utworzyłeś plik tekstowy z parametrami korekcji atmosferycznej dla sensora Sentinel-2 i omyłkowo nazwałeś go `sen2cor_confg.txt`.  
+Chcesz poprawić literówkę i zmienić nazwę na `sen2cor_config.txt`. Którego polecenia należy użyć?
 
-After creating and saving this file you realize you misspelled the filename!
-You want to correct the mistake, which command could you use to do so?
-
-1. `cp statstics.txt statistics.txt`
-2. `mv statstics.txt statistics.txt`
-3. `mv statstics.txt .`
-4. `cp statstics.txt .`
+1. `cp sen2cor_confg.txt sen2cor_config.txt`
+2. `mv sen2cor_confg.txt sen2cor_config.txt`
+3. `mv sen2cor_confg.txt .`
+4. `cp sen2cor_confg.txt .`
 
 ::: {.callout-answer collapse=true}
 
-1. No.  While this would create a file with the correct name, the incorrectly named file still exists in the directory
-and would need to be deleted.
-2. **Yes**, this would work to rename the file.
-3. No, the period(.) indicates where to move the file, but does not provide a new file name; identical file names
-cannot be created.
-4. No, the period(.) indicates where to copy the file, but does not provide a new file name; identical file names
-cannot be created.
+1. Nie: polecenie utworzy kopię o poprawnej nazwie, ale błędnie nazwany plik nadal pozostanie na dysku.
+2. **Prawidłowa odpowiedź**: `mv` zmieni nazwę pliku na właściwą bez tworzenia duplikatu.
+3. Nie: kropka wskazuje bieżący katalog, ale nie podaje nowej nazwy pliku.
+4. Nie: brak nowej nazwy pliku docelowego.
 :::
 :::
 
 :::{.callout-exercise #copy-exr}
-#### Copy directories
+#### Tworzenie kopii zapasowej katalogu skryptów
 {{< level 1 >}}
 
-For this exercise, make sure you are in the course materials directory: `cd ~/Desktop/data-shell`
-
-Make a copy of the `sequencing` directory named `sequencing_backup`.
-When copying an entire directory, you will need to use the option `-r` with the `cp` command (`-r` means "recursive").
+Przejdź do katalogu danych: `cd ~/Desktop/dane_do_cwiczen`.  
+Utwórz kopię zapasową folderu `scripts_repo` o nazwie `scripts_repo_v1`.  
+Sprawdź za pomocą `ls`, czy nowy katalog pojawił się na liście.
 
 ::: {.callout-answer collapse=true}
 
-If we run the command without the `-r` option, this is what happens:
-
 ```bash
-cp sequencing sequencing_backup
-```
-
-```output
-cp: -r not specified; omitting directory 'sequencing'
-```
-
-This message is already indicating what the problem is.
-By default, directories (and their contents) are not copied unless we specify the option `-r`.
-
-This would work:
-
-```bash
-cp -r sequencing sequencing_backup
-```
-
-Running `ls` we can see a new folder called `sequencing_backup`:
-
-```bash
+cp -r scripts_repo scripts_repo_v1
 ls
-```
-
-```output
-README.txt  books_copy.txt  coronavirus  molecules  sequencing  sequencing_backup  thesis_notes
 ```
 :::
 :::
 
 :::{.callout-exercise #cp-multiple-exr}
-#### Copy with multiple filenames
+#### Kopiowanie wielu raportów do folderu projektu
 {{< level 2 >}}
 
-For this exercise, make sure you are in the course materials directory: `cd ~/Desktop/data-shell`
-
-What does `cp` do when given several filenames and a directory name?
-
+Utwórz katalog `reports_analysis`:
 ```bash
-mkdir backup
-cp molecules/cubane.pdb molecules/ethane.pdb backup/
+mkdir reports_analysis
 ```
-
-In the example below, what does `cp` do when given three or more file names?
-
+Skopiuj do niego pliki raportów dla Polski za jednym razem:
 ```bash
-cp molecules/cubane.pdb molecules/ethane.pdb molecules/methane.pdb
+cp cloud_cover_reports/poland_sentinel2_2023.csv cloud_cover_reports/poland_sentinel2_2024.csv reports_analysis/
 ```
+Sprawdź zawartość `reports_analysis/` za pomocą `ls`.
 
 ::: {.callout-answer collapse=true}
 
-If given more than one file name followed by a directory name (i.e. the destination directory must be the last argument), `cp` copies the files to the named directory.
-
-If given three file names, `cp` throws an error such as the one below, because when copying multiple files simultaneously, it expects a directory as the last argument.
-
-```output
-cp: target 'molecules/methane.pdb' is not a directory
+```bash
+ls reports_analysis
+# Wyświetli: poland_sentinel2_2023.csv  poland_sentinel2_2024.csv
 ```
-
+Gdy ostatnim argumentem polecenia `cp` jest katalog, wszystkie wymienione wcześniej pliki zostaną do niego skopiowane.
 :::
 :::
 
-## Summary
+## Podsumowanie
 
 ::: {.callout-tip}
-#### Key points
+#### Główne punkty
 
-- Directories can be created with the `mkdir` command.
-- Files can be moved and/or renamed using the `mv` command.
-  - **{{< iconify fluent-emoji-high-contrast:warning >}} Data loss warning**: If files of the same name exist in the destination, they will be overwritten.
-- Files can be copied with the `cp` command.
-  - To copy an entire directory (and its contents) we need to use `cp -r` (the `-r` option will copy files **r**ecursively).
-  - **{{< iconify fluent-emoji-high-contrast:warning >}} Data loss warning**: If files of the same name exist in the destination, they will be overwritten.
-- Files can be removed with the `rm` command. To remove an entire directory (and its contents) we need to use `rm -r`  (the `-r` option will remove files **r**ecursively).
-  - **{{< iconify fluent-emoji-high-contrast:warning >}} Data loss warning**: Deleting files from the command line is _permanent_.
+- Tworzenie katalogów: `mkdir nazwa_katalogu` (oraz `mkdir -p sciezka/do/podkatalogu` dla struktur zagnieżdżonych).
+- Przenoszenie i zmiana nazwy: `mv zrodlo cel`.
+- Kopiowanie plików: `cp plik_zrodlowy plik_docelowy`.
+- Kopiowanie całych katalogów z zawartością: `cp -r katalog_zrodlowy katalog_docelowy`.
+- Usuwanie plików: `rm plik`.
+- Usuwanie katalogów z zawartością: `rm -r katalog`.
+- Usuwanie pustych katalogów: `rmdir katalog`.
+- **Uwaga na utratę danych**: W wierszu poleceń usunięcie plików za pomocą `rm` jest trwałe i natychmiastowe (brak kosza systemowego).
 :::

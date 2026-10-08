@@ -36,31 +36,19 @@ metadata-files:
 book:
   search:
     location: sidebar
-  favicon: "_extensions/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico"
   bread-crumbs: false
   page-navigation: true
   page-footer:
     center: |
-      Licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+      Licencja [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
       ![](https://creativecommons.org/images/deed/cc_icon_black_x2.png){width=25px}
-      Cambridge Research Informatics Training
   navbar:
     pinned: true
-    logo: "_extensions/cambiotraining/crit-format/img/university_crest_reversed.png"
-    title: "Introduction to the Unix Command Line"
-    right:
-      - text: "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}"
-        href: https://github.com/cambiotraining/unix-shell
-      - text: "{{< iconify fa6-brands bluesky size=lg title='CRIT Bluesky' >}}"
-        href: https://bsky.app/profile/bioinfocambs.bsky.social
-      - text: "{{< iconify fa6-brands mastodon size=lg title='CRIT Mastodon' >}}"
-        href: https://genomic.social/@BioInfoCambs
-      - text: "{{< iconify mdi web size=lg title='CRIT Website' >}}"
-        href: https://bioinfotraining.bio.cam.ac.uk/
+    title: "Zarządzanie projektem informatycznym (UPWr 2026/2027)"
   chapters:
-    - part: "Welcome"
+    - part: "Wprowadzenie"
       chapters:
-        - text: "Overview"
+        - text: "Informacje ogólne"
           href: index.md
-        - text: "Data & Setup"
+        - text: "Dane i przygotowanie środowiska"
           href: setup.md

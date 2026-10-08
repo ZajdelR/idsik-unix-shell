@@ -1,162 +1,152 @@
-# Standard streams
+---
+pagetitle: "Strumienie standardowe"
+---
+
+# Strumienie standardowe i przekierowania (Standard streams)
 
 ::: {.callout-tip}
-### Learning Objectives
+### Cele szkolenia
 
-- Define the three standard streams and explain how they are used in shell commands.
-- Use redirection operators to send `stdout` and `stderr` to files.
-- Combine `stdout` and `stderr` in a single stream and discard unwanted output with `/dev/null`.
+- Zdefiniować trzy standardowe strumienie danych (`stdin`, `stdout`, `stderr`) i zrozumieć ich rolę w systemie Unix.
+- Rozdzielać i zapisywać standardowe wyjście oraz komunikaty o błędach do odrębnych plików za pomocą operatorów `>` oraz `2>`.
+- Łączyć strumienie `stdout` i `stderr` w jeden plik dziennika (`2>&1` lub `&>`).
+- Wyciszać niepotrzebne komunikaty ostrzeżeń za pomocą wirtualnego urządzenia `/dev/null`.
 :::
 
-## Inputs and outputs
+## Wejście i wyjście programu
 
-Every time a program runs, it receives an input and generates an output.
-For example:
+Każdy program uruchamiany w systemie Unix może pobierać dane wejściowe i generować dane wyjściowe.  
+Na przykład:
 
 ```bash
-ls molecules
+ls sentinel2_scenes
+```
+
+- Ścieżka `sentinel2_scenes` stanowi dane wejściowe dla programu `ls`.
+- Zwrócona lista katalogów scen to standardowy wynik działania polecenia.
+
+Jeśli jednak program napotka problem (np. nieistniejący plik lub katalog):
+
+```bash
+ls sentinel2_scenes/S2A_nonexistent_scene
 ```
 
 ```output
-cubane.pdb  ethane.pdb  md5.txt  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
+ls: cannot access 'sentinel2_scenes/S2A_nonexistent_scene': No such file or directory
 ```
 
-- The path `molecules` is the input to `ls`.
-- The output is a list of the files in that directory.
+Komunikat o błędzie trafia do oddzielnego kanału.  
+W architekturze Unix każdy proces posiada trzy domyślne **strumienie standardowe**:
 
-Sometimes the output is an error, for example:
+1. **Standardowe wejście (`stdin`, deskryptor `0`)** – dane przekazywane do programu (np. wpisywane z klawiatury lub przekazywane potokiem `|`).
+2. **Standardowe wyjście (`stdout`, deskryptor `1`)** – prawidłowe wyniki działania programu.
+3. **Standardowe wyjście błędów (`stderr`, deskryptor `2`)** – komunikaty o błędach, ostrzeżeniach i statusie wykonania.
+
+![Schemat standardowych strumieni wejścia/wyjścia (źródło: Wikimedia Commons)](https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Stdstreams-notitle.svg/960px-Stdstreams-notitle.svg.png)
+
+Mimo że w oknie terminala zarówno `stdout`, jak i `stderr` wyświetlają się razem, powłoka traktuje je jako dwa całkowicie odrębne kanały komunikacji.
+
+## Przekierowywanie strumieni wyjściowych
+
+Rozróżnienie między `stdout` a `stderr` możemy zilustrować za pomocą operatorów przekierowania.
+
+Polecenie:
 
 ```bash
-ls doesnotexist
+ls sentinel2_scenes > valid_scenes.txt
+```
+
+Zapisuje listę katalogów do pliku `valid_scenes.txt`. Na ekranie nie pojawia się żaden tekst.
+
+Zobaczmy co się stanie, gdy wykonamy polecenie generujące błąd:
+
+```bash
+ls sentinel2_scenes/S2A_nonexistent > valid_scenes.txt
 ```
 
 ```output
-"doesnotexist": No such file or directory (os error 2)
+ls: cannot access 'sentinel2_scenes/S2A_nonexistent': No such file or directory
 ```
 
-These inputs and outputs are called **standard streams**.
-There are three of them:
+Błąd nadal pojawił się na ekranie, a plik docelowy pozostał pusty!  
+Dzieje się tak, ponieważ domyślny operator `>` (równoważny `1>`) przekierowuje **wyłącznie standardowe wyjście (`stdout`)**.
 
-- **Standard input (stdin)**: the input to a command
-- **Standard output (stdout)**: the output when a command runs successfully
-- **Standard error (stderr)**: the output when a command reports an error or warning
-
-This is a schematic representation of these streams:
-
-![Image source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Stdstreams-notitle.svg)](https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Stdstreams-notitle.svg/960px-Stdstreams-notitle.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail)
-
-It is worth emphasising the distinction between `stdout` and `stderr`.
-Both types of output appear in the terminal, but the shell manages them separately behind the scenes.
-
-## Redirecting output streams
-
-We can illustrate the distinction between `stdout` and `stderr` by using the redirection operator `>`, which we have already met.
-For example:
+Aby przekierować **strumień błędów (`stderr`)**, używamy operatora `2>`:
 
 ```bash
-ls molecules > molecules_ls.txt
+ls sentinel2_scenes/S2A_nonexistent > valid_scenes.txt 2> error_log.txt
 ```
 
-This creates the file `molecules_ls.txt` with the list of files and prints no extra output to the terminal.
-
-Now consider this command:
-
-```bash
-ls doesnotexist > doesnotexist_ls.txt
-```
-
-```output
-"doesnotexist": No such file or directory (os error 2)
-```
-
-This prints the error to the terminal, while `doesnotexist_ls.txt` stays empty because there was no standard output to redirect.
-The reason is that `>` redirects only standard output (`stdout`).
-
-There are therefore two types of output redirection operators:
-
-- `>` redirects standard output (you can also use `1>` for the explicit version)
-- `2>` redirects standard error
-
-So this command:
-
-```bash
-ls doesnotexist > doesnotexist_ls.txt 2> doesnotexist_ls_stderr.txt
-```
-
-prints no output to the terminal because the error is redirected to the second file instead.
-
-The distinction between the two output streams may seem like a technical detail, but it is very useful when you use specialised software, such as tools in bioinformatics, or when you write your own scripts and debug them.
-
-## Redirecting stderr to stdout
-
-Sometimes you may want to redirect `stderr` to `stdout`, so that both outputs go to the same file.
-You can do this with the combined operator:
-
-- `2>&1` redirects standard error (`2>`) and sends it to the same place as standard output (`1`)
-
-For example:
-
-```bash
-ls molecules doesnotexist > molecules_ls_output.txt 2>&1
-```
-
-This prints no output to the terminal, and the file contains both `stdout` and `stderr`:
-
-```bash
-cat molecules_ls_output.txt
-```
-
-```output
-"doesnotexist": No such file or directory (os error 2)
-count_atoms.sh
-cubane.pdb
-ethane.pdb
-md5.txt
-methane.pdb
-octane.pdb
-pentane.pdb
-propane.pdb
-```
+Teraz w terminalu nie pojawi się żaden komunikat: błąd został bezpiecznie zapisany w pliku `error_log.txt`.
 
 ::: {.callout-note}
-#### Discarding outputs with `/dev/null`
-
-Sometimes you may want to ignore a particular output.
-For example, a tool may print a lot of information to `stderr` that you do not want to keep.
-In these cases, you can redirect the output to `/dev/null`, a special file that discards anything sent to it.
-
-For example, suppose we want to list files in a set of directories but ignore the errors for the directories that do not exist:
-
-```bash
-ls molecules fake1 fake2 sequencing fake3 fake4 2> /dev/null
-```
-
-```output
-molecules:
-count_atoms.sh  cubane.pdb  ethane.pdb  md5.txt  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
-
-sequencing:
-run1  run2  gene_annotation.gtf.gz  sample_metadata.csv
-```
-
-Here, we see the output for the directories that exist, but we ignore the errors from the directories that do not exist.
+#### Zastosowanie w inżynierii danych satelitarnych
+Rozdzielanie `stdout` i `stderr` jest kluczowe podczas wsadowego przetwarzania danych satelitarnych (np. konwersji tysięcy scen Sentinel przez GDAL, SNAP lub biblioteki Pythona). Dzięki temu czyste dane wyjściowe trafiają do bazy lub pliku wynikowego, a wszystkie ostrzeżenia o brakujących kanałach czy chmurach są zbierane w odrębnym pliku diagnostycznym (`errors.log`).
 :::
 
-## Summary
+## Łączenie strumieni `stderr` i `stdout`
+
+Często w skryptach chcemy zapisać pełny przebieg analizy (zarówno komunikaty informacyjne, jak i ewentualne błędy) do jednego wspólnego pliku logu:
+
+```bash
+ls sentinel2_scenes sentinel2_scenes/S2A_nonexistent > full_run.log 2>&1
+```
+
+Zapis `2>&1` oznacza: „przekieruj strumień błędu (`2>`) do tego samego miejsca, w które wskazuje standardowe wyjście (`&1`)”.
+
+## Wyciszanie komunikatów za pomocą `/dev/null`
+
+W systemach Unix `/dev/null` to specjalne wirtualne urządzenie (tzw. „czarna dziura” lub kosz), które natychmiast bezpowrotnie porzuca wszystkie przesłane do niego dane.
+
+Jeśli narzędzie generuje dużą liczbę zbędnych ostrzeżeń, które chcemy zignorować:
+
+```bash
+ls sentinel2_scenes sentinel2_scenes/fake_scene 2> /dev/null
+```
+
+Błędy dotyczące nieistniejących plików zostaną wyciszone i pominięte.
+
+## Ćwiczenia
+
+:::{.callout-exercise}
+#### Rejestracja błędów przetwarzania
+{{< level 2 >}}
+
+Napisz skrypt `process_all_logs.sh`, który próbuje wylistować i sprawdzić logi dla kilku stacji naziemnych: `SVB`, `KIR`, `FAKE_STATION`, `MAS`.
+
+Skrypt powinien:
+1. Przekierować nazwy istniejących plików do `available_logs.txt`.
+2. Przekierować błędy o braku plików dla nieistniejących stacji do `missing_stations.log`.
+
+::: {.callout-answer collapse=true}
+
+```bash
+#!/usr/bin/env bash
+
+ls telemetry_logs/ground_station_SVB_*.log \
+   telemetry_logs/ground_station_KIR_*.log \
+   telemetry_logs/ground_station_FAKE_STATION_*.log \
+   telemetry_logs/ground_station_MAS_*.log \
+   > available_logs.txt 2> missing_stations.log
+
+echo "Dostepne pliki zapisano w: available_logs.txt"
+echo "Brakujace stacje odnotowano w: missing_stations.log"
+```
+:::
+:::
+
+## Podsumowanie
 
 ::: {.callout-tip}
-### Key Points
+### Główne punkty
 
-- The shell manages three standard streams for each command:
-  - `stdin` contains the input sent to a command.
-  - `stdout` contains normal output.
-  - `stderr` contains errors and warnings.
-
-- Redirection controls where command output goes.
-  - `>` sends `stdout` to a file.
-  - `2>` sends `stderr` to a file.
-  - `2>&1` combines `stderr` with `stdout`.
-
-- You can discard unwanted output with `/dev/null`.
-  This is useful when a command prints warnings or missing-file errors that you do not want to keep.
+- Powłoka obsługuje trzy standardowe strumienie danych dla każdego procesu:
+  - `stdin` (deskryptor 0) – dane wejściowe programu.
+  - `stdout` (deskryptor 1) – standardowe wyjście (wyniki).
+  - `stderr` (deskryptor 2) – wyjście diagnostyczne (ostrzeżenia i błędy).
+- Operatory przekierowania:
+  - `>` (lub `1>`) – przekierowuje `stdout` do pliku.
+  - `2>` – przekierowuje `stderr` do pliku logu.
+  - `2>&1` – scala strumień błędów ze standardowym wyjściem.
+  - `2> /dev/null` – wycisza i odrzuca strumień błędów.
 :::

@@ -11,7 +11,7 @@ Materiały do przedmiotu **Zarządzanie projektem informatycznym** dla studentó
 
 ## Informacje ogólne
 
-**Powłoka Unix**, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja, bioinformatyka i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.
+**Powłoka Unix**, obsługiwana z wiersza poleceń, jest ważnym narzędziem pracy badaczy i inżynierów, szczególnie w takich dziedzinach jak inżynieria danych satelitarnych, teledetekcja i analiza dużych zbiorów danych. Podczas zajęć poznasz podstawową strukturę systemu Unix oraz sposób korzystania z niego za pomocą poleceń. Nauczysz się poruszać po systemie plików, przetwarzać dane tekstowe, łączyć polecenia za pomocą potoków i przekierowań, aby sprawnie wydobywać informacje z plików, oraz pisać skrypty Bash wykorzystujące zmienne i standardowe strumienie wejścia i wyjścia.
 
 ::: {.callout-note}
 ### Autorzy i materiały źródłowe

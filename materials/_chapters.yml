@@ -2,7 +2,6 @@ book:
   chapters:
     - part: "Podstawy wiersza poleceń"
       chapters:
-        - materials/slides01-essentials.md
         - materials/01-unix_overview.md
         - materials/02-file_navigation.md
         - materials/03-file_operations.md
@@ -10,20 +9,17 @@ book:
         - materials/05-combining_commands.md
     - part: "Podstawy tworzenia skryptów"
       chapters:
-        - materials/slides02-scripting.md
         - materials/06-scripts.md
         - materials/07-variables.md
         - materials/08-streams.md
     # Moduły dodatkowe poza zakresem podstawowym:
     # - part: "System i środowisko"
     #   chapters:
-    #     - materials/slides03-environment.md
     #     - materials/09-permissions.md # chown, chmod
     #     - materials/10-environment.md # .bashrc, export, PATH, aliases
     #     - materials/11-archiving.md # tar, gzip, zip, md5, sha256
     # - part: "Zaawansowane skrypty"
     #   chapters:
-    #     - materials/slides04-programming.md
     #     - materials/12-loops.md
     # - part: "Praca z danymi"
     #   chapters:

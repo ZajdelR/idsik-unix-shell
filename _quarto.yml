@@ -12,6 +12,7 @@ project:
     - setup.md
     - materials.md
     - materials/*
+    - "!materials/slides*.md"
     - "!materials/*/no_render"
 
 format: crit-format-html

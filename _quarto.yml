@@ -34,6 +34,7 @@ metadata-files:
   #- "materials/_sidebar.yml"
 
 book:
+  site-url: https://zajdelr.github.io/idsik-unix-shell/
   search:
     location: sidebar
   bread-crumbs: false
